@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+
+            android:id="@+id/dashboard"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:layout_marginRight="8dp"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/ima"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dashboard" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dashboard"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/layout"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/ima2"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_map" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ima2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status Layout"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:visibility="gone"
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+
+            android:id="@+id/issuesreport"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:layout_marginRight="8dp"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/eima"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_report" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/eima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Issues report"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_marginRight="8dp"
+            android:id="@+id/issueslist"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/eima2"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_alarm" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/eima2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Issues List"/>
+        </RelativeLayout>
+        <RelativeLayout
+        style="@style/SelectableItemBackground"
+        android:foreground="?android:attr/selectableItemBackground"
+
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+ />
+
+        <TextView
+
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+/>
+
+    </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_margin="@dimen/activity_vertical_margin"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/door"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/action_lick"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_height="120dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ima"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/ic_door" />-->
+
+<!--            <TextView-->
+<!--                android:textColor="#fff"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@+id/ima"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Door Alert"/>-->
+
+<!--        </RelativeLayout>-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/motion"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/action_lick"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_height="120dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ima2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/ic_motion" />-->
+
+<!--            <TextView-->
+<!--                android:textColor="#fff"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@+id/ima2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Motion Alert"/>-->
+<!--        </RelativeLayout>-->
+
+<!--    </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/smoke"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/action_lick"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginRight="8dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_height="120dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/eima"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/ic_fire" />-->
+
+<!--            <TextView-->
+<!--                android:textColor="#fff"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_below="@+id/eima"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Smoke Alert"/>-->
+
+<!--        </RelativeLayout>-->
+<!--        <RelativeLayout-->
+
+<!--            android:layout_weight="1"-->
+<!--            android:background="#00FFFFFF"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:layout_height="120dp">-->
+
+<!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:id="@+id/eima2"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:background="@drawable/ic_alarm" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#fff"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_below="@+id/eima2"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="Issues List"/>&ndash;&gt;-->
+<!--        </RelativeLayout>-->
+
+<!--    </LinearLayout>-->
+<!--</LinearLayout>-->

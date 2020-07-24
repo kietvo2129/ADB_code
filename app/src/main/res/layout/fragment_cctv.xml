@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/Mapbuild"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:layout_marginRight="8dp"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/ima"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_map" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CCTV Layout"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/checksensor"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/ima2"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_qccheck" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ima2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CCTV List"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

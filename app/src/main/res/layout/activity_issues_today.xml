@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.IssuesToday">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/aaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Issue"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:id="@+id/e1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aaa"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Sensor ID"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Sensor Name"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Location"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Update Time"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e1"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp" />
+
+            <TextView
+                android:id="@+id/updatetime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e2"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Warning"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Action"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Issues Closed Time"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e3"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/warning"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/action"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/issuesclose"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e4"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Temperature"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Humidity"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Power"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Pressure"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e5"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/temp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/hum"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/pow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/press"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e6"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Device Control"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Device Status"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="Picture"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e7"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/control"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:id="@+id/picture"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/backgr_row"
+                android:gravity="center"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="4dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bbb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/e8"
+            android:text="Layout"
+            android:textSize="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/bbb"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/backgr_title">
+
+            <ImageView
+                android:id="@+id/imaAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

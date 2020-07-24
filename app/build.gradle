@@ -1,0 +1,106 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+
+    }
+
+}
+
+apply plugin: 'com.android.application'
+
+repositories {
+    google()
+    jcenter()
+    flatDir { dirs 'libs' }
+}
+
+android {
+    def versionQACode = 2
+
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+    flavorDimensions dimensionDefault
+
+    defaultConfig {
+        applicationId "com.autonsi.databoard"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 402000
+        versionName '4.0.2'
+        multiDexEnabled true
+    }
+
+    productFlavors {
+        dev {
+            dimension dimensionDefault
+            buildConfigField('boolean', "IS_QA", "false")
+            buildConfigField("int", "VERSION_QA_CODE", versionQACode.toString())
+        }
+
+        qa {
+            dimension dimensionDefault
+            buildConfigField("boolean", "IS_QA", "true")
+            buildConfigField("int", "VERSION_QA_CODE", versionQACode.toString())
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            proguardFile 'proguard-rules.pro'
+            zipAlignEnabled false
+
+        }
+
+        release {
+            signingConfig signingConfigs.debug
+
+    }
+    }
+
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.navigation:navigation-fragment:2.2.1'
+    implementation 'androidx.navigation:navigation-ui:2.2.1'
+    implementation "com.google.android.material:material:$materialVersion"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
+    //gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
+    //animation loading
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    //Vlc CCTV
+    implementation project(':pedrovlc')
+
+    //chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+//load image
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //HTTP
+    implementation 'com.android.volley:volley:1.1.1'
+}
+
+apply from: "../artifacts.gradle"
+apply plugin: 'com.google.gms.google-services'

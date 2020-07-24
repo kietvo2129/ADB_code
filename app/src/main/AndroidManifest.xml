@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.quickblox.sample.videochat.java">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.quickblox.sample.messages.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppThemee"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AlarmData.Dashboard.AlarmDashboardActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".AlarmData.StatusLayout.MapSensor.MapSensorAlarmActivity"
+            android:parentActivityName=".AlarmData.StatusLayout.MapFloorAlrmActivity" />
+        <activity
+            android:name=".AlarmData.StatusLayout.MapFloorAlrmActivity"
+            android:parentActivityName=".AlarmData.StatusLayout.MapBuildAlarmActivity" />
+        <activity
+            android:name=".AlarmData.StatusLayout.MapBuildAlarmActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".DigitalData.IssuesReport.IssuesReportActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.IssuesToday"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".AlarmData.IssuesList.AlarmIssuesList"
+            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name=".CCTV.CCTVList.CCTVListActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name=".CCTV.CCTVLayout.CCTVBuildActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".CCTV.CCTVLayout.CCTVSensorActivity"
+            android:parentActivityName=".CCTV.CCTVLayout.CCTVFloorActivity" />
+        <activity
+            android:name=".CCTV.CCTVLayout.CCTVFloorActivity"
+            android:parentActivityName=".CCTV.CCTVLayout.CCTVBuildActivity" />
+        <activity
+            android:name=".CCTV.CCTVList.CCTVActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name=".DigitalData.StatusLayout.MapFloor.MapFloorActivity"
+            android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity" />
+        <activity
+            android:name=".DigitalData.StatusLayout.MapBuild.MapBuildActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".DigitalData.IssuesList.IssuesActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".DigitalData.SensorList.SensorCheckActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name=".DigitalData.StatusLayout.Mapsensor.MapActivity"
+            android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity" />
+        <activity
+            android:name=".ActivitiesLogin.MainActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ActivitiesLogin.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActivitiesLogin.LoginActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <service
+            android:name=".NotificationService"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="app.tutorialspoint.com.notifyme.NotificationService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

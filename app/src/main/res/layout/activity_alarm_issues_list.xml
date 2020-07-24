@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AlarmData.IssuesList.AlarmIssuesList">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/ic_back">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search Code"
+            app:theme="@style/SearchViewStyle" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:padding="4dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        tools:listitem="@layout/item_door_history" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/Spinkit"
+        style="@style/SpinKitView.Circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:SpinKit_Color="#4F01BD" />
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:visibility="gone"
+        android:layout_marginHorizontal="4dp"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagezoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/thoat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_out"/>
+    </RelativeLayout>
+
+</RelativeLayout>

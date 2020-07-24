@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/SearchCode"
+        android:title="Search Code"
+        app:showAsAction="never"
+        app:actionViewClass="android.widget.SearchView"
+        tools:ignore="AlwaysShowAction" />
+    <item
+        android:id="@+id/SearchName"
+        app:showAsAction="never"
+        app:theme="@style/AppThemee.NoActionBar"
+        app:actionViewClass="android.widget.SearchView"
+        android:title="Search Name"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/Searchbuild"
+        app:showAsAction="never"
+        app:theme="@style/AppThemee.NoActionBar"
+        app:actionViewClass="android.widget.SearchView"
+        android:title="Search Building"
+        tools:ignore="AlwaysShowAction" />
+    <item
+        android:id="@+id/Searchfloor"
+        app:showAsAction="never"
+        app:theme="@style/AppThemee.NoActionBar"
+        app:actionViewClass="android.widget.SearchView"
+        android:title="Search Floor"
+        tools:ignore="AlwaysShowAction" />
+</menu>
