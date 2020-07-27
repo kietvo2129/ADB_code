@@ -35,7 +35,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bitaxco"
         android:contentDescription="ALOOOOO"
         android:transitionName="imageTransition"
         app:layout_constraintDimensionRatio="H,1:1"
