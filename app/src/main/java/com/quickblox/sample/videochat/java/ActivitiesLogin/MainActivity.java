@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_mainn);
         sharedPreferences = getSharedPreferences("datalogin", MODE_PRIVATE);
         // Trieu add more:
-        String txt = "Kietkubu alalalalalaa";
+        String txt = "Kietkubu alalalalalaa /BBB";
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
