@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity{
         String txt = "Kietkubu";
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-
+         String lan2 = "sss";
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
