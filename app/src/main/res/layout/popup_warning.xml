@@ -127,11 +127,21 @@
                 android:layout_marginTop="8dp">
 
                 <TextView
+                    android:id="@+id/e1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:text="Issues" />
+                <TextView
+                    android:id="@+id/tvIssue"
+                    android:textColor="#D80505"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@+id/e1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp" />
 
                 <Button
                     android:id="@+id/buttontoggle"

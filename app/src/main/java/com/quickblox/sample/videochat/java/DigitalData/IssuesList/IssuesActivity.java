@@ -124,10 +124,12 @@ public class IssuesActivity extends AppCompatActivity {
                     press_issue = objectRow.getString("press_issue").replace("null", "");
                     pow_issue = objectRow.getString("pow_issue").replace("null", "");
                     time_update = objectRow.getString("time_update").replace("null", "");
-                    temp_issue_nm = objectRow.getString("temp_issue_nm").replace("null", "");
-                    humi_issue_nm = objectRow.getString("humi_issue_nm").replace("null", "");
-                    press_issue_nm = objectRow.getString("press_issue_nm").replace("null", "");
-                    pow_issue_nm = objectRow.getString("pow_issue_nm").replace("null", "");
+
+                    temp_issue_nm = objectRow.getJSONArray("temp_issue_nm").get(0).toString();
+                    humi_issue_nm = objectRow.getJSONArray("humi_issue_nm").get(0).toString();
+                    press_issue_nm = objectRow.getJSONArray("press_issue_nm").get(0).toString();
+                    pow_issue_nm = objectRow.getJSONArray("pow_issue_nm").get(0).toString();
+
                     min_temp = objectRow.getString("min_temp").replace("null", "0");
                     max_temp = objectRow.getString("max_temp").replace("null", "0");
                     min_press = objectRow.getString("min_press").replace("null", "0");
@@ -243,7 +245,7 @@ public class IssuesActivity extends AppCompatActivity {
                 dialogaction.cancel();
             }
         });
-        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax;
+        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax,tvIssue;
         FloatingActionButton fab;
         TextInputEditText tvinput;
         Button Picture;
@@ -258,32 +260,36 @@ public class IssuesActivity extends AppCompatActivity {
         tvinput = dialogaction.findViewById(R.id.tvinput);
         Picture = dialogaction.findViewById(R.id.bt1);
         impicture = dialogaction.findViewById(R.id.impicture);
+        tvIssue = dialogaction.findViewById(R.id.tvIssue);
 
         tvId.setText(issuesMaterArrayList.get(position).ss_no);
         tvNm.setText(issuesMaterArrayList.get(position).ss_nm);
-
-        String error = "", min = "", max = "";
+        String error = "", min = "", max = "",issues = "";
         if (!issuesMaterArrayList.get(position).getTemp_issue().equals("003")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_temp() + "°C" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_temp() + "°C" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_temp() + "°C" + " - ";
+            issues += issuesMaterArrayList.get(position).getTemp_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getHumi_issue().equals("006")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_humi() + "%" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_humi() + "%" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_humi() + "%" + " - ";
+            issues +=issuesMaterArrayList.get(position).getHumi_issue_nm()+ " - ";
         }
         if (!issuesMaterArrayList.get(position).getPress_issue().equals("009")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_press() + "Pa" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_press() + "Pa" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_press() + "Pa" + " - ";
+            issues +=issuesMaterArrayList.get(position).getPress_issue_nm()+ " - ";
         }
         if (!issuesMaterArrayList.get(position).getPow_issue().equals("012")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_pow() + "W" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
             max = max + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
+            issues += issuesMaterArrayList.get(position).getPow_issue_nm()+ " - ";
         }
-
+        tvIssue.setText(issues.substring(0,issues.length()-2));
         tvError.setText(error.substring(0, error.length() - 2));
         tvmin.setText(min.substring(0, min.length() - 2));
         tvmax.setText(max.substring(0, max.length() - 2));
@@ -419,7 +425,7 @@ public class IssuesActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax;
+        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax,tvIssue;
         FloatingActionButton fab;
         TextInputEditText tvinput;
 
@@ -431,31 +437,38 @@ public class IssuesActivity extends AppCompatActivity {
         tvmax = dialog.findViewById(R.id.tvmax);
         fab = dialog.findViewById(R.id.fab);
         tvinput = dialog.findViewById(R.id.tvinput);
-
+        tvIssue= dialog.findViewById(R.id.tvIssue);
         tvId.setText(issuesMaterArrayList.get(position).ss_no);
         tvNm.setText(issuesMaterArrayList.get(position).ss_nm);
 
         String error = "", min = "", max = "";
+        String issues = "";
         if (!issuesMaterArrayList.get(position).getTemp_issue().equals("003")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_temp() + "°C" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_temp() + "°C" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_temp() + "°C" + " - ";
+            issues += issuesMaterArrayList.get(position).getTemp_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getHumi_issue().equals("006")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_humi() + "%" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_humi() + "%" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_humi() + "%" + " - ";
+            issues +=issuesMaterArrayList.get(position).getHumi_issue_nm()+ " - ";
         }
         if (!issuesMaterArrayList.get(position).getPress_issue().equals("009")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_press() + "Pa" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_press() + "Pa" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_press() + "Pa" + " - ";
+            issues +=issuesMaterArrayList.get(position).getPress_issue_nm()+ " - ";
         }
         if (!issuesMaterArrayList.get(position).getPow_issue().equals("012")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_pow() + "W" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
             max = max + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
+            issues += issuesMaterArrayList.get(position).getPow_issue_nm()+ " - ";
         }
+
+        tvIssue.setText(issues.substring(0,issues.length()-2));
 
         tvError.setText(error.substring(0, error.length() - 2));
         tvmin.setText(min.substring(0, min.length() - 2));
