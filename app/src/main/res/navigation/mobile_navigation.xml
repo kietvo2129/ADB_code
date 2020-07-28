@@ -24,6 +24,13 @@
         android:name="com.quickblox.sample.videochat.java.fragment.AlarmFragment"
         android:label="Alarm Data"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_counting"
+        android:name="com.quickblox.sample.videochat.java.fragment.CountingFragment"
+        android:label="Counting"
+        tools:layout="@layout/fragment_counting" />
+
     <fragment
         android:id="@+id/nav_cctv"
         android:name="com.quickblox.sample.videochat.java.fragment.CCTVFragment"
