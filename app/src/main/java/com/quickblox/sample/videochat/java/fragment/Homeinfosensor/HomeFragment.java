@@ -20,13 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+//import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+//import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 
 import com.quickblox.sample.videochat.java.R;
@@ -291,9 +289,9 @@ public class HomeFragment extends Fragment {
         LineDataSet lineDataSet1 = new LineDataSet(dataPressure(), "Pressure");
         LineDataSet lineDataSet3 = new LineDataSet(dataTemperature(), "Temperature");
         LineDataSet lineDataSet4 = new LineDataSet(dataHumidity(), "Humidity");
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        XAxis xAxis = mlinechart.getXAxis();
-        xAxis.setValueFormatter(new MyAxisValue());
+        ArrayList<LineDataSet> dataSets = new ArrayList<>();
+//        XAxis xAxis = mlinechart.getXAxis();
+//        xAxis.setValueFormatter(new MyAxisValue());
         lineDataSet2.setColor(Color.parseColor("#BEA6FF"));
         lineDataSet1.setColor(Color.parseColor("#BDF505"));
         lineDataSet3.setColor(Color.parseColor("#F50505"));
@@ -306,12 +304,14 @@ public class HomeFragment extends Fragment {
         lineDataSet1.setCircleColor(Color.parseColor("#28A745"));
         lineDataSet3.setCircleColor(Color.parseColor("#F50505"));
         lineDataSet4.setCircleColor(Color.parseColor("#3E95CD"));
+
         dataSets.add(lineDataSet2);
         dataSets.add(lineDataSet1);
         dataSets.add(lineDataSet3);
         dataSets.add(lineDataSet4);
+        mlinechart.setDescription("");
 
-        LineData data = new LineData(dataSets);
+        LineData data = new LineData(listTime,dataSets);
         mlinechart.setData(data);
         mlinechart.invalidate();
 
@@ -324,7 +324,7 @@ public class HomeFragment extends Fragment {
 
         for (int i = 0; i < AverageHumidity.size(); i++) {
             float value = Float.parseFloat(AverageHumidity.get(i));
-            datavalue.add(new Entry(i, value));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -336,7 +336,7 @@ public class HomeFragment extends Fragment {
 
         for (int i = 0; i < AverageTemperature.size(); i++) {
             float value = Float.parseFloat(AverageTemperature.get(i));
-            datavalue.add(new Entry(i, value));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -348,7 +348,7 @@ public class HomeFragment extends Fragment {
 
         for (int i = 0; i < ListAveragePressure.size(); i++) {
             float value = Float.parseFloat(ListAveragePressure.get(i));
-            datavalue.add(new Entry(i, value));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -360,7 +360,7 @@ public class HomeFragment extends Fragment {
 
         for (int i = 0; i < ListAveragePower.size(); i++) {
             float value = Float.parseFloat(ListAveragePower.get(i));
-            datavalue.add(new Entry(i, value));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -447,12 +447,12 @@ public class HomeFragment extends Fragment {
                 t5 = jsonObject.getString("t5");
                 t6 = jsonObject.getString("t6");
 
-                listTime.add(t1);
-                listTime.add(t2);
-                listTime.add(t3);
-                listTime.add(t4);
-                listTime.add(t5);
                 listTime.add(t6);
+                listTime.add(t5);
+                listTime.add(t4);
+                listTime.add(t3);
+                listTime.add(t2);
+                listTime.add(t1);
                 new GetAverageHumidity().execute(Url + "DashBoard/GetAverageHumidityOneHourBefore");
                 Log.d("GetAverageHumidity", Url + "DashBoard/GetAverageHumidityOneHourBefore");
             } catch (JSONException e) {
@@ -505,27 +505,27 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private class MyAxisValue implements IAxisValueFormatter {
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-
-            Log.e("QQQQ", value + "");
-            if (value == 0f) {
-                return listTime.get(5);
-            } else if (value == 1f) {
-                return listTime.get(4);
-            } else if (value == 2f) {
-                return listTime.get(3);
-            } else if (value == 3f) {
-                return listTime.get(2);
-            } else if (value == 4f) {
-                return listTime.get(1);
-            } else if (value == 5f) {
-                return listTime.get(0);
-            } else {
-                return "";
-            }
-        }
-    }
+//    private class MyAxisValue implements IAxisValueFormatter {
+//
+//        @Override
+//        public String getFormattedValue(float value, AxisBase axis) {
+//
+//            Log.e("QQQQ", value + "");
+//            if (value == 0f) {
+//                return listTime.get(5);
+//            } else if (value == 1f) {
+//                return listTime.get(4);
+//            } else if (value == 2f) {
+//                return listTime.get(3);
+//            } else if (value == 3f) {
+//                return listTime.get(2);
+//            } else if (value == 4f) {
+//                return listTime.get(1);
+//            } else if (value == 5f) {
+//                return listTime.get(0);
+//            } else {
+//                return "";
+//            }
+//        }
+//    }
 }
