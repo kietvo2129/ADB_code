@@ -20,6 +20,10 @@
             android:id="@+id/nav_cctv"
             android:icon="@drawable/ic_cctv"
             android:title="CCTV" />
+        <item
+            android:id="@+id/nav_counting"
+            android:icon="@drawable/ic_count"
+            android:title="Counting" />
 
         <item
             android:id="@+id/nav_logout"
