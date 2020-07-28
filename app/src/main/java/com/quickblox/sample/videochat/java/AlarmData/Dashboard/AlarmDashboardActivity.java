@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,8 +17,8 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+//import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+//import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.R;
 
@@ -181,9 +182,9 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         LineDataSet lineDataSet2 = new LineDataSet(dataDoor(), "Door");
         LineDataSet lineDataSet1 = new LineDataSet(dataMotion(), "Motion");
         LineDataSet lineDataSet3 = new LineDataSet(dataSmoke(), "Smoke");
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        XAxis xAxis = mlinechart.getXAxis();
-        xAxis.setValueFormatter(new MyAxisValue());
+        ArrayList<LineDataSet> dataSets = new ArrayList<>();
+//        XAxis xAxis = mlinechart.getXAxis();
+//        xAxis.setValueFormatter(new MyAxisValue());
         lineDataSet2.setColor(Color.parseColor("#28A745"));
         lineDataSet1.setColor(Color.parseColor("#3E95CD"));
         lineDataSet3.setColor(Color.parseColor("#BEA6FF"));
@@ -196,8 +197,8 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         dataSets.add(lineDataSet2);
         dataSets.add(lineDataSet1);
         dataSets.add(lineDataSet3);
-
-        LineData data = new LineData(dataSets);
+        mlinechart.setDescription("");
+        LineData data = new LineData(listTime,dataSets);
         mlinechart.setData(data);
         mlinechart.invalidate();
 
@@ -209,8 +210,8 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         ArrayList<Entry> datavalue = new ArrayList<Entry>();
 
         for (int i = 0; i < Listdata_door.size(); i++) {
-            float value = Float.parseFloat(Listdata_door.get(i));
-            datavalue.add(new Entry(i, value));
+            int value = Integer.parseInt(Listdata_door.get(i));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -221,8 +222,8 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         ArrayList<Entry> datavalue = new ArrayList<Entry>();
 
         for (int i = 0; i < Listdata_Motion.size(); i++) {
-            float value = Float.parseFloat(Listdata_Motion.get(i));
-            datavalue.add(new Entry(i, value));
+            int value = Integer.parseInt(Listdata_Motion.get(i));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
@@ -233,39 +234,39 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         ArrayList<Entry> datavalue = new ArrayList<Entry>();
 
         for (int i = 0; i < Listdata_Smoke.size(); i++) {
-            float value = Float.parseFloat(Listdata_Smoke.get(i));
-            datavalue.add(new Entry(i, value));
+            int value = Integer.parseInt(Listdata_Smoke.get(i));
+            datavalue.add(new Entry(value, i));
         }
 
         return datavalue;
     }
-
-
-    private class MyAxisValue implements IAxisValueFormatter {
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-
-            Log.e("QQQQ", value + "");
-            if (value == 0f) {
-                return listTime.get(0);
-            } else if (value == 1f) {
-                return listTime.get(1);
-            } else if (value == 2f) {
-                return listTime.get(2);
-            } else if (value == 3f) {
-                return listTime.get(3);
-            } else if (value == 4f) {
-                return listTime.get(4);
-            } else if (value == 5f) {
-                return listTime.get(5);
-            }else if (value == 6f) {
-                return listTime.get(6);
-            } else {
-                return "";
-            }
-        }
-    }
+//
+//
+//    private class MyAxisValue implements IAxisValueFormatter {
+//
+//        @Override
+//        public String getFormattedValue(float value, AxisBase axis) {
+//
+//            Log.e("QQQQ", value + "");
+//            if (value == 0f) {
+//                return listTime.get(0);
+//            } else if (value == 1f) {
+//                return listTime.get(1);
+//            } else if (value == 2f) {
+//                return listTime.get(2);
+//            } else if (value == 3f) {
+//                return listTime.get(3);
+//            } else if (value == 4f) {
+//                return listTime.get(4);
+//            } else if (value == 5f) {
+//                return listTime.get(5);
+//            }else if (value == 6f) {
+//                return listTime.get(6);
+//            } else {
+//                return "";
+//            }
+//        }
+//    }
 
 
     private void readDatabox() {
