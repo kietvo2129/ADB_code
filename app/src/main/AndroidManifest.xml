@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.quickblox.sample.videochat.java">
+    package="com.quickblox.sample.videochat.java" >
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -17,7 +17,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -25,7 +24,9 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@style/AppThemee"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity android:name=".Counting.Count.CountingStatusActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
         <activity
             android:name=".AlarmData.Dashboard.AlarmDashboardActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
@@ -42,7 +43,7 @@
             android:name=".DigitalData.IssuesReport.IssuesReportActivity"
             android:theme="@style/AppThemee.NoActionBar" />
         <activity
-            android:name="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.IssuesToday"
+            android:name=".fragment.Homeinfosensor.IssuesToday"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
         <activity
             android:name=".AlarmData.IssuesList.AlarmIssuesList"
@@ -85,7 +86,7 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".ActivitiesLogin.SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -97,16 +98,16 @@
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar" />
+
         <service
             android:name=".NotificationService"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="app.tutorialspoint.com.notifyme.NotificationService" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

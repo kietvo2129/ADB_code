@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -16,11 +17,37 @@
             style="@style/SelectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
 
-            android:id="@+id/rl_statuslayout"
+            android:id="@+id/rl_Dashboard"
             android:layout_weight="1"
             android:background="@drawable/action_lick"
             android:layout_width="match_parent"
             android:layout_marginRight="8dp"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/imaa"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dashboard" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imaa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dashboard"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/rl_statuslayout"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
             android:gravity="center_vertical"
             android:layout_height="120dp">
 
@@ -40,6 +67,14 @@
                 android:text="Status Layout"/>
 
         </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content">
+
         <RelativeLayout
             style="@style/SelectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
@@ -48,6 +83,7 @@
             android:background="@drawable/action_lick"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:layout_marginRight="8dp"
             android:layout_height="120dp">
 
             <ImageView
@@ -65,23 +101,13 @@
                 android:layout_height="wrap_content"
                 android:text="Count List"/>
         </RelativeLayout>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_height="wrap_content">
         <RelativeLayout
             style="@style/SelectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
-
             android:id="@+id/rl_report"
             android:layout_weight="1"
             android:background="@drawable/action_lick"
             android:layout_width="match_parent"
-            android:layout_marginRight="8dp"
             android:gravity="center_vertical"
             android:layout_height="120dp">
 
@@ -101,6 +127,14 @@
                 android:text="Report"/>
 
         </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+
         <RelativeLayout
             style="@style/SelectableItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
@@ -110,6 +144,7 @@
             android:background="@drawable/action_lick"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
+            android:layout_marginRight="8dp"
             android:layout_height="120dp">
 
             <ImageView
@@ -127,12 +162,25 @@
                 android:layout_height="wrap_content"
                 android:text="Count"/>
         </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+
+                android:layout_width="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
     </LinearLayout>
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barchart"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 </LinearLayout>
