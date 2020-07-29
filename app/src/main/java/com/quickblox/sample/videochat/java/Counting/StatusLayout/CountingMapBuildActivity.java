@@ -8,9 +8,12 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapBuildAlarmActivity;
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapFloorAlrmActivity;
@@ -24,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CountingMapBuildActivity extends AppCompatActivity {
     private static final int GRID_SPAN_COUNT = 2;
