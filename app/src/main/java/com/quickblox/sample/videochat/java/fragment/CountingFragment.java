@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.quickblox.sample.videochat.java.Counting.Count.CountActivity;
 import com.quickblox.sample.videochat.java.Counting.DashBoard.CountingStatusActivity;
 import com.quickblox.sample.videochat.java.Counting.StatusLayout.CountingMapBuildActivity;
 import com.quickblox.sample.videochat.java.R;
@@ -85,6 +86,13 @@ public class CountingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CountingMapBuildActivity.class);
+                startActivity(intent);
+            }
+        });
+        rl_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CountActivity.class);
                 startActivity(intent);
             }
         });

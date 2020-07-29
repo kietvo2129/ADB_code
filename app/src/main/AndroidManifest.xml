@@ -25,8 +25,11 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Counting.StatusLayout.MapSensor.CountingMapSensorActivity"
-            android:parentActivityName=".Counting.StatusLayout.CountingMapFloorActivity"/>
+        <activity android:name=".Counting.Count.CountActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity"/>
+        <activity
+            android:name=".Counting.StatusLayout.MapSensor.CountingMapSensorActivity"
+            android:parentActivityName=".Counting.StatusLayout.CountingMapFloorActivity" />
         <activity
             android:name=".Counting.StatusLayout.CountingMapFloorActivity"
             android:parentActivityName=".Counting.StatusLayout.CountingMapBuildActivity" />
