@@ -88,6 +88,13 @@ public class CountingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        rl_statuslayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CountingStatusActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
