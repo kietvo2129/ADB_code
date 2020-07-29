@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CountingLayoutActivity">
+    tools:context=".DigitalData.StatusLayout.MapBuild.MapBuildActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_mapbuild"
+        android:padding="8dp"
+        android:id="@+id/recyc"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,8 @@
-package com.quickblox.sample.videochat.java.AlarmData.StatusLayout;
+package com.quickblox.sample.videochat.java.Counting.StatusLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -9,12 +13,10 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapFloorAlrmActivity;
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapSensor.MapSensorAlarmActivity;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
+import com.quickblox.sample.videochat.java.Counting.StatusLayout.MapSensor.CountingMapSensorActivity;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.MapFloor.MapFloorAdapter;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.MapFloor.MapFloorMatter;
 import com.quickblox.sample.videochat.java.R;
@@ -25,8 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-public class MapFloorAlrmActivity extends AppCompatActivity {
+public class CountingMapFloorActivity extends AppCompatActivity {
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
     ArrayList<MapFloorMatter> mapFloorMatterArrayList;
     RecyclerView recyclerView;
@@ -35,20 +36,18 @@ public class MapFloorAlrmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_floor);
-        setTitle("Map Alarm Floor");
+        setContentView(R.layout.activity_counting_map_floor);
+        setTitle("Map Floor Line");
         TextView building_name = findViewById(R.id.building_name);
         TextView city_code = findViewById(R.id.city_code);
-        building_name.setText(MapBuildAlarmActivity.building_name);
-        city_code.setText(MapBuildAlarmActivity.city_code);
+        building_name.setText(CountingMapBuildActivity.building_name);
+        city_code.setText(CountingMapBuildActivity.city_code);
         recyclerView = findViewById(R.id.song_recycler_view);
+        
 
-        new readMapfloor().execute(Url + "Monitor/get_info_sensor?"+ "build=" + MapBuildAlarmActivity.building_code);
-        Log.d("readMapfloor", Url + "Monitor/get_info_sensor?"+ "build=" + MapBuildAlarmActivity.building_code);
-
+        new readMapfloor().execute(Url + "Monitor/get_info_sensor?"+ "build=" + CountingMapBuildActivity.building_code);
+        Log.d("readMapfloor", Url + "Monitor/get_info_sensor?"+ "build=" + CountingMapBuildActivity.building_code);
     }
-
-
     private class readMapfloor extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -67,7 +66,7 @@ public class MapFloorAlrmActivity extends AppCompatActivity {
                 JSONArray jsonArray = jsonObject.getJSONArray("result");
 
                 if (jsonArray == null || jsonArray.length() == 0) {
-                    AlerError.Baoloi("No data!", MapFloorAlrmActivity.this);
+                    AlerError.Baoloi("No data!", CountingMapFloorActivity.this);
                     return;
                 }
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -89,7 +88,7 @@ public class MapFloorAlrmActivity extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                AlerError.Baoloi("Could not connect to server", MapFloorAlrmActivity.this);
+                AlerError.Baoloi("Could not connect to server", CountingMapFloorActivity.this);
             }
         }
 
@@ -109,17 +108,12 @@ public class MapFloorAlrmActivity extends AppCompatActivity {
                 floor_image = mapFloorMatterArrayList.get(position).getFloor_image();
                 floor_name = mapFloorMatterArrayList.get(position).getFloor_name();
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    Intent intent = new Intent(MapFloorAlrmActivity.this, MapSensorAlarmActivity.class);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MapFloorAlrmActivity.this,
+                    Intent intent = new Intent(CountingMapFloorActivity.this, CountingMapSensorActivity.class);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CountingMapFloorActivity.this,
                             Pair.create(view, "imageTransition"));
                     startActivity(intent, options.toBundle());
                 }
             }
         });
     }
-    //@Override
-    //protected void onStop() {
-        //super.onStop();
-       // startService(new Intent(this, NotificationService.class));
-    //}
 }

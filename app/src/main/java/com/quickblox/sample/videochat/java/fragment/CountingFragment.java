@@ -1,7 +1,6 @@
 package com.quickblox.sample.videochat.java.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,15 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.quickblox.sample.videochat.java.Counting.Count.CountingStatusActivity;
+import com.quickblox.sample.videochat.java.Counting.DashBoard.CountingStatusActivity;
+import com.quickblox.sample.videochat.java.Counting.StatusLayout.CountingMapBuildActivity;
 import com.quickblox.sample.videochat.java.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,7 +84,7 @@ public class CountingFragment extends Fragment {
         rl_statuslayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), CountingStatusActivity.class);
+                Intent intent = new Intent(getActivity(), CountingMapBuildActivity.class);
                 startActivity(intent);
             }
         });
