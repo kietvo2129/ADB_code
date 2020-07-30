@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapSensor.MapsensorAlarmAdapter;
@@ -22,6 +23,7 @@ import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.CCTV.CCTVList.CCTVActivity;
 import com.quickblox.sample.videochat.java.Counting.StatusLayout.CountingMapBuildActivity;
 import com.quickblox.sample.videochat.java.Counting.StatusLayout.CountingMapFloorActivity;
+import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapActivity;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapInfoSensor;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapMater;
 import com.quickblox.sample.videochat.java.R;
@@ -70,13 +72,13 @@ public class CountingMapSensorActivity extends AppCompatActivity {
 
         
 
-        new readSensor().execute(Url + "CCTVMonitor/get_info_camera?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
-        Log.d("readSensor", Url + "CCTVMonitor/get_info_camera?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
+        new readSensor().execute(Url + "Counting/get_info_line?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
+        Log.d("readSensor", Url + "Counting/get_info_line?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
 
         
 
-        new readSensor_map().execute(Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
-        Log.d("readSensor_map", Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
+//        new readSensor_map().execute(Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
+//        Log.d("readSensor_map", Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
 
     }
 
@@ -159,12 +161,13 @@ public class CountingMapSensorActivity extends AppCompatActivity {
 
                     JSONObject objectRow = jsonArray.getJSONObject(i);
 
-                    ssid = objectRow.getString("id").replace("null", "");
-                    ss_no = objectRow.getString("camera_no").replace("null", "");
-                    ss_nm = objectRow.getString("camera_nm").replace("null", "");
+
+                    ssid = objectRow.getString("ssid").replace("null", "");
+                    ss_no = objectRow.getString("ss_no").replace("null", "");
+                    ss_nm = objectRow.getString("ss_nm").replace("null", "");
                     top_position = objectRow.getString("top_position").replace("null", "");
                     left_posistion = objectRow.getString("left_posistion").replace("null", "");
-                    type = "";
+                    type = objectRow.getString("type").replace("null", "");
 
                     mapMaterArrayList.add(new MapMater(ssid, ss_no, ss_nm, top_position, left_posistion,type));
                 }
@@ -176,6 +179,7 @@ public class CountingMapSensorActivity extends AppCompatActivity {
                         finalHeight = imageView.getMeasuredHeight();
                         finalWidth = imageView.getMeasuredWidth();
                         SetSensor();
+
                     }
                 }, 1500);
 
@@ -186,6 +190,7 @@ public class CountingMapSensorActivity extends AppCompatActivity {
         }
 
     }
+
 
     private void SetSensor() {
 
@@ -221,7 +226,11 @@ public class CountingMapSensorActivity extends AppCompatActivity {
             params.topMargin = top;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_view));
+                if (mapMaterArrayList.get(i).getType().equals("Line")) {
+                    tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_view));
+                }else if (mapMaterArrayList.get(i).getType().equals("CMR")) {
+                    tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_cmr));
+                }
             }
             tv[i + 1].setLayoutParams(params);
 
@@ -229,17 +238,26 @@ public class CountingMapSensorActivity extends AppCompatActivity {
             tv[i + 1].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //bientam = finalI;
+                    if (mapMaterArrayList.get(finalI).getType().equals("Line")) {
+//                        new readInfosensor().execute(Url + "/Monitor/ShowDataSS?ss_no=" + mapMaterArrayList.get(finalI).ss_no);
+//                        Log.d("readInfosensor", Url + "/Monitor/ShowDataSS?ss_no=" + mapMaterArrayList.get(finalI).ss_no);
+                    }else if (mapMaterArrayList.get(finalI).getType().equals("CMR")) {
 
-                    Intent intent = new Intent(CountingMapSensorActivity.this, CCTVActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("nm_camera", mapMaterArrayList.get(finalI).getSs_no());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                        Intent intent = new Intent(CountingMapSensorActivity.this, CCTVActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nm_camera", mapMaterArrayList.get(finalI).getSs_no());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
+                    }
+
 
                 }
             });
             rl.addView(tv[i + 1]);
         }
 
-    } 
+    }
 }

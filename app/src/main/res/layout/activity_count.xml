@@ -7,43 +7,52 @@
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
-        style="@style/SelecItemBackground"
-        android:foreground="?android:attr/selectableItemBackground"
         android:id="@+id/h1"
+        style="@style/SelecItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="#009999"
         app:cardCornerRadius="4dp">
 
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_id"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:drawableRight="@drawable/ic_down"-->
-<!--                android:gravity="center"-->
-<!--                android:padding="8dp"-->
-<!--                android:text="Line1/Line san xuat giay"-->
-<!--                android:textColor="#fff"-->
-<!--                android:textSize="24dp"-->
-<!--                android:textStyle="bold" />-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_id"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:drawableRight="@drawable/ic_down"-->
+        <!--                android:gravity="center"-->
+        <!--                android:padding="8dp"-->
+        <!--                android:text="Line1/Line san xuat giay"-->
+        <!--                android:textColor="#fff"-->
+        <!--                android:textSize="24dp"-->
+        <!--                android:textStyle="bold" />-->
         <TextSwitcher
             android:id="@+id/ts_temperature"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:paddingVertical="8dp" />
+
+        <ImageView
+            android:id="@+id/ima"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/ic_down" />
 
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        style="@style/SelecItemBackground"
-        android:foreground="?android:attr/selectableItemBackground"
         android:id="@+id/h2"
+        style="@style/SelecItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/h1"
         android:layout_marginTop="8dp"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="#009999"
         app:cardCornerRadius="8dp">
 
@@ -54,6 +63,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvlocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -66,6 +76,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_taget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -76,6 +87,7 @@
                 android:textColor="#fff" />
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_clock"
@@ -89,11 +101,11 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/h2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/h2"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:background="#009999"
         android:orientation="vertical">
@@ -105,25 +117,25 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:id="@+id/tv_actual_plus"
+                android:id="@+id/rl_actual_plus"
                 style="@style/SelecItemBackground"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="3"
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
 
                     <TextView
                         android:id="@+id/e1"
-                        android:layout_marginBottom="24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
                         android:text="Actual"
                         android:textColor="#fff"
                         android:textSize="24dp"
@@ -138,19 +150,16 @@
                         app:cardBackgroundColor="#018C8C"
                         app:cardCornerRadius="16dp">
 
-                        <TextView
-                            style="@style/SelecItemBackground"
-                            android:foreground="?android:attr/selectableItemBackground"
+                        <TextSwitcher
                             android:id="@+id/tv_actual"
+                            style="@style/SelecItemBackground"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
                             android:gravity="center"
-                            android:text="123213"
                             android:paddingHorizontal="32dp"
                             android:paddingVertical="8dp"
-                            android:textColor="#fff"
-                            android:textSize="36dp"
-                            android:textStyle="bold" />
+                            android:textColor="#fff" />
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
@@ -163,13 +172,14 @@
                 android:background="#FFF" />
 
             <RelativeLayout
+                style="@style/SelecItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/rl_actual_sub"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
-                    style="@style/SelecItemBackground"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -195,24 +205,25 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rl_defective_plus"
                 style="@style/SelecItemBackground"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="3"
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
 
                     <TextView
                         android:id="@+id/r1"
-                        android:layout_marginBottom="24dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
                         android:text="Defective"
                         android:textColor="#fff"
                         android:textSize="24dp"
@@ -226,18 +237,16 @@
                         app:cardBackgroundColor="#018C8C"
                         app:cardCornerRadius="16dp">
 
-                        <TextView
+                        <TextSwitcher
+                            android:id="@+id/tv_defective"
                             style="@style/SelecItemBackground"
-                            android:foreground="?android:attr/selectableItemBackground"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
                             android:gravity="center"
-                            android:text="16"
-                            android:textColor="#fff"
-                            android:padding="8dp"
-                            android:textSize="36dp"
-                            android:layout_marginHorizontal="32dp"
-                            android:textStyle="bold" />
+                            android:paddingHorizontal="32dp"
+                            android:paddingVertical="8dp"
+                            android:textColor="#fff" />
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
 
@@ -250,13 +259,14 @@
                 android:background="#FFF" />
 
             <RelativeLayout
+                android:foreground="?android:attr/selectableItemBackground"
+                style="@style/SelecItemBackground"
+                android:id="@+id/rl_defective_sub"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
-                    style="@style/SelecItemBackground"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

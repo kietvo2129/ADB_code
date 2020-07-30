@@ -196,4 +196,11 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="NumActualTextView">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
