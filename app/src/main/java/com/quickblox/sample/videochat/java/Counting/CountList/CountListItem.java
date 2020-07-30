@@ -10,8 +10,10 @@ public class CountListItem {
     private String Defective;
     private String Target;
     private String TargetHour;
+    private String Alrm_1;
+    private String Alrm_2;
 
-    public CountListItem(String id, String lineId, String lineName, String efficiency, String actual, String defective, String target, String targetHour) {
+    public CountListItem(String id, String lineId, String lineName, String efficiency, String actual, String defective, String target, String targetHour,String alrm_1,String alrm_2) {
         Id = id;
         LineId = lineId;
         LineName = lineName;
@@ -20,6 +22,24 @@ public class CountListItem {
         Defective = defective;
         Target = target;
         TargetHour = targetHour;
+        Alrm_1 = alrm_1;
+        Alrm_2 = alrm_2;
+    }
+
+    public String getAlrm_1() {
+        return Alrm_1;
+    }
+
+    public void setAlrm_1(String alrm_1) {
+        Alrm_1 = alrm_1;
+    }
+
+    public String getAlrm_2() {
+        return Alrm_2;
+    }
+
+    public void setAlrm_2(String alrm_2) {
+        Alrm_2 = alrm_2;
     }
 
     public String getId() {

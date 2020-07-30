@@ -14,6 +14,8 @@
     <color name="color_item_green">#76A457</color>
     <color name="color_item_yellow">#FFC400</color>
     <color name="color_item_gray">#415273</color>
+    <color name="color_item_grey">#606060</color>
+    <color name="color_item_red">#FF0000</color>
     <color name="color_item_gback">#232D40</color>
 
 
