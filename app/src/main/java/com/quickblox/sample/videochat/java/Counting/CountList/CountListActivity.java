@@ -55,9 +55,9 @@ public class CountListActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.Spinkit);
 
         // Start Animation
-//        progressBar.setVisibility(View.VISIBLE);
-//        Circle circle = new Circle();
-//        progressBar.setIndeterminateDrawable(circle);
+        progressBar.setVisibility(View.VISIBLE);
+        Circle circle = new Circle();
+        progressBar.setIndeterminateDrawable(circle);
 
         // load  Data
         String  urr = Url + "Counting/PartialView_Databoard_api";
@@ -109,6 +109,7 @@ public class CountListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s){
             super.onPostExecute(s);
+            progressBar.setVisibility(View.GONE);
             countlistitems = new ArrayList<>();
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -124,7 +125,7 @@ public class CountListActivity extends AppCompatActivity {
                                 String  target_qty = object.getString("target_qty");
                                 String actual_qty = object.getString("actual_qty");
                                 String efficiency = object.getString("efficiency");
-                                String taget_hour = object.getString("taget_hour");
+                                String taget_hour = String.valueOf(object.optInt("taget_hour",0));
                                 String Alarm_Range1 = object.getString("Alarm_Range1");
                                 String Alarm_Range2 = object.getString("Alarm_Range2");
                                 countlistitems.add(new CountListItem("",line_no,line_nm,efficiency,actual_qty,defect_qty,target_qty,taget_hour,Alarm_Range1,Alarm_Range2));
