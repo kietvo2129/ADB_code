@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linear"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="5">
+    <TextView
+        android:id="@+id/UpdateTime"
+        android:padding="4dp"
+        android:background="@drawable/backgr_row"
+        android:paddingLeft="4dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:gravity="center"
+        android:id="@+id/TargetHour"
+        android:padding="4dp"
+        android:background="@drawable/backgr_row"
+        android:paddingLeft="4dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:padding="4dp"
+        android:background="@drawable/backgr_row"
+        android:paddingLeft="4dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:paddingRight="4dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/ActualHour"/>
+    <TextView
+        android:id="@+id/DefectiveHour"
+        android:padding="4dp"
+        android:background="@drawable/backgr_row"
+        android:paddingLeft="4dp"
+        android:gravity="right"
+        android:paddingRight="4dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/EfficiencyHour"
+        android:padding="4dp"
+        android:background="@drawable/backgr_row"
+        android:paddingLeft="4dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:paddingRight="4dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
