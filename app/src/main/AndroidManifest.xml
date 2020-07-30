@@ -25,9 +25,14 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Counting.StatusLayout.CountingLayoutActivity"></activity>
+
+        <activity android:name=".Counting.StatusLayout.CountingMapBuildActivity"></activity>
+
         <activity
-            android:name=".Counting.Count.CountingStatusActivity"
+            android:name=".Counting.CountList.CountListActivity"
+            android:parentActivityName=".ActivitiesLogin.MainActivity" />
+        <activity
+            android:name=".Counting.Count.CountActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
         <activity
             android:name=".AlarmData.Dashboard.AlarmDashboardActivity"

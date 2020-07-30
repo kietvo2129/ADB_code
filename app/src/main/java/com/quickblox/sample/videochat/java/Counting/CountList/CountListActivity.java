@@ -1,6 +1,7 @@
 package com.quickblox.sample.videochat.java.Counting.CountList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,10 +47,10 @@ public class CountListActivity extends AppCompatActivity {
         String  urr = Url ;
        // new loadCountList().execute(urr);
         countlistitems = new ArrayList<>();
-        countlistitems.add(new CountListItem("1","lineid1","line name","eficiency","actual","defective","target","targethour"));
-        countlistitems.add(new CountListItem("2","lineid2","line name","eficiency","actual","defective","target","targethour"));
-        countlistitems.add(new CountListItem("3","lineid3","line name","eficiency","actual","defective","target","targethour"));
-        countlistitems.add(new CountListItem("4","lineid4","line name","eficiency","actual","defective","target","targethour"));
+        countlistitems.add(new CountListItem("1","lineid1","line name 1","10%","10","1","200","20"));
+        countlistitems.add(new CountListItem("2","lineid2","line name 2","20%","20","2","300","30"));
+        countlistitems.add(new CountListItem("3","lineid3","line name 3","30%","30","3","400","40"));
+        countlistitems.add(new CountListItem("4","lineid4","line name 4","40%","40","4","500","50"));
 
         buidRecycler();
     }
@@ -72,7 +73,7 @@ public class CountListActivity extends AppCompatActivity {
     private void buidRecycler(){
 
         countListAdaptor = new CountListAdaptor(countlistitems);
-        recyclerViewCL.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCL.setLayoutManager(new GridLayoutManager(this,2));
         recyclerViewCL.setHasFixedSize(true);
         recyclerViewCL.setAdapter(countListAdaptor);
 
