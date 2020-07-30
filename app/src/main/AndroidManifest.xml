@@ -25,7 +25,8 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Counting.StatusLayout.CountingLayoutActivity"></activity>
+        <activity android:name=".Counting.CountList.CountListActivity"></activity>
+        <activity android:name=".Counting.StatusLayout.CountingLayoutActivity" />
         <activity
             android:name=".Counting.Count.CountingStatusActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
