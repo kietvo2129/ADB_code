@@ -181,4 +181,19 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="SelecItemTheme">
+        <item name="colorControlHighlight">#016767</item>
+    </style>
+
+    <style name="SelecItemBackground">
+        <item name="android:theme">@style/SelecItemTheme</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="TemperatureTextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

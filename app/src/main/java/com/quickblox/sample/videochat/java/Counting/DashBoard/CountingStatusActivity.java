@@ -1,4 +1,4 @@
-package com.quickblox.sample.videochat.java.Counting.Count;
+package com.quickblox.sample.videochat.java.Counting.DashBoard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
