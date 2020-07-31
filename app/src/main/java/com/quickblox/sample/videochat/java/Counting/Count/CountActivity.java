@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import android.widget.ViewSwitcher;
 
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.CCTV.CCTVLayout.CCTVBuildActivity;
+import com.quickblox.sample.videochat.java.Counting.Count.Detail.CountingDetailActivity;
+import com.quickblox.sample.videochat.java.Counting.Count.Line.DataAllCountingMaster;
 import com.quickblox.sample.videochat.java.Counting.Count.Line.LineMaster;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.MapBuild.MapBuildMatter;
 import com.quickblox.sample.videochat.java.R;
@@ -45,16 +48,20 @@ import java.util.List;
 public class CountActivity extends AppCompatActivity {
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
     CardView cv_id, cv_infor;
-    TextView tvlocation,tv_taget,tv_time;
+    TextView  tv_taget, tv_time,tvlocation;
     TextSwitcher tv_id, tv_actual, tv_defective;
     RelativeLayout rl_actual_plus, rl_actual_sub, rl_defective_sub, rl_defective_plus;
     int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
     int animV[] = new int[]{R.anim.slide_in_top, R.anim.slide_out_bottom};
     int animreV[] = new int[]{R.anim.slide_in_bottom, R.anim.slide_out_top};
     int numActual = 0;
-    int numDefective = 0;
+    int numDefective = 0, giatri_Input = 0;
+    String vitri_bam = "";
+
+   public static String id_line = "";
 
     ArrayList<LineMaster> lineMaster;
+    ArrayList<DataAllCountingMaster> dataAllCountingMasters;
 
 
     @Override
@@ -71,7 +78,6 @@ public class CountActivity extends AppCompatActivity {
         rl_defective_sub = findViewById(R.id.rl_defective_sub);
         rl_defective_plus = findViewById(R.id.rl_defective_plus);
 
-
         tvlocation = findViewById(R.id.tvlocation);
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
@@ -79,7 +85,10 @@ public class CountActivity extends AppCompatActivity {
         cv_infor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CountActivity.this, "ladlsdkas", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(CountActivity.this, CountingDetailActivity.class);
+                startActivity(intent);
+
             }
         });
         cv_id.setOnClickListener(new View.OnClickListener() {
@@ -89,17 +98,12 @@ public class CountActivity extends AppCompatActivity {
             }
         });
 
-        tv_actual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tv_actual.setEnabled(false);
-            }
-        });
 
         rl_actual_plus.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 inputnum("Actual");
+                vitri_bam = "APL";
                 return true;
             }
         });
@@ -107,6 +111,7 @@ public class CountActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 inputnum("Defective");
+                vitri_bam = "DPL";
                 return true;
             }
         });
@@ -115,10 +120,8 @@ public class CountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 rl_actual_plus.setEnabled(false);
-                numActual += 1;
-                tv_actual.setInAnimation(CountActivity.this, animV[0]);
-                tv_actual.setOutAnimation(CountActivity.this, animV[1]);
-                tv_actual.setText(numActual + "");
+                vitri_bam = "AP";
+                sendDataCounting(1);
                 DelayClick(rl_actual_plus);
 
             }
@@ -127,14 +130,12 @@ public class CountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 rl_actual_sub.setEnabled(false);
-                numActual -= 1;
-                if (numActual < 0) {
+                if (numActual <= 0) {
                     numActual = 0;
                     DelayClick(rl_actual_sub);
                 } else {
-                    tv_actual.setInAnimation(CountActivity.this, animreV[0]);
-                    tv_actual.setOutAnimation(CountActivity.this, animreV[1]);
-                    tv_actual.setText(numActual + "");
+                    vitri_bam = "AS";
+                    sendDataCounting(-1);
                     DelayClick(rl_actual_sub);
                 }
             }
@@ -144,10 +145,8 @@ public class CountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 rl_defective_plus.setEnabled(false);
-                numDefective += 1;
-                tv_defective.setInAnimation(CountActivity.this, animV[0]);
-                tv_defective.setOutAnimation(CountActivity.this, animV[1]);
-                tv_defective.setText(numDefective + "");
+                vitri_bam = "DP";
+                sendDataCounting(1);
                 DelayClick(rl_defective_plus);
 
             }
@@ -156,14 +155,12 @@ public class CountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 rl_defective_sub.setEnabled(false);
-                numDefective -= 1;
-                if (numDefective < 0) {
+                if (numDefective <= 0) {
                     numDefective = 0;
                     DelayClick(rl_defective_sub);
                 } else {
-                    tv_defective.setInAnimation(CountActivity.this, animreV[0]);
-                    tv_defective.setOutAnimation(CountActivity.this, animreV[1]);
-                    tv_defective.setText(numDefective + "");
+                    vitri_bam = "DS";
+                    sendDataCounting(-1);
                     DelayClick(rl_defective_sub);
                 }
             }
@@ -177,9 +174,73 @@ public class CountActivity extends AppCompatActivity {
         getDataline();
     }
 
+
+    private void sendDataCounting(int value) {
+        if (vitri_bam.equals("AP")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + value + "&defect_qty=" + 0);
+        } else if (vitri_bam.equals("AS")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + value + "&defect_qty=" + 0);
+        } else if (vitri_bam.equals("DP")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + 0 + "&defect_qty=" + value);
+        } else if (vitri_bam.equals("DS")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + 0 + "&defect_qty=" + value);
+        } else if (vitri_bam.equals("APL")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + value + "&defect_qty=" + 0);
+        } else if (vitri_bam.equals("DPL")) {
+            new sendDataCount().execute(Url + "plan/updateActualToday?id=" + id_line + "&actual_qty=" + 0 + "&defect_qty=" + value);
+        }
+    }
+
+    private class sendDataCount extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.quickblox.sample.videochat.java.Url.NoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+
+                JSONObject jsonObject = new JSONObject(s);
+                if (jsonObject.getBoolean("result")) {
+                    if (vitri_bam.equals("AP")) {
+                        numActual += 1;
+                        setAnimation(tv_actual, numActual + "");
+                    } else if (vitri_bam.equals("AS")) {
+                        numActual -= 1;
+                        setAnimation(tv_actual, numActual + "");
+                    } else if (vitri_bam.equals("DP")) {
+                        numDefective += 1;
+                        setAnimation(tv_defective, numDefective + "");
+                    } else if (vitri_bam.equals("DS")) {
+                        numDefective -= 1;
+                        setAnimation(tv_defective, numDefective + "");
+                    } else if (vitri_bam.equals("APL")) {
+                        numActual += giatri_Input;
+                        setAnimation(tv_actual, numActual + "");
+                    } else if (vitri_bam.equals("DPL")) {
+                        numDefective += giatri_Input;
+                        setAnimation(tv_defective, numDefective + "");
+                    }
+
+
+                } else {
+                    AlerError.Baoloi(jsonObject.getString("message"), CountActivity.this);
+                    return;
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                AlerError.Baoloi("Could not connect to server", CountActivity.this);
+            }
+        }
+
+    }
+
     private void getDataline() {
         new getLineData().execute(Url + "plan/getDataLineInfoToday");
-        Log.d("getLineData",Url + "plan/getDataLineInfoToday");
+        Log.d("getLineData", Url + "plan/getDataLineInfoToday");
     }
 
     private class getLineData extends AsyncTask<String, Void, String> {
@@ -192,8 +253,7 @@ public class CountActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             lineMaster = new ArrayList<>();
-            String id,line_no,line_nm;
-            //String id,line_no,line_nm,building_nm,floor_nm,target_qty,actual_qty,defect_qty,start_time,end_time;
+            String id, line_no, line_nm;
             try {
 
                 JSONArray jsonArray = new JSONArray(s);
@@ -209,9 +269,11 @@ public class CountActivity extends AppCompatActivity {
                     id = objectRow.getString("id").replace("null", "");
                     line_no = objectRow.getString("line_no").replace("null", "");
                     line_nm = objectRow.getString("line_nm").replace("null", "");
-                    lineMaster.add(new LineMaster(id,line_no,line_nm));
+                    lineMaster.add(new LineMaster(id, line_no, line_nm));
                 }
-                tv_id.setText(lineMaster.get(0).getLine_no()+ "/"+lineMaster.get(0).getLine_nm());
+                tv_id.setText(lineMaster.get(0).getLine_no() + "/" + lineMaster.get(0).getLine_nm());
+                id_line = lineMaster.get(0).getId();
+                loadDataAll(0);
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", CountActivity.this);
@@ -262,7 +324,7 @@ public class CountActivity extends AppCompatActivity {
 
     private void showChangeID() {
         ArrayList<String> listItems = new ArrayList<>();
-        for (int i =0 ; i<lineMaster.size();i++){
+        for (int i = 0; i < lineMaster.size(); i++) {
             listItems.add(lineMaster.get(i).getLine_no() + "/" + lineMaster.get(i).getLine_nm());
         }
         //final String[] listItems = {"Line 1 - line san xuat","Line 2 - line cat","Line 3 - line hap"};
@@ -275,8 +337,10 @@ public class CountActivity extends AppCompatActivity {
                 tv_id.setInAnimation(CountActivity.this, animH[0]);
                 tv_id.setOutAnimation(CountActivity.this, animH[1]);
                 tv_id.setText(listItems.get(i).toString());
-
+                id_line = lineMaster.get(i).getId();
                 loadDataAll(i);
+
+
 
                 dialog.dismiss();
             }
@@ -288,10 +352,11 @@ public class CountActivity extends AppCompatActivity {
 
     private void loadDataAll(int pos) {
 
-        new loadDataAll().execute(Url+"plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
-        Log.d("loadDataAll",Url+"plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
+        new loadDataAll().execute(Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
+        Log.d("loadDataAll", Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
 
     }
+
     private class loadDataAll extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -301,33 +366,48 @@ public class CountActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            lineMaster = new ArrayList<>();
-            String id,line_no,line_nm;
-            //String id,line_no,line_nm,building_nm,floor_nm,target_qty,actual_qty,defect_qty,start_time,end_time;
+            dataAllCountingMasters = new ArrayList<>();
+            String building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time;
             try {
 
-                JSONArray jsonArray = new JSONArray(s);
+                JSONObject jsonObject = new JSONObject(s);
 
-                if (jsonArray.length() == 0) {
-                    AlerError.Baoloi("Plan does not exist today. Please, insert Plan for today.", CountActivity.this);
+                if (!jsonObject.getBoolean("result")) {
+                    AlerError.Baoloi(jsonObject.getString("message"), CountActivity.this);
                     return;
                 }
-                for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject1 = jsonObject.getJSONObject("list_data");
 
-                    JSONObject objectRow = jsonArray.getJSONObject(i);
+                building_nm = jsonObject1.getString("building_nm").replace("null", "");
+                floor_nm = jsonObject1.getString("floor_nm").replace("null", "");
+                target_qty = jsonObject1.getString("target_qty").replace("null", "");
+                actual_qty = jsonObject1.getString("actual_qty").replace("null", "");
+                defect_qty = jsonObject1.getString("defect_qty").replace("null", "");
+                start_time = jsonObject1.getString("start_time").replace("null", "");
+                end_time = jsonObject1.getString("end_time").replace("null", "");
+                dataAllCountingMasters.add(new DataAllCountingMaster(building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time));
+                setDataAll();
 
-                    id = objectRow.getString("id").replace("null", "");
-                    line_no = objectRow.getString("line_no").replace("null", "");
-                    line_nm = objectRow.getString("line_nm").replace("null", "");
-                    lineMaster.add(new LineMaster(id,line_no,line_nm));
-                }
-                tv_id.setText(lineMaster.get(0).getLine_no()+ "/"+lineMaster.get(0).getLine_nm());
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", CountActivity.this);
             }
         }
 
+    }
+
+    private void setDataAll() {
+
+        numActual = Integer.parseInt(dataAllCountingMasters.get(0).getActual_qty());
+        numDefective = Integer.parseInt(dataAllCountingMasters.get(0).getDefect_qty());
+        tvlocation.setText(dataAllCountingMasters.get(0).getBuilding_nm() + " - " + dataAllCountingMasters.get(0).getFloor_nm());
+        tv_taget.setText(dataAllCountingMasters.get(0).getTarget_qty());
+        String time = dataAllCountingMasters.get(0).getStart_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getStart_time().substring(2, 4)
+                + " ~ " + dataAllCountingMasters.get(0).getEnd_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getEnd_time().substring(2, 4);
+        tv_time.setText(time);
+
+        setAnimation(tv_actual, numActual + "");
+        setAnimation(tv_defective, numDefective + "");
     }
 
 
@@ -342,7 +422,7 @@ public class CountActivity extends AppCompatActivity {
             int tong = numActual;
             String title = key + " new= " + numActual + " + " + "0" + " = " + tong;
             tv_title.setText(title);
-        }else if (key.equals("Defective")){
+        } else if (key.equals("Defective")) {
             int tong = numDefective;
             String title = key + " new= " + numDefective + " + " + "0" + " = " + tong;
             tv_title.setText(title);
@@ -361,7 +441,7 @@ public class CountActivity extends AppCompatActivity {
                 int numinput2 = 0;
                 if (input.getText().toString().length() == 0) {
                     numinput2 = 0;
-                }else {
+                } else {
                     numinput2 = Integer.parseInt(input.getText().toString());
                 }
                 int tong = 0;
@@ -369,7 +449,7 @@ public class CountActivity extends AppCompatActivity {
                     tong = numActual + numinput2;
                     String title = key + " new= " + numActual + " + " + numinput2 + " = " + tong;
                     tv_title.setText(title);
-                }else if(key.equals("Defective")){
+                } else if (key.equals("Defective")) {
                     tong = numDefective + numinput2;
                     String title = key + " new= " + numDefective + " + " + numinput2 + " = " + tong;
                     tv_title.setText(title);
@@ -390,19 +470,15 @@ public class CountActivity extends AppCompatActivity {
 
                 if (input.getText().toString().length() == 0 || input.getText().toString().equals("0")) {
                     return;
-                } else if (key.equals("Actual")) {
-                    numActual += Integer.parseInt(input.getText().toString().trim());
-                    tv_actual.setInAnimation(CountActivity.this, animV[0]);
-                    tv_actual.setOutAnimation(CountActivity.this, animV[1]);
-                    tv_actual.setText(numActual + "");
-                    dialog.dismiss();
-                } else if (key.equals("Defective")) {
-                    numDefective += Integer.parseInt(input.getText().toString().trim());
-                    tv_defective.setInAnimation(CountActivity.this, animV[0]);
-                    tv_defective.setOutAnimation(CountActivity.this, animV[1]);
-                    tv_defective.setText(numDefective + "");
-                    dialog.dismiss();
-                }
+                } //else if (key.equals("Actual")) {
+                giatri_Input = Integer.parseInt(input.getText().toString().trim());
+                sendDataCounting(Integer.parseInt(input.getText().toString().trim()));
+                dialog.dismiss();
+//                } else if (key.equals("Defective")) {
+//                    giatri_Input=Integer.parseInt(input.getText().toString().trim());
+//                    sendDataCounting(Integer.parseInt(input.getText().toString().trim()));
+//                    dialog.dismiss();
+//                }
             }
         });
 
@@ -413,5 +489,20 @@ public class CountActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+    public void setAnimation(TextSwitcher tv, String value) {
+
+
+        if (vitri_bam.equals("AP") || vitri_bam.equals("DP")||vitri_bam.equals("APL")||vitri_bam.equals("DPL")) {
+            tv.setInAnimation(CountActivity.this, animV[0]);
+            tv.setOutAnimation(CountActivity.this, animV[1]);
+            tv.setText(value);
+        } else {
+            tv.setInAnimation(CountActivity.this, animreV[0]);
+            tv.setOutAnimation(CountActivity.this, animreV[1]);
+            tv.setText(value);
+        }
+
     }
 }
