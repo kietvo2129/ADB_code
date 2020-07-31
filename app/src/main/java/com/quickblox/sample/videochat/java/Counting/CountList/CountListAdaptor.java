@@ -94,16 +94,18 @@ public class CountListAdaptor extends RecyclerView.Adapter<CountListAdaptor.Coun
 
         public void bindData(CountListItem countListItem) {
             tv_log.setText(countListItem.getLineId()+"/"+countListItem.getLineName());
-            tv_val_e.setText(countListItem.getEfficiency() +"%");
+            //tv_val_e.setText(countListItem.getEfficiency() +"%");
             tv_val_a.setText(countListItem.getActual());
             tv_val_d.setText(countListItem.getDefective());
             tv_val_target.setText(countListItem.getTarget());
             tv_val_targethour.setText(countListItem.getTargetHour());
 
 
-            int val = Integer.parseInt(countListItem.getEfficiency());
-            int min = Integer.parseInt(countListItem.getAlrm_2());
-            int max = Integer.parseInt(countListItem.getAlrm_1());
+            double val = Double.parseDouble(countListItem.getEfficiency());
+            double min = Double.parseDouble(countListItem.getAlrm_2());
+            double max = Double.parseDouble(countListItem.getAlrm_1());
+
+            tv_val_e.setText(String.format("%.2f",val) +"%");
 
             if (val == 0)
             {
