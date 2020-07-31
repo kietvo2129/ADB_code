@@ -10,6 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        style="@style/SelectBackground"
+        android:foreground="?android:attr/selectableItemBackground"
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_back">
 

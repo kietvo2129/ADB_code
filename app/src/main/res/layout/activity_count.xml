@@ -63,37 +63,110 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/tvlocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:drawableLeft="@drawable/ic_location"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:textColor="#fff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/tv_taget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:drawableLeft="@drawable/ic_target"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:textColor="#fff" />
-
-            <TextView
-                android:id="@+id/tv_time"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_clock"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:textColor="#fff" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/im1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_location" />
+
+                <TextSwitcher
+                    android:id="@+id/tvlocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/im1"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/slide_out_left" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/im2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_target" />
+
+                <TextSwitcher
+                    android:id="@+id/tv_taget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/im2"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/slide_out_left" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/im3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_clock" />
+
+                <TextSwitcher
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/im3"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/slide_out_left"  />
+
+            </RelativeLayout>
+
+
+            <!--            <TextView-->
+            <!--                android:layout_marginLeft="8dp"-->
+            <!--                android:layout_centerVertical="true"-->
+            <!--                android:layout_toEndOf="@+id/im1"-->
+            <!--                android:id="@+id/tvlocation"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginBottom="8dp"-->
+            <!--                android:drawableLeft="@drawable/ic_location"-->
+            <!--                android:drawablePadding="8dp"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textColor="#fff"-->
+            <!--                android:textSize="16dp"-->
+            <!--                android:textStyle="bold" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_taget"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginBottom="8dp"-->
+            <!--                android:drawableLeft="@drawable/ic_target"-->
+            <!--                android:drawablePadding="8dp"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textColor="#fff" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_time"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableLeft="@drawable/ic_clock"-->
+<!--                android:drawablePadding="8dp"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:textColor="#fff" />-->
 
 
         </LinearLayout>

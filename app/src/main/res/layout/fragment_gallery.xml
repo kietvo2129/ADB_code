@@ -2,351 +2,364 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/activity_vertical_margin"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">
+
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            style="@style/SelectableItemBackground"
-            android:foreground="?android:attr/selectableItemBackground"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_vertical_margin">
 
-            android:id="@+id/Mapbuild"
-            android:layout_weight="1"
-            android:background="@drawable/action_lick"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginRight="8dp"
-            android:gravity="center_vertical"
-            android:layout_height="120dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <ImageView
-                android:id="@+id/ima"
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_map" />
+            <RelativeLayout
+                android:id="@+id/Mapbuild"
+                style="@style/SelectableItemBackground"
 
-            <TextView
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/ima"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status Layout"/>
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_lick"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical">
 
-        </RelativeLayout>
-        <RelativeLayout
-            style="@style/SelectableItemBackground"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:id="@+id/checksensor"
-            android:layout_weight="1"
-            android:background="@drawable/action_lick"
+                <ImageView
+                    android:id="@+id/ima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_map" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ima"
+                    android:layout_centerHorizontal="true"
+                    android:text="Status Layout"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/checksensor"
+                style="@style/SelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_lick"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ima2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_qccheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ima2"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sensor List"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:layout_height="120dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <ImageView
-                android:id="@+id/ima2"
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_qccheck" />
+            <RelativeLayout
+                android:id="@+id/History"
+                style="@style/SelectableItemBackground"
 
-            <TextView
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/ima2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sensor List"/>
-        </RelativeLayout>
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_lick"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical">
 
+                <ImageView
+                    android:id="@+id/eima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_report" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/eima"
+                    android:layout_centerHorizontal="true"
+                    android:text="Issues report"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/issueslist"
+                style="@style/SelectableItemBackground"
+
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_lick"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/eima2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ic_alarm" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/eima2"
+                    android:layout_centerHorizontal="true"
+                    android:text="Issues List"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            style="@style/SelectableItemBackground"
-            android:foreground="?android:attr/selectableItemBackground"
+    <!--    <LinearLayout-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:weightSum="2"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <RelativeLayout-->
+    <!--            style="@style/SelectableItemBackground"-->
+    <!--            android:foreground="?android:attr/selectableItemBackground"-->
+    <!--            android:id="@+id/Control"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:background="@drawable/action_lick"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_marginRight="8dp"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:layout_height="120dp">-->
 
-            android:id="@+id/History"
-            android:layout_weight="1"
-            android:background="@drawable/action_lick"
-            android:layout_width="match_parent"
-            android:layout_marginRight="8dp"
-            android:gravity="center_vertical"
-            android:layout_height="120dp">
+    <!--            <ImageView-->
+    <!--                android:id="@+id/contr"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_centerHorizontal="true"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/ic_control" />-->
 
-            <ImageView
-                android:id="@+id/eima"
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_report" />
+    <!--            <TextView-->
+    <!--                android:textColor="#fff"-->
+    <!--                android:layout_centerHorizontal="true"-->
+    <!--                android:layout_below="@+id/contr"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Control ON/OFF"/>-->
 
-            <TextView
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/eima"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Issues report"/>
+    <!--        </RelativeLayout>-->
+    <!--        <RelativeLayout-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:background="#00234122"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:layout_height="120dp">-->
 
-        </RelativeLayout>
-        <RelativeLayout
-            style="@style/SelectableItemBackground"
-            android:foreground="?android:attr/selectableItemBackground"
+    <!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:id="@+id/eima2"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:background="@drawable/ic_alarm" />&ndash;&gt;-->
 
-            android:id="@+id/issueslist"
-            android:layout_weight="1"
-            android:background="@drawable/action_lick"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:layout_height="120dp">
+    <!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:textColor="#fff"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_below="@+id/eima2"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                android:text="Issues List"/>&ndash;&gt;-->
+    <!--        </RelativeLayout>-->
 
-            <ImageView
-                android:id="@+id/eima2"
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_alarm" />
+    <!--    </LinearLayout>-->
 
-            <TextView
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/eima2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Issues List"/>
-        </RelativeLayout>
+    <!--    <LinearLayout-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:weightSum="2"-->
+    <!--        android:layout_height="wrap_content">-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_marginRight="8dp"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:weightSum="2"-->
+    <!--            android:layout_height="120dp">-->
+    <!--            <LinearLayout-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_marginBottom="2dp"-->
+    <!--                android:weightSum="2"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:layout_height="0dp">-->
+    <!--                <RelativeLayout-->
+    <!--                    android:id="@+id/temper"-->
+    <!--                    android:background="@drawable/action_lick"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:layout_marginRight="2dp"-->
+    <!--                    android:layout_height="match_parent">-->
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imaa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@drawable/ic_tem" />-->
 
-    </LinearLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:weightSum="2"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <RelativeLayout-->
-<!--            style="@style/SelectableItemBackground"-->
-<!--            android:foreground="?android:attr/selectableItemBackground"-->
-<!--            android:id="@+id/Control"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/action_lick"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_marginRight="8dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_height="120dp">-->
+    <!--                    <TextView-->
+    <!--                        android:textColor="#fff"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_below="@+id/imaa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:text="Temp"/>-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/contr"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/ic_control" />-->
+    <!--                    <ImageView-->
+    <!--                        android:visibility="gone"-->
+    <!--                        android:id="@+id/icon_notifi"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:layout_alignTop="@+id/imaa"-->
+    <!--                        android:layout_alignEnd="@+id/imaa"-->
+    <!--                        android:layout_marginTop="0dp"-->
+    <!--                        android:layout_marginEnd="3dp"-->
+    <!--                        android:background="@drawable/ic_notifications_active_black_24dp" />-->
 
-<!--            <TextView-->
-<!--                android:textColor="#fff"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_below="@+id/contr"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Control ON/OFF"/>-->
+    <!--                </RelativeLayout>-->
+    <!--                <RelativeLayout-->
+    <!--                    android:layout_marginLeft="2dp"-->
+    <!--                    android:background="@drawable/action_lick"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:id="@+id/History"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="match_parent">-->
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imaaa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@drawable/ic_history" />-->
 
-<!--        </RelativeLayout>-->
-<!--        <RelativeLayout-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="#00234122"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_height="120dp">-->
+    <!--                    <TextView-->
+    <!--                        android:textColor="#fff"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_below="@+id/imaaa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:text="History"/>-->
+    <!--                </RelativeLayout>-->
+    <!--            </LinearLayout>-->
+    <!--            <LinearLayout-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_marginTop="2dp"-->
+    <!--                android:weightSum="2"-->
+    <!--                android:orientation="horizontal"-->
+    <!--                android:layout_height="0dp">-->
+    <!--                <RelativeLayout-->
+    <!--                    android:id="@+id/issueslist"-->
+    <!--                    android:background="@drawable/action_lick"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:layout_marginRight="2dp"-->
+    <!--                    android:layout_height="match_parent">-->
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imqa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_centerHorizontal="true"                        -->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@drawable/ic_alarm" />-->
 
-<!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/eima2"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:background="@drawable/ic_alarm" />&ndash;&gt;-->
+    <!--                    <TextView-->
+    <!--                        android:textColor="#fff"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_below="@+id/imqa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:text="Issues List"/>-->
 
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="#fff"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_centerHorizontal="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_below="@+id/eima2"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="Issues List"/>&ndash;&gt;-->
-<!--        </RelativeLayout>-->
+    <!--                </RelativeLayout>-->
+    <!--                <RelativeLayout-->
+    <!--                    android:id="@+id/chart"-->
+    <!--                    android:layout_marginLeft="2dp"-->
+    <!--                    android:background="@drawable/action_lick"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:gravity="center"-->
+    <!--                    android:layout_height="match_parent">-->
+    <!--                    <ImageView-->
+    <!--                        android:id="@+id/imqqa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:background="@drawable/ic_chart" />-->
 
-<!--    </LinearLayout>-->
+    <!--                    <TextView-->
+    <!--                        android:textColor="#fff"-->
+    <!--                        android:layout_centerHorizontal="true"-->
+    <!--                        android:layout_below="@+id/imqqa"-->
+    <!--                        android:layout_width="wrap_content"-->
+    <!--                        android:layout_height="wrap_content"-->
+    <!--                        android:text="Chart"/>-->
+    <!--                </RelativeLayout>-->
+    <!--            </LinearLayout>-->
 
-<!--    <LinearLayout-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:weightSum="2"-->
-<!--        android:layout_height="wrap_content">-->
-<!--        <LinearLayout-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_marginRight="8dp"-->
-<!--            android:orientation="vertical"-->
-<!--            android:weightSum="2"-->
-<!--            android:layout_height="120dp">-->
-<!--            <LinearLayout-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_marginBottom="2dp"-->
-<!--                android:weightSum="2"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_height="0dp">-->
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/temper"-->
-<!--                    android:background="@drawable/action_lick"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginRight="2dp"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imaa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/ic_tem" />-->
+    <!--        </LinearLayout>-->
+    <!--        <RelativeLayout-->
+    <!--            android:id="@+id/mobicall"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:background="@drawable/action_lick"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:gravity="center_vertical"-->
+    <!--            android:layout_height="120dp">-->
 
-<!--                    <TextView-->
-<!--                        android:textColor="#fff"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_below="@+id/imaa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Temp"/>-->
+    <!--            <ImageView-->
+    <!--                android:id="@+id/ima4"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_centerHorizontal="true"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/ic_call" />-->
 
-<!--                    <ImageView-->
-<!--                        android:visibility="gone"-->
-<!--                        android:id="@+id/icon_notifi"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_alignTop="@+id/imaa"-->
-<!--                        android:layout_alignEnd="@+id/imaa"-->
-<!--                        android:layout_marginTop="0dp"-->
-<!--                        android:layout_marginEnd="3dp"-->
-<!--                        android:background="@drawable/ic_notifications_active_black_24dp" />-->
+    <!--            <TextView-->
+    <!--                android:textColor="#fff"-->
+    <!--                android:layout_centerHorizontal="true"-->
+    <!--                android:layout_below="@+id/ima4"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Mobile Call"/>-->
+    <!--        </RelativeLayout>-->
 
-<!--                </RelativeLayout>-->
-<!--                <RelativeLayout-->
-<!--                    android:layout_marginLeft="2dp"-->
-<!--                    android:background="@drawable/action_lick"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:id="@+id/History"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imaaa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/ic_history" />-->
-
-<!--                    <TextView-->
-<!--                        android:textColor="#fff"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_below="@+id/imaaa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="History"/>-->
-<!--                </RelativeLayout>-->
-<!--            </LinearLayout>-->
-<!--            <LinearLayout-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_marginTop="2dp"-->
-<!--                android:weightSum="2"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_height="0dp">-->
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/issueslist"-->
-<!--                    android:background="@drawable/action_lick"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginRight="2dp"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imqa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_centerHorizontal="true"                        -->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/ic_alarm" />-->
-
-<!--                    <TextView-->
-<!--                        android:textColor="#fff"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_below="@+id/imqa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Issues List"/>-->
-
-<!--                </RelativeLayout>-->
-<!--                <RelativeLayout-->
-<!--                    android:id="@+id/chart"-->
-<!--                    android:layout_marginLeft="2dp"-->
-<!--                    android:background="@drawable/action_lick"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imqqa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@drawable/ic_chart" />-->
-
-<!--                    <TextView-->
-<!--                        android:textColor="#fff"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_below="@+id/imqqa"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:text="Chart"/>-->
-<!--                </RelativeLayout>-->
-<!--            </LinearLayout>-->
-
-<!--        </LinearLayout>-->
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/mobicall"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/action_lick"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_height="120dp">-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/ima4"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/ic_call" />-->
-
-<!--            <TextView-->
-<!--                android:textColor="#fff"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_below="@+id/ima4"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Mobile Call"/>-->
-<!--        </RelativeLayout>-->
-
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
 </LinearLayout>

@@ -48,8 +48,8 @@ import java.util.List;
 public class CountActivity extends AppCompatActivity {
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
     CardView cv_id, cv_infor;
-    TextView tv_taget, tv_time, tvlocation;
-    TextSwitcher tv_id, tv_actual, tv_defective;
+    TextSwitcher tv_taget, tv_time;
+    TextSwitcher tv_id, tv_actual, tv_defective,tvlocation;
     RelativeLayout rl_actual_plus, rl_actual_sub, rl_defective_sub, rl_defective_plus;
     int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
     int animV[] = new int[]{R.anim.slide_in_top, R.anim.slide_out_bottom};
@@ -172,8 +172,9 @@ public class CountActivity extends AppCompatActivity {
         tv_id.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
         tv_actual.setFactory(new TextViewFactory(R.style.NumActualTextView, true));
         tv_defective.setFactory(new TextViewFactory(R.style.NumActualTextView, true));
-
-
+        tvlocation.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
+        tv_time.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
+        tv_taget.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         getDataline();
     }
 

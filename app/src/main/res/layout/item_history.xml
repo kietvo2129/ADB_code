@@ -44,6 +44,8 @@
                 android:textColor="#fff" />
 
             <Button
+                style="@style/SelectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/buttontoggle"
                 android:text="OFF"
                 android:layout_alignParentEnd="true"

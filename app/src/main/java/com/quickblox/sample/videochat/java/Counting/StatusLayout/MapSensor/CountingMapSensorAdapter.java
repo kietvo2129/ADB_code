@@ -63,7 +63,7 @@ public class CountingMapSensorAdapter extends RecyclerView.Adapter<CountingMapSe
             DefectiveQty.setText(sensorMapMaster.defect_qty);
             ActualQty.setText(sensorMapMaster.actual_qty);
             double effi = Double.parseDouble(sensorMapMaster.getActual_qty())*100/Double.parseDouble(sensorMapMaster.getTarget_qty());
-            Efficiency.setText(effi+"");
+            Efficiency.setText(String.format("%.2f",effi));
         }
     }
 }

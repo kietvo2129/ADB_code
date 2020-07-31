@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_item_green"
                 android:gravity="center|right"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
                 android:text="E:"/>
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_item_green"
                 android:gravity="center|left"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:paddingStart="8dp"
                 android:text="40%"/>
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:textColor="@color/color_item_green"
                 android:gravity="center|right"
                 android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:text="A:"/>
 
             <TextView
@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/color_item_green"
                 android:gravity="center|left"
                 android:paddingStart="8dp"
@@ -89,7 +89,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_item_yellow"
@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/color_item_yellow"
                 android:gravity="center|left"
                 android:paddingStart="8dp"
