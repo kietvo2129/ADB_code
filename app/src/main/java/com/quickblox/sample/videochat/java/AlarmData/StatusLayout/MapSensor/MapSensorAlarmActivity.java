@@ -22,6 +22,7 @@ import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapBuildAlarmA
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapFloorAlrmActivity;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.CCTV.CCTVList.CCTVActivity;
+import com.quickblox.sample.videochat.java.Counting.StatusLayout.MapSensor.CountingMapSensorActivity;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapInfoSensor;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapMater;
 import com.quickblox.sample.videochat.java.R;
@@ -74,8 +75,8 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
         Log.d("image", Url + "Images/Monitor/" + MapFloorAlrmActivity.floor_image);
 
 
-        new readSensor().execute(Url + "CCTVMonitor/get_info_camera?" + "build=" + MapBuildAlarmActivity.building_code + "&floor=" + MapFloorAlrmActivity.floor_code);
-        Log.d("readSensor", Url + "CCTVMonitor/get_info_camera?" + "build=" + MapBuildAlarmActivity.building_code + "&floor=" + MapFloorAlrmActivity.floor_code);
+        new readSensor().execute(Url + "MotionAlarm/get_info_alarm?" + "build=" + MapBuildAlarmActivity.building_code + "&floor=" + MapFloorAlrmActivity.floor_code);
+        Log.d("readSensor", Url + "MotionAlarm/get_info_alarm?" + "build=" + MapBuildAlarmActivity.building_code + "&floor=" + MapFloorAlrmActivity.floor_code);
 
 
 
@@ -164,12 +165,12 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
 
                     JSONObject objectRow = jsonArray.getJSONObject(i);
 
-                    ssid = objectRow.getString("id").replace("null", "");
-                    ss_no = objectRow.getString("camera_no").replace("null", "");
-                    ss_nm = objectRow.getString("camera_nm").replace("null", "");
+                    ssid = objectRow.getString("ssid").replace("null", "");
+                    ss_no = objectRow.getString("ss_no").replace("null", "");
+                    ss_nm = objectRow.getString("ss_nm").replace("null", "");
                     top_position = objectRow.getString("top_position").replace("null", "");
                     left_posistion = objectRow.getString("left_posistion").replace("null", "");
-                    type = "";
+                    type = objectRow.getString("type").replace("null", "");
 
                     mapMaterArrayList.add(new MapMater(ssid, ss_no, ss_nm, top_position, left_posistion,type));
                 }
@@ -226,7 +227,11 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
             params.topMargin = top;
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_view));
+                if (mapMaterArrayList.get(i).getType().equals("SS")) {
+                    tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_view));
+                }else if (mapMaterArrayList.get(i).getType().equals("CMR")) {
+                    tv[i + 1].setImageDrawable(getDrawable(R.drawable.circle_cmr));
+                }
             }
             tv[i + 1].setLayoutParams(params);
 
@@ -234,12 +239,21 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
             tv[i + 1].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //bientam = finalI;
+                    if (mapMaterArrayList.get(finalI).getType().equals("Line")) {
+//                        new readInfosensor().execute(Url + "/Monitor/ShowDataSS?ss_no=" + mapMaterArrayList.get(finalI).ss_no);
+//                        Log.d("readInfosensor", Url + "/Monitor/ShowDataSS?ss_no=" + mapMaterArrayList.get(finalI).ss_no);
+                    }else if (mapMaterArrayList.get(finalI).getType().equals("CMR")) {
 
-                    Intent intent = new Intent(MapSensorAlarmActivity.this, CCTVActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("nm_camera", mapMaterArrayList.get(finalI).getSs_no());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                        Intent intent = new Intent(MapSensorAlarmActivity.this, CCTVActivity.class);
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nm_camera", mapMaterArrayList.get(finalI).getSs_no());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
+                    }
+
 
                 }
             });

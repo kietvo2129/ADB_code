@@ -125,10 +125,10 @@ public class IssuesActivity extends AppCompatActivity {
                     pow_issue = objectRow.getString("pow_issue").replace("null", "");
                     time_update = objectRow.getString("time_update").replace("null", "");
 
-                    temp_issue_nm = objectRow.getJSONArray("temp_issue_nm").get(0).toString();
-                    humi_issue_nm = objectRow.getJSONArray("humi_issue_nm").get(0).toString();
-                    press_issue_nm = objectRow.getJSONArray("press_issue_nm").get(0).toString();
-                    pow_issue_nm = objectRow.getJSONArray("pow_issue_nm").get(0).toString();
+                    temp_issue_nm = objectRow.getString("temp_issue_nm").replace("[", "").replace("]", "").replace("\"", "");
+                    humi_issue_nm = objectRow.getString("humi_issue_nm").replace("[", "").replace("]", "").replace("\"", "");
+                    press_issue_nm = objectRow.getString("press_issue_nm").replace("[", "").replace("]", "").replace("\"", "");
+                    pow_issue_nm = objectRow.getString("pow_issue_nm").replace("[", "").replace("]", "").replace("\"", "");
 
                     min_temp = objectRow.getString("min_temp").replace("null", "0");
                     max_temp = objectRow.getString("max_temp").replace("null", "0");

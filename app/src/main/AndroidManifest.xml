@@ -29,7 +29,8 @@
         <activity android:name=".Counting.StatusLayout.CountingMapBuildActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity"/>
 
-        <activity android:name=".Counting.Count.Detail.CountingDetailActivity" />
+        <activity android:name=".Counting.Count.Detail.CountingDetailActivity"
+            android:theme="@style/AppThemee.NoActionBar"/>
 
         <activity android:name=".Counting.StatusLayout.CountingMapFloorActivity"
             android:parentActivityName=".Counting.StatusLayout.CountingMapBuildActivity"/>

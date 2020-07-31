@@ -1,12 +1,15 @@
 package com.quickblox.sample.videochat.java.Counting.Count.Detail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
@@ -22,7 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountingDetailActivity extends AppCompatActivity {
+public class CountingDetailActivity extends AppCompatActivity{
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
     String id_line = CountActivity.id_line;
     private RecyclerView mRecyclerView;
@@ -37,12 +40,20 @@ public class CountingDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_counting_detail);
         mRecyclerView = findViewById(R.id.home_sensor_info);
         popupdialog();
+        Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void popupdialog() {
         new loadpopupdialog().execute(Url + "plan/getDataLineTimeToday?id=" + id_line);
         Log.d("loadpopupdialog", Url + "plan/getDataLineTimeToday?id=" + id_line);
     }
+
 
     private class loadpopupdialog extends AsyncTask<String, Void, String> {
         @Override
