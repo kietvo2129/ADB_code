@@ -48,7 +48,7 @@ import java.util.List;
 public class CountActivity extends AppCompatActivity {
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
     CardView cv_id, cv_infor;
-    TextView  tv_taget, tv_time,tvlocation;
+    TextView tv_taget, tv_time, tvlocation;
     TextSwitcher tv_id, tv_actual, tv_defective;
     RelativeLayout rl_actual_plus, rl_actual_sub, rl_defective_sub, rl_defective_plus;
     int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
@@ -58,7 +58,7 @@ public class CountActivity extends AppCompatActivity {
     int numDefective = 0, giatri_Input = 0;
     String vitri_bam = "";
 
-   public static String id_line = "";
+    String id_line = "";
 
     ArrayList<LineMaster> lineMaster;
     ArrayList<DataAllCountingMaster> dataAllCountingMasters;
@@ -87,6 +87,9 @@ public class CountActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(CountActivity.this, CountingDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_line", id_line);
+                intent.putExtras(bundle);
                 startActivity(intent);
 
             }
@@ -288,7 +291,7 @@ public class CountActivity extends AppCompatActivity {
             public void run() {
                 rl.setEnabled(true);
             }
-        }, 1000);
+        }, 500);
     }
 
     private class TextViewFactory implements ViewSwitcher.ViewFactory {
@@ -339,7 +342,6 @@ public class CountActivity extends AppCompatActivity {
                 tv_id.setText(listItems.get(i).toString());
                 id_line = lineMaster.get(i).getId();
                 loadDataAll(i);
-
 
 
                 dialog.dismiss();
@@ -494,7 +496,7 @@ public class CountActivity extends AppCompatActivity {
     public void setAnimation(TextSwitcher tv, String value) {
 
 
-        if (vitri_bam.equals("AP") || vitri_bam.equals("DP")||vitri_bam.equals("APL")||vitri_bam.equals("DPL")) {
+        if (vitri_bam.equals("AP") || vitri_bam.equals("DP") || vitri_bam.equals("APL") || vitri_bam.equals("DPL")) {
             tv.setInAnimation(CountActivity.this, animV[0]);
             tv.setOutAnimation(CountActivity.this, animV[1]);
             tv.setText(value);

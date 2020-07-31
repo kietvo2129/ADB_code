@@ -27,18 +27,22 @@ import java.util.List;
 
 public class CountingDetailActivity extends AppCompatActivity{
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
-    String id_line = CountActivity.id_line;
+
+
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     CountingDetailAdapter countingDetailAdapter;
     List<DetailMaster> detailMastersList;
-
+    String id_line = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Counting Detail");
         setContentView(R.layout.activity_counting_detail);
         mRecyclerView = findViewById(R.id.home_sensor_info);
+        Bundle bundle = getIntent().getExtras();
+        id_line = bundle.getString("id_line");
+
         popupdialog();
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener(){

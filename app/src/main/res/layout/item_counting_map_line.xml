@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="6">
+
+    <TextView
+        android:id="@+id/LineID"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp"
+        android:paddingLeft="4dp" />
+
+    <TextView
+        android:id="@+id/LineName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp"
+        android:paddingLeft="4dp" />
+
+    <TextView
+
+        android:id="@+id/TargetQty"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center_vertical|right"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp" />
+
+    <TextView
+        android:id="@+id/ActualQty"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center_vertical|right"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp" />
+
+    <TextView
+        android:id="@+id/DefectiveQty"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center_vertical|right"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp" />
+
+    <TextView
+        android:id="@+id/Efficiency"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/backgr_row"
+        android:gravity="center_vertical|right"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp" />
+
+</LinearLayout>

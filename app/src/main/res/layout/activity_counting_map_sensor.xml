@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="6">
 
                 <TextView
                     android:layout_width="0dp"
@@ -78,7 +78,7 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Sensor ID" />
+                    android:text="Line No" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -87,7 +87,7 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Sensor Name" />
+                    android:text="Line Name" />
 
 
                 <TextView
@@ -97,7 +97,15 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Location" />
+                    android:text="Target Qty" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Actual Qty" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -106,7 +114,15 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Update Time" />
+                    android:text="Defective Qty" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Efficiency (%)" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -114,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/e1"
-                tools:listitem="@layout/item_sensor_maphis">
+                tools:listitem="@layout/item_counting_map_line">
 
             </androidx.recyclerview.widget.RecyclerView>
 

@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
         mlinechart = view.findViewById(R.id.linechart);
         image = view.findViewById(R.id.image);
 
-        readdataChart();
+        //readdataChart();
         readSensorinfor();
         readDatah1();
         return view;

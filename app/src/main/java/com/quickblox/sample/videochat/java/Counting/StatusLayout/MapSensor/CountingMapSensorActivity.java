@@ -44,8 +44,8 @@ public class CountingMapSensorActivity extends AppCompatActivity {
     ArrayList<MapMater> mapMaterArrayList;
     ArrayList<MapInfoSensor> mapInfoSensorArrayList;
 
-    ArrayList<MapsensorAlarmMaster> MapsensorAlarmMasterArrayList;
-    MapsensorAlarmAdapter MapsensorAlarmAdapters;
+    ArrayList<CountingMapSensorMaster> countingMapSensorMasterArrayList;
+    CountingMapSensorAdapter countingMapSensorAdapter;
     int finalHeight, finalWidth;
     RecyclerView home_sensor_info;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -75,10 +75,9 @@ public class CountingMapSensorActivity extends AppCompatActivity {
         new readSensor().execute(Url + "Counting/get_info_line?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
         Log.d("readSensor", Url + "Counting/get_info_line?" + "build=" + CountingMapBuildActivity.building_code + "&floor=" + CountingMapFloorActivity.floor_code);
 
-        
 
-//        new readSensor_map().execute(Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
-//        Log.d("readSensor_map", Url + "MotionAlarm/Getmqtt?id=" + CountingMapFloorActivity.floor_id);
+        new readSensor_map().execute(Url + "Counting/GetLineInfo?id=" + CountingMapFloorActivity.floor_id);
+        Log.d("readSensor_map", Url + "Counting/GetLineInfo?id=" + CountingMapFloorActivity.floor_id);
 
     }
 
@@ -94,8 +93,9 @@ public class CountingMapSensorActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            MapsensorAlarmMasterArrayList = new ArrayList<>();
-            String SensorID, SensorName, lct_nm, time_up;
+            countingMapSensorMasterArrayList = new ArrayList<>();
+            String id,line_no,line_nm,line_manager,Alarm_Range1,Alarm_Range2,building_nm,floor_nm
+                    ,remark,reg_id,reg_dt,chg_id,chg_dt,target_qty,actual_qty,defect_qty;
 
             try {
 
@@ -108,11 +108,24 @@ public class CountingMapSensorActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject objectRow = jsonArray.getJSONObject(i);
-                    SensorID = objectRow.getString("ss_no").replace("null", "");
-                    SensorName = objectRow.getString("ss_nm").replace("null", "");
-                    lct_nm = objectRow.getString("lct_nm").replace("null", "");
-                    time_up = objectRow.getString("time_up").replace("null", "");
-                    MapsensorAlarmMasterArrayList.add(new MapsensorAlarmMaster(SensorID, SensorName, lct_nm, time_up));
+                    id = objectRow.getString("id").replace("null", "");
+                    line_no = objectRow.getString("line_no").replace("null", "");
+                    line_nm = objectRow.getString("line_nm").replace("null", "");
+                    line_manager = objectRow.getString("line_manager").replace("null", "");
+                    Alarm_Range1 = objectRow.getString("Alarm_Range1").replace("null", "");
+                    Alarm_Range2 = objectRow.getString("Alarm_Range2").replace("null", "");
+                    building_nm = objectRow.getString("building_nm").replace("null", "");
+                    floor_nm = objectRow.getString("floor_nm").replace("null", "");
+                    remark = objectRow.getString("remark").replace("null", "");
+                    reg_id = objectRow.getString("reg_id").replace("null", "");
+                    reg_dt = objectRow.getString("reg_dt").replace("null", "");
+                    chg_id = objectRow.getString("chg_id").replace("null", "");
+                    chg_dt = objectRow.getString("chg_dt").replace("null", "");
+                    target_qty = objectRow.getString("target_qty").replace("null", "0");
+                    actual_qty = objectRow.getString("actual_qty").replace("null", "0");
+                    defect_qty = objectRow.getString("defect_qty").replace("null", "0");
+                    countingMapSensorMasterArrayList.add(new CountingMapSensorMaster(id,line_no,line_nm,line_manager,Alarm_Range1,Alarm_Range2,building_nm,floor_nm
+                            ,remark,reg_id,reg_dt,chg_id,chg_dt,target_qty,actual_qty,defect_qty));
                 }
 
                 buildrecyc();
@@ -129,9 +142,9 @@ public class CountingMapSensorActivity extends AppCompatActivity {
 
         home_sensor_info.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(CountingMapSensorActivity.this);
-        MapsensorAlarmAdapters = new MapsensorAlarmAdapter(MapsensorAlarmMasterArrayList);
+        countingMapSensorAdapter = new CountingMapSensorAdapter(countingMapSensorMasterArrayList);
         home_sensor_info.setLayoutManager(mLayoutManager);
-        home_sensor_info.setAdapter(MapsensorAlarmAdapters);
+        home_sensor_info.setAdapter(countingMapSensorAdapter);
 
     }
 

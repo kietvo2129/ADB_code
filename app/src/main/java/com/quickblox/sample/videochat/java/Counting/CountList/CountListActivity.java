@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.github.ybq.android.spinkit.style.Circle;
+import com.quickblox.sample.videochat.java.Counting.Count.CountActivity;
+import com.quickblox.sample.videochat.java.Counting.Count.Detail.CountingDetailActivity;
 import com.quickblox.sample.videochat.java.DigitalData.IssuesList.IssuesActivity;
 import com.quickblox.sample.videochat.java.DigitalData.IssuesList.IssuesAdapter;
 import com.quickblox.sample.videochat.java.DigitalData.SensorList.SensorMatter;
@@ -154,7 +157,12 @@ public class CountListActivity extends AppCompatActivity {
         countListAdaptor.setOnItemClickListener(new CountListAdaptor.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(CountListActivity.this, "tex:" + position, Toast.LENGTH_SHORT).show();
+
+//                Intent intent = new Intent(CountListActivity.this, CountingDetailActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("id_line", countlistitems.get(position).getLineId());
+//                intent.putExtras(bundle);
+//                startActivity(intent);
             }
         });
 
