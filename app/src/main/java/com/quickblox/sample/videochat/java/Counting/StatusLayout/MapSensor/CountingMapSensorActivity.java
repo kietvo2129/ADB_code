@@ -56,7 +56,7 @@ public class CountingMapSensorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counting_map_sensor);
-        setTitle("Sensor Alarm");
+        setTitle("Map Line");
         rl = (RelativeLayout) findViewById(R.id.rl);
         imageView = findViewById(R.id.imageview);
         location = findViewById(R.id.location);
