@@ -3,6 +3,7 @@ package com.quickblox.sample.videochat.java.CCTV.CCTVLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -121,12 +122,14 @@ public class CCTVSensorActivity extends AppCompatActivity {
         }
 
         final ImageView[] tv = new ImageView[mapMaterArrayList.size()+1];
-
+        final TextView[] tvs = new TextView[mapMaterArrayList.size() + 1];
         for (int i = 0;i<mapMaterArrayList.size();i++){
             tv[i+1] = new ImageView(this);
+            tvs[i + 1] = new TextView(this);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
                     ((int) RelativeLayout.LayoutParams.WRAP_CONTENT, (int) RelativeLayout.LayoutParams.WRAP_CONTENT);
-
+            RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams
+                    ((int) RelativeLayout.LayoutParams.WRAP_CONTENT, (int) RelativeLayout.LayoutParams.WRAP_CONTENT);
 
             String leftx = mapMaterArrayList.get(i).getLeft_posistion().replace("%","");
             String topx = mapMaterArrayList.get(i).getTop_position().replace("%","");
@@ -142,16 +145,20 @@ public class CCTVSensorActivity extends AppCompatActivity {
             }
             int left = (int) (finalWidth*dbleft/100);
             int top = (int) (finalHeight*dbtop/100);
-
+            int left2 = (int) (finalWidth * dbleft / 100)- 30;
+            int top2 = (int) (finalHeight * dbtop / 100)+ 30;
 
             params.leftMargin = left;
             params.topMargin = top;
-
+            params2.leftMargin = left2;
+            params2.topMargin = top2;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tv[i+1].setImageDrawable(getDrawable(R.drawable.circle_view));
+                tv[i+1].setImageDrawable(getDrawable(R.drawable.circle_cmr));
+                tvs[i + 1].setText(mapMaterArrayList.get(i).getSs_nm());
+                tvs[i + 1].setTextColor(Color.parseColor("#000000"));
             }
             tv[i+1].setLayoutParams(params);
-
+            tvs[i + 1].setLayoutParams(params2);
             int finalI = i;
             tv[i+1].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -166,6 +173,7 @@ public class CCTVSensorActivity extends AppCompatActivity {
                 }
             });
             rl.addView(tv[i+1]);
+            rl.addView(tvs[i + 1]);
         }
 
     }

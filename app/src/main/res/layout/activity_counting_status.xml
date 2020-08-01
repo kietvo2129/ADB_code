@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
@@ -158,19 +158,19 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barchart"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@+id/hh2"
-            android:layout_marginVertical="8dp"
-            android:layout_marginTop="16dp" />
+<!--        <com.github.mikephil.charting.charts.BarChart-->
+<!--            android:id="@+id/barchart"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="400dp"-->
+<!--            android:layout_below="@+id/hh2"-->
+<!--            android:layout_marginVertical="8dp"-->
+<!--            android:layout_marginTop="16dp" />-->
 
         <RelativeLayout
             android:id="@+id/hh3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/barchart"
+            android:layout_below="@+id/hh2"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/backgr_recyc">
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="6">
 
                 <TextView
                     android:layout_width="0dp"
@@ -189,7 +189,7 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Sensor ID" />
+                    android:text="Line ID" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -198,7 +198,7 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Sensor Name" />
+                    android:text="Line Name" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -207,7 +207,7 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Location" />
+                    android:text="Target" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -216,15 +216,32 @@
                     android:background="@drawable/backgr_title"
                     android:gravity="center"
                     android:paddingHorizontal="4dp"
-                    android:text="Update Time" />
+                    android:text="Target/Hour" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Actual" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Defective" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_sensor_info"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/e1"
-                tools:listitem="@layout/item_homesensorinfor">
+                tools:listitem="@layout/item_dashboard_counting">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -233,4 +250,4 @@
 
     </RelativeLayout>
 
-</ScrollView>
+</RelativeLayout>

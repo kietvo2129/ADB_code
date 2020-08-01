@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linear"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="6">
+        <TextView
+            android:id="@+id/LineID"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+
+            android:gravity="center"
+            android:paddingVertical="4dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:paddingVertical="4dp"
+            android:gravity="center|left"
+            android:id="@+id/LineName"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center|right"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Target"/>
+        <TextView
+            android:paddingVertical="4dp"
+            android:gravity="center|right"
+            android:id="@+id/TargetHour"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+            android:gravity="center|right"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/Actual"/>
+        <TextView
+            android:paddingVertical="4dp"
+            android:id="@+id/Defective"
+            android:paddingHorizontal="4dp"
+            android:background="@drawable/backgr_row"
+            android:gravity="center|right"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

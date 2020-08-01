@@ -122,6 +122,7 @@ public class CountListActivity extends AppCompatActivity {
                 } else {
                             for (int i=0;i<jsonArray.length();i++){
                                 JSONObject object = jsonArray.getJSONObject(i);
+                                String id = object.getString("id");
                                 String line_no = object.getString("line_no");
                                 String line_nm = object.getString("line_nm");
                                 String defect_qty = object.getString("defect_qty");
@@ -131,7 +132,7 @@ public class CountListActivity extends AppCompatActivity {
                                 String taget_hour = String.valueOf(object.optInt("taget_hour",0));
                                 String Alarm_Range1 = object.getString("Alarm_Range1");
                                 String Alarm_Range2 = object.getString("Alarm_Range2");
-                                countlistitems.add(new CountListItem("",line_no,line_nm,efficiency,actual_qty,defect_qty,target_qty,taget_hour,Alarm_Range1,Alarm_Range2));
+                                countlistitems.add(new CountListItem(id,line_no,line_nm,efficiency,actual_qty,defect_qty,target_qty,taget_hour,Alarm_Range1,Alarm_Range2));
                             }
                 }
                 countlistitemsFull = countlistitems;
@@ -158,11 +159,12 @@ public class CountListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
 
-//                Intent intent = new Intent(CountListActivity.this, CountingDetailActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("id_line", countlistitems.get(position).getLineId());
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                Intent intent = new Intent(CountListActivity.this, CountingDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_line", countlistitems.get(position).getId());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
             }
         });
 
