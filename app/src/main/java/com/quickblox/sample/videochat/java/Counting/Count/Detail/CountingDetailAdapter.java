@@ -77,7 +77,7 @@ public class CountingDetailAdapter extends RecyclerView.Adapter<CountingDetailAd
             ActualHour.setText(note.getActual_qty());
             DefectiveHour.setText(note.getDefect_qty());
             double effi = Double.parseDouble(note.getActual_qty())*100/Double.parseDouble(note.getTarget_qty());
-            EfficiencyHour.setText(effi+"%");
+            EfficiencyHour.setText(String.format("%.2f",effi) +"%");
         }
     }
 }
