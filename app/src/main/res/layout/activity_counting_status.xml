@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2">
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -154,16 +155,16 @@
                 </RelativeLayout>
 
 
-
             </LinearLayout>
         </LinearLayout>
-      <com.github.mikephil.charting.charts.BarChart
-          android:id="@+id/barchart"
-          android:layout_below="@+id/hh2"
-          android:layout_marginTop="16dp"
-          android:layout_width="match_parent"
-          android:layout_marginVertical="8dp"
-          android:layout_height="400dp"/>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/hh2"
+            android:layout_marginVertical="8dp"
+            android:layout_marginTop="16dp" />
 
         <RelativeLayout
             android:id="@+id/hh3"

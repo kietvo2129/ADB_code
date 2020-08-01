@@ -1,81 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:navigationIcon="@drawable/ic_back">
-        <TextView
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:navigationIcon="@drawable/ic_back">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Counting Detail"
+                android:textColor="#fff" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imaview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="8dp" />
+
+            </RelativeLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:visibility="gone"
+            android:id="@+id/barchart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginVertical="8dp"
+            android:layout_marginTop="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_table"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Counting Detail"
-            android:textColor="#fff"/>
+            android:layout_below="@+id/barchart">
 
-    </androidx.appcompat.widget.Toolbar>
+            <LinearLayout
+                android:id="@+id/e1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
-    <LinearLayout
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/e1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="5">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Update Time" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backgr_title"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:text="Update Time" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Target/Hour" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backgr_title"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:text="Target/Hour" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Actual/Hour" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backgr_title"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:text="Actual/Hour" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Defective/Hour" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backgr_title"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:text="Defective/Hour" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/backgr_title"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="Efficiency/Hour" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/backgr_title"
-            android:gravity="center"
-            android:paddingHorizontal="4dp"
-            android:text="Efficiency/Hour" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/home_sensor_info"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/e1"
-        tools:listitem="@layout/item_counting_detail" />
-</RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_sensor_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/e1"
+                tools:listitem="@layout/item_counting_detail" />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
