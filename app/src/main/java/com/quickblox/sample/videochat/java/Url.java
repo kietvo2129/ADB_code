@@ -7,7 +7,7 @@ import java.net.URLConnection;
 
 public class Url {
 
-    public static String webUrl = "http://192.168.100.53:84/";
+    public static String webUrl = "http://adb.autonsi.com/";
     public static String NoiDung_Tu_URL(String theUrl) {
         StringBuilder content = new StringBuilder();
         try {

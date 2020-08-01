@@ -150,7 +150,10 @@ public class CountingStatusActivity extends AppCompatActivity {
                 JSONObject jsonObject= jsonArray.getJSONObject(0);
                 tvtotal.setText(jsonObject.getString("total_act_qty_today").replace("null","0"));
                 tvDefective.setText(jsonObject.getString("total_def_qty_today").replace("null","0"));
-                tvEfficiency.setText(jsonObject.getString("efficiency").replace("null","0")+"%");
+
+                double effi = Double.parseDouble(jsonObject.getString("efficiency").replace("null","0"));
+                tvEfficiency.setText(String.format("%.2f",effi) +"%");
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", CountingStatusActivity.this);
