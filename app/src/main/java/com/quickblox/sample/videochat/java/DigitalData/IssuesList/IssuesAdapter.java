@@ -12,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.quickblox.sample.videochat.java.DigitalData.IssuesReport.IssuesReport;
 import com.quickblox.sample.videochat.java.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IssuesAdapter extends RecyclerView.Adapter<IssuesAdapter.NoteVH> {
@@ -268,5 +270,9 @@ public class IssuesAdapter extends RecyclerView.Adapter<IssuesAdapter.NoteVH> {
             }
 
         }
+    }
+    public void filterList(ArrayList<IssuesMater> filteredList) {
+        mNoteList = filteredList;
+        notifyDataSetChanged();
     }
 }

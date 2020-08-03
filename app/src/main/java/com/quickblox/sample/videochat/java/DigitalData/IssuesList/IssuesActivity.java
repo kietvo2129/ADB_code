@@ -1,6 +1,7 @@
 package com.quickblox.sample.videochat.java.DigitalData.IssuesList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import com.github.ybq.android.spinkit.style.Circle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
+import com.quickblox.sample.videochat.java.DigitalData.IssuesReport.IssuesReport;
 import com.quickblox.sample.videochat.java.DigitalData.SensorList.SensorCheckActivity;
 import com.quickblox.sample.videochat.java.R;
 import com.quickblox.sample.videochat.java.VolleyMultipartRequest;
@@ -49,8 +52,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IssuesActivity extends AppCompatActivity {
+public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
     private ArrayList<IssuesMater> issuesMaterArrayList;
+    private ArrayList<IssuesMater> issuesMaterArrayListnew;
     private RecyclerView mRecyclerView;
     private IssuesAdapter issuesAdapter;
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
@@ -67,6 +71,9 @@ public class IssuesActivity extends AppCompatActivity {
     int pos = -1;
     private Bitmap fileHinh;
 
+    SearchView searchView;
+    private String oftion = "Code";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +87,62 @@ public class IssuesActivity extends AppCompatActivity {
         progressBar.setIndeterminateDrawable(circle);
         loaddata();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.search_func); // Menu Search
+        toolbar.setOnMenuItemClickListener(this);
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                filter(s, oftion);
+                searchView.clearFocus();
+//                sensor_ifo.setVisibility(View.GONE);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filter(s, oftion);
+//                sensor_ifo.setVisibility(View.GONE);
+                return true;
+            }
+        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //mSelectedItem = -1;
+//                Intent intent = new Intent(SensorCheckActivity.this, MainActivity.class);
+//                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    private void filter(String text, String oftion) {
+        ArrayList<IssuesMater> filteredList = new ArrayList<>();
+        for (IssuesMater item : issuesMaterArrayListnew) {
+            if (oftion.equals("Code")) {
+                if (item.getSs_no().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(item);
+                }
+            } else if (oftion.equals("Name")) {
+                if (item.getSs_nm().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(item);
+                }
+            } else if (oftion.equals("Floor")) {
+                if (item.getFloor_name().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(item);
+                }
+            } else if (oftion.equals("Building")) {
+                if (item.getBuilding_name().toLowerCase().contains(text.toLowerCase())) {
+                    filteredList.add(item);
+                }
+            }
+        }
+
+        issuesMaterArrayList = filteredList;
+        issuesAdapter.filterList(filteredList);
     }
 
     private void loaddata() {
@@ -97,10 +160,11 @@ public class IssuesActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             issuesMaterArrayList = new ArrayList<>();
+            issuesMaterArrayList = new ArrayList<>();
             String ss_no, ss_nm, current_temp, current_press, current_pow, current_humi,
                     temp_issue, humi_issue, press_issue, pow_issue, time_update,
                     temp_issue_nm, humi_issue_nm, press_issue_nm, pow_issue_nm,
-                    min_temp, max_temp, min_press, max_press, min_humi, max_humi, min_pow, max_pow, building_name, floor_name, info_warning, time_finish, sts_send, id,img_issue;
+                    min_temp, max_temp, min_press, max_press, min_humi, max_humi, min_pow, max_pow, building_name, floor_name, info_warning, time_finish, sts_send, id, img_issue;
 
             try {
                 JSONArray jsonArray = new JSONArray(s);
@@ -144,16 +208,18 @@ public class IssuesActivity extends AppCompatActivity {
                     time_finish = objectRow.getString("time_finish");
                     sts_send = objectRow.getString("sts_send").replace("[", "").replace("]", "").replace("\"", "");
                     id = objectRow.getString("id");
-                    img_issue = objectRow.getString("img_issue").replace("null", "");;
+                    img_issue = objectRow.getString("img_issue").replace("null", "");
+                    ;
 
 
                     issuesMaterArrayList.add(new IssuesMater(ss_no, ss_nm, current_temp, current_press, current_pow, current_humi,
                             temp_issue, humi_issue, press_issue, pow_issue, time_update,
                             temp_issue_nm, humi_issue_nm, press_issue_nm, pow_issue_nm,
                             min_temp, max_temp, min_press, max_press, min_humi, max_humi, min_pow, max_pow, building_name, floor_name,
-                            info_warning, time_finish, sts_send, id,img_issue));
+                            info_warning, time_finish, sts_send, id, img_issue));
                     //mHomeListnew = mHomeList;
                 }
+                issuesMaterArrayListnew = issuesMaterArrayList;
                 progressBar.setVisibility(View.GONE);
                 buildRecyclerView();
 
@@ -184,8 +250,8 @@ public class IssuesActivity extends AppCompatActivity {
                 } else {
                     vitri = position;
                     pos = position;
-                    new readAction().execute(Url+"Monitor/getinfoissue?id=" + issuesMaterArrayList.get(position).getId());
-                    Log.d("readAction", Url+"Monitor/getinfoissue?id=" + issuesMaterArrayList.get(position).getId());
+                    new readAction().execute(Url + "Monitor/getinfoissue?id=" + issuesMaterArrayList.get(position).getId());
+                    Log.d("readAction", Url + "Monitor/getinfoissue?id=" + issuesMaterArrayList.get(position).getId());
                 }
             }
 
@@ -245,7 +311,7 @@ public class IssuesActivity extends AppCompatActivity {
                 dialogaction.cancel();
             }
         });
-        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax,tvIssue;
+        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax, tvIssue;
         FloatingActionButton fab;
         TextInputEditText tvinput;
         Button Picture;
@@ -264,7 +330,7 @@ public class IssuesActivity extends AppCompatActivity {
 
         tvId.setText(issuesMaterArrayList.get(position).ss_no);
         tvNm.setText(issuesMaterArrayList.get(position).ss_nm);
-        String error = "", min = "", max = "",issues = "";
+        String error = "", min = "", max = "", issues = "";
         if (!issuesMaterArrayList.get(position).getTemp_issue().equals("003")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_temp() + "°C" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_temp() + "°C" + " - ";
@@ -275,21 +341,21 @@ public class IssuesActivity extends AppCompatActivity {
             error = error + issuesMaterArrayList.get(position).getCurrent_humi() + "%" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_humi() + "%" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_humi() + "%" + " - ";
-            issues +=issuesMaterArrayList.get(position).getHumi_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getHumi_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getPress_issue().equals("009")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_press() + "Pa" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_press() + "Pa" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_press() + "Pa" + " - ";
-            issues +=issuesMaterArrayList.get(position).getPress_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getPress_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getPow_issue().equals("012")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_pow() + "W" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
             max = max + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
-            issues += issuesMaterArrayList.get(position).getPow_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getPow_issue_nm() + " - ";
         }
-        tvIssue.setText(issues.substring(0,issues.length()-2));
+        tvIssue.setText(issues.substring(0, issues.length() - 2));
         tvError.setText(error.substring(0, error.length() - 2));
         tvmin.setText(min.substring(0, min.length() - 2));
         tvmax.setText(max.substring(0, max.length() - 2));
@@ -318,10 +384,10 @@ public class IssuesActivity extends AppCompatActivity {
                 if (tvinput.length() == 0) {
                     tvinput.setError("Input here!");
                 } else {
-                    if (fileHinh == null){
+                    if (fileHinh == null) {
                         AlerError.Baoloi("Please take picture", IssuesActivity.this);
-                    }else {
-                        uploadBitmap(fileHinh,tvinput.getText().toString(), position);
+                    } else {
+                        uploadBitmap(fileHinh, tvinput.getText().toString(), position);
                     }
                 }
             }
@@ -340,9 +406,9 @@ public class IssuesActivity extends AppCompatActivity {
     }
 
 
-    private void sendaction(String noidung, int position,String hinh) {
-        new saveaction().execute(Url + "Monitor/Save_dt_history_finish?id=" + issuesMaterArrayList.get(position).getId() + "&value_all=" + noidung+"&img_issue="+hinh);
-        Log.d("saveaction", Url + "Monitor/Save_dt_history_finish?id=" + issuesMaterArrayList.get(position).getId() + "&value_all=" + noidung+"&img_issue="+hinh);
+    private void sendaction(String noidung, int position, String hinh) {
+        new saveaction().execute(Url + "Monitor/Save_dt_history_finish?id=" + issuesMaterArrayList.get(position).getId() + "&value_all=" + noidung + "&img_issue=" + hinh);
+        Log.d("saveaction", Url + "Monitor/Save_dt_history_finish?id=" + issuesMaterArrayList.get(position).getId() + "&value_all=" + noidung + "&img_issue=" + hinh);
     }
 
     @Override
@@ -404,11 +470,11 @@ public class IssuesActivity extends AppCompatActivity {
         tvLocation.setText(issuesMaterArrayList.get(position).getBuilding_name() + " - " + issuesMaterArrayList.get(position).getFloor_name());
 
         Glide.with(IssuesActivity.this)
-                .load(Url + "Images/Monitor/IssuesHistory/" + issuesMaterArrayList.get(position).getImg_issue() )
+                .load(Url + "Images/Monitor/IssuesHistory/" + issuesMaterArrayList.get(position).getImg_issue())
                 .error(R.drawable.errorimage)
                 .into(imaAction);
 
-        Log.d("image", Url + "Images/Monitor/IssuesHistory/" + issuesMaterArrayList.get(position).getImg_issue() );
+        Log.d("image", Url + "Images/Monitor/IssuesHistory/" + issuesMaterArrayList.get(position).getImg_issue());
 
         dialog.show();
     }
@@ -425,7 +491,7 @@ public class IssuesActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax,tvIssue;
+        TextView tvId, tvLocation, tvNm, tvError, tvmin, tvmax, tvIssue;
         FloatingActionButton fab;
         TextInputEditText tvinput;
 
@@ -437,7 +503,7 @@ public class IssuesActivity extends AppCompatActivity {
         tvmax = dialog.findViewById(R.id.tvmax);
         fab = dialog.findViewById(R.id.fab);
         tvinput = dialog.findViewById(R.id.tvinput);
-        tvIssue= dialog.findViewById(R.id.tvIssue);
+        tvIssue = dialog.findViewById(R.id.tvIssue);
         tvId.setText(issuesMaterArrayList.get(position).ss_no);
         tvNm.setText(issuesMaterArrayList.get(position).ss_nm);
 
@@ -453,22 +519,22 @@ public class IssuesActivity extends AppCompatActivity {
             error = error + issuesMaterArrayList.get(position).getCurrent_humi() + "%" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_humi() + "%" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_humi() + "%" + " - ";
-            issues +=issuesMaterArrayList.get(position).getHumi_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getHumi_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getPress_issue().equals("009")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_press() + "Pa" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_press() + "Pa" + " - ";
             max = max + issuesMaterArrayList.get(position).getMax_press() + "Pa" + " - ";
-            issues +=issuesMaterArrayList.get(position).getPress_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getPress_issue_nm() + " - ";
         }
         if (!issuesMaterArrayList.get(position).getPow_issue().equals("012")) {
             error = error + issuesMaterArrayList.get(position).getCurrent_pow() + "W" + " - ";
             min = min + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
             max = max + issuesMaterArrayList.get(position).getMin_pow() + "W" + " - ";
-            issues += issuesMaterArrayList.get(position).getPow_issue_nm()+ " - ";
+            issues += issuesMaterArrayList.get(position).getPow_issue_nm() + " - ";
         }
 
-        tvIssue.setText(issues.substring(0,issues.length()-2));
+        tvIssue.setText(issues.substring(0, issues.length() - 2));
 
         tvError.setText(error.substring(0, error.length() - 2));
         tvmin.setText(min.substring(0, min.length() - 2));
@@ -706,28 +772,56 @@ public class IssuesActivity extends AppCompatActivity {
     }
 
 
+    //    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_control, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_control:
+//                Intent intent = new Intent(IssuesActivity.this, SensorCheckActivity.class);
+//                startActivity(intent);
+//                finish();
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_control, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_control:
-                Intent intent = new Intent(IssuesActivity.this, SensorCheckActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
 
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.SearchCode:
+                searchView.setQueryHint("Search Code");
+                oftion = "Code";
+                searchView.setQuery("", true);
+                return true;
+            case R.id.SearchName:
+                searchView.setQueryHint("Search Name");
+                oftion = "Name";
+                searchView.setQuery("", true);
+                return true;
+            case R.id.Searchbuild:
+                searchView.setQueryHint("Search Building");
+                oftion = "Building";
+                searchView.setQuery("", true);
+                return true;
+            case R.id.Searchfloor:
+                searchView.setQueryHint("Search Floor");
+                oftion = "Floor";
+                searchView.setQuery("", true);
+                return true;
         }
+        return false;
     }
+
 
     //hinh anh
-    private void uploadBitmap(final Bitmap bitmap,String nd,int pos) {
+    private void uploadBitmap(final Bitmap bitmap, String nd, int pos) {
 
 
         //getting the tag from the edittext
@@ -750,7 +844,7 @@ public class IssuesActivity extends AppCompatActivity {
 
                             if (result.equals("true")) {
                                 Toast.makeText(IssuesActivity.this, "Upload photo success", Toast.LENGTH_SHORT).show();
-                                sendaction(nd, pos,obj.getString("tenhinh"));
+                                sendaction(nd, pos, obj.getString("tenhinh"));
                             }
                             Log.d("Json", obj.toString()/*+ "\n" + path + "\n" + duoihinh*/);
 
@@ -793,7 +887,7 @@ public class IssuesActivity extends AppCompatActivity {
                 Date myDate = new Date();
                 String filename = timeStampFormat.format(myDate);
                 //long imagename = System.currentTimeMillis();
-                params.put("file", new DataPart( filename + ".png", getFileDataFromDrawable(bitmap)));
+                params.put("file", new DataPart(filename + ".png", getFileDataFromDrawable(bitmap)));
                 return params;
             }
         };
