@@ -1,5 +1,6 @@
 package com.quickblox.sample.videochat.java.ActivitiesLogin;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.quickblox.sample.videochat.java.AlerError.AlerError;
+import com.quickblox.sample.videochat.java.Counting.Count.Detail.CountingDetailActivity;
 import com.quickblox.sample.videochat.java.R;
 
 
@@ -42,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userFullNameEditText;
     Button btnsignup;
     private SharedPreferences sharedPreferences;
-
+    private ProgressDialog dialog;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         TextInputLayout h1;
         h1 = findViewById(R.id.H1);
         h2 = findViewById(R.id.H2);
-
+        dialog = new ProgressDialog(this);
         sharedPreferences = getSharedPreferences("datalogin", MODE_PRIVATE);
 
         userLoginEditText.addTextChangedListener(new TextWatcher() {
@@ -130,6 +133,13 @@ public class LoginActivity extends AppCompatActivity {
     class docJSON extends AsyncTask<String, Integer, String> {
 
         @Override
+        protected void onPreExecute() {
+            dialog.setMessage("Loading...");
+            dialog.setCancelable(false);
+            dialog.show();
+        }
+
+        @Override
         protected String doInBackground(String... strings) {
             return docNoiDung_Tu_URL(strings[0]);
         }
@@ -145,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
                 if(chuoitrave == "true"){
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("TK",true);
                     editor.commit();
@@ -160,6 +169,10 @@ public class LoginActivity extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                AlerError.Baoloi("Could not connect to server", LoginActivity.this);
+            }
+            if (dialog.isShowing()) {
+                dialog.dismiss();
             }
         }
     }

@@ -143,7 +143,7 @@ public class CountingDetailActivity extends AppCompatActivity{
 
     private void setChartBar() {
         ArrayList<BarDataSet> dataSets = new ArrayList<>();
-        BarDataSet barDataSetActual = new BarDataSet(bargroupActual, "Efficiency");
+        BarDataSet barDataSetActual = new BarDataSet(bargroupActual, "Actual");
         barDataSetActual.setColor(Color.parseColor("#92D050"));
         BarDataSet barDataSetDefective = new BarDataSet(bargroupDefective, "Defective");
         barDataSetDefective.setColor(Color.parseColor("#FF0000"));

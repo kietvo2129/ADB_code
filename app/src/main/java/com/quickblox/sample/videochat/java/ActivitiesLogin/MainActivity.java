@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainn);
         sharedPreferences = getSharedPreferences("datalogin", MODE_PRIVATE);
-        // Trieu add more:
-        String txt2332 = "Kietkubu alalalalalaa";
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-         String lan2 = "sss";
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
