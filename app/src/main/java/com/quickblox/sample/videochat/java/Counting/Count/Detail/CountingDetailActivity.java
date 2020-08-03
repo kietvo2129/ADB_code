@@ -108,7 +108,7 @@ public class CountingDetailActivity extends AppCompatActivity{
             bargroupActual = new ArrayList<>();
             bargroupDefective = new ArrayList<>();
             labels = new ArrayList<String>();
-            String id, work_time, start_time, actual_qty, defect_qty, target_qty;
+            String id, work_time, start_time, actual_qty, defect_qty, target_qty,Alarm_Range1,Alarm_Range2;
             try {
 
                 JSONArray jsonArray = new JSONArray(s);
@@ -125,7 +125,10 @@ public class CountingDetailActivity extends AppCompatActivity{
                     actual_qty = jsonObject.getString("actual_qty").replace("null","0");
                     defect_qty = jsonObject.getString("defect_qty").replace("null","0");
                     target_qty = jsonObject.getString("target_qty").replace("null","0");
-                    detailMastersList.add(new DetailMaster(id, work_time, start_time, actual_qty, defect_qty, target_qty));
+                    Alarm_Range1 = jsonObject.getString("Alarm_Range1").replace("null","0");
+                    Alarm_Range2 = jsonObject.getString("Alarm_Range2").replace("null","0");
+
+                    detailMastersList.add(new DetailMaster(id, work_time, start_time, actual_qty, defect_qty, target_qty,Alarm_Range1,Alarm_Range2));
                     bargroupActual.add(new BarEntry(Integer.parseInt(actual_qty),i));
                     bargroupDefective.add(new BarEntry(Integer.parseInt(defect_qty),i));
                     labels.add(start_time.substring(0,2)+":"+start_time.substring(2,4));

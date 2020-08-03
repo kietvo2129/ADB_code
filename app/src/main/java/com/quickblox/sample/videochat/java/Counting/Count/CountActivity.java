@@ -205,26 +205,31 @@ public class CountActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             try {
-
                 JSONObject jsonObject = new JSONObject(s);
                 if (jsonObject.getBoolean("result")) {
                     if (vitri_bam.equals("AP")) {
-                        numActual += 1;
+                        numActual = jsonObject.getInt("valueActual");
+                        //numActual += 1;
                         setAnimation(tv_actual, numActual + "");
                     } else if (vitri_bam.equals("AS")) {
-                        numActual -= 1;
+                        numActual = jsonObject.getInt("valueActual");
+                        //numActual -= 1;
                         setAnimation(tv_actual, numActual + "");
                     } else if (vitri_bam.equals("DP")) {
-                        numDefective += 1;
+                        //numDefective += 1;
+                        numDefective = jsonObject.getInt("valueDefect");
                         setAnimation(tv_defective, numDefective + "");
                     } else if (vitri_bam.equals("DS")) {
-                        numDefective -= 1;
+                        //numDefective -= 1;
+                        numDefective = jsonObject.getInt("valueDefect");
                         setAnimation(tv_defective, numDefective + "");
                     } else if (vitri_bam.equals("APL")) {
-                        numActual += giatri_Input;
+                        //numActual += giatri_Input;
+                        numActual = jsonObject.getInt("valueActual");
                         setAnimation(tv_actual, numActual + "");
                     } else if (vitri_bam.equals("DPL")) {
-                        numDefective += giatri_Input;
+                        //numDefective += giatri_Input;
+                        numDefective = jsonObject.getInt("valueDefect");
                         setAnimation(tv_defective, numDefective + "");
                     }
 

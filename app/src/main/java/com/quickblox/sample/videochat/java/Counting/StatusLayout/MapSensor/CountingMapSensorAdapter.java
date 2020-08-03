@@ -89,6 +89,19 @@ public class CountingMapSensorAdapter extends RecyclerView.Adapter<CountingMapSe
             ActualQty.setText(sensorMapMaster.actual_qty);
             double effi = Double.parseDouble(sensorMapMaster.getActual_qty())*100/Double.parseDouble(sensorMapMaster.getTarget_qty());
             Efficiency.setText(String.format("%.2f",effi));
+
+            double Alarm_Range2=0,Alarm_Range1=0;
+            Alarm_Range1 = Double.parseDouble(sensorMapMaster.Alarm_Range1);
+            Alarm_Range2 = Double.parseDouble(sensorMapMaster.Alarm_Range2);
+            if (effi <= 0){
+                Efficiency.setBackgroundResource(R.color.color_item_grey);
+            }else if (effi<=Alarm_Range2){
+                Efficiency.setBackgroundResource(R.color.color_item_red);
+            }else if  (effi>Alarm_Range2 && effi<=Alarm_Range1){
+                Efficiency.setBackgroundResource(R.color.color_item_yellow);
+            }else {
+                Efficiency.setBackgroundResource(R.color.color_item_green);
+            }
         }
     }
 }

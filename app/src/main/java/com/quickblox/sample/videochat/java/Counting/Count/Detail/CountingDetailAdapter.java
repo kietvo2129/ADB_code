@@ -1,5 +1,6 @@
 package com.quickblox.sample.videochat.java.Counting.Count.Detail;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -78,6 +79,22 @@ public class CountingDetailAdapter extends RecyclerView.Adapter<CountingDetailAd
             DefectiveHour.setText(note.getDefect_qty());
             double effi = Double.parseDouble(note.getActual_qty())*100/Double.parseDouble(note.getTarget_qty());
             EfficiencyHour.setText(String.format("%.2f",effi) +"%");
+
+            double Alarm_Range2=0,Alarm_Range1=0;
+            Alarm_Range1 = Double.parseDouble(note.Alarm_Range1);
+            Alarm_Range2 = Double.parseDouble(note.Alarm_Range2);
+            if (effi <= 0){
+                EfficiencyHour.setBackgroundResource(R.color.color_item_grey);
+            }else if (effi<=Alarm_Range2){
+                EfficiencyHour.setBackgroundResource(R.color.color_item_red);
+            }else if  (effi>Alarm_Range2 && effi<=Alarm_Range1){
+                EfficiencyHour.setBackgroundResource(R.color.color_item_yellow);
+            }else {
+                EfficiencyHour.setBackgroundResource(R.color.color_item_green);
+            }
+
+
+
         }
     }
 }

@@ -26,86 +26,111 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".Counting.StatusLayout.CountingMapBuildActivity"
+         <activity
+            android:screenOrientation="portrait" android:name=".Counting.StatusLayout.CountingMapBuildActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity"/>
 
-        <activity android:name=".Counting.Count.Detail.CountingDetailActivity"
+         <activity
+            android:screenOrientation="portrait" android:name=".Counting.Count.Detail.CountingDetailActivity"
             android:theme="@style/AppThemee.NoActionBar"/>
 
-        <activity android:name=".Counting.StatusLayout.CountingMapFloorActivity"
+         <activity
+            android:screenOrientation="portrait" android:name=".Counting.StatusLayout.CountingMapFloorActivity"
             android:parentActivityName=".Counting.StatusLayout.CountingMapBuildActivity"/>
 
-        <activity android:name=".Counting.Count.CountActivity"
+         <activity
+            android:screenOrientation="portrait" android:name=".Counting.Count.CountActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity"/>
 
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".Counting.StatusLayout.MapSensor.CountingMapSensorActivity"
             android:parentActivityName=".Counting.StatusLayout.CountingMapFloorActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".Counting.DashBoard.CountingStatusActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".Counting.CountList.CountListActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
 
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".AlarmData.Dashboard.AlarmDashboardActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".AlarmData.StatusLayout.MapSensor.MapSensorAlarmActivity"
             android:parentActivityName=".AlarmData.StatusLayout.MapFloorAlrmActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".AlarmData.StatusLayout.MapFloorAlrmActivity"
             android:parentActivityName=".AlarmData.StatusLayout.MapBuildAlarmActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".AlarmData.StatusLayout.MapBuildAlarmActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.IssuesReport.IssuesReportActivity"
             android:theme="@style/AppThemee.NoActionBar" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".fragment.Homeinfosensor.IssuesToday"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".AlarmData.IssuesList.AlarmIssuesList"
             android:parentActivityName=".ActivitiesLogin.MainActivity"
             android:theme="@style/AppThemee.NoActionBar" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".CCTV.CCTVList.CCTVListActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity"
             android:theme="@style/AppThemee.NoActionBar" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".CCTV.CCTVLayout.CCTVBuildActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".CCTV.CCTVLayout.CCTVSensorActivity"
             android:parentActivityName=".CCTV.CCTVLayout.CCTVFloorActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".CCTV.CCTVLayout.CCTVFloorActivity"
             android:parentActivityName=".CCTV.CCTVLayout.CCTVBuildActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".CCTV.CCTVList.CCTVActivity"
             android:theme="@style/AppThemee.NoActionBar" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.StatusLayout.MapFloor.MapFloorActivity"
             android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.StatusLayout.MapBuild.MapBuildActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.IssuesList.IssuesActivity"
             android:parentActivityName=".ActivitiesLogin.MainActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.SensorList.SensorCheckActivity"
             android:theme="@style/AppThemee.NoActionBar" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".DigitalData.StatusLayout.Mapsensor.MapActivity"
             android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity" />
-        <activity
+         <activity
+            android:screenOrientation="portrait"
             android:name=".ActivitiesLogin.MainActivity"
             android:launchMode="singleTop" />
-        <activity
+         <activity
             android:name=".ActivitiesLogin.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -114,7 +139,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+         <activity
             android:name=".ActivitiesLogin.LoginActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:screenOrientation="portrait"

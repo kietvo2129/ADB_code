@@ -101,6 +101,21 @@ public class DashboardCountingAdapter extends RecyclerView.Adapter<DashboardCoun
             TargetHour.setText(note.qty_per_hour);
             Actual.setText(note.current_act_qty);
             Defective.setText(note.current_def_qty);
+
+
+            double effi = Double.parseDouble(note.current_act_qty)*100/Double.parseDouble(note.target_qty);
+            double Alarm_Range2=0,Alarm_Range1=0;
+            Alarm_Range1 = Double.parseDouble(note.Alarm_Range1);
+            Alarm_Range2 = Double.parseDouble(note.Alarm_Range2);
+            if (effi <= 0){
+                Actual.setBackgroundResource(R.color.color_item_grey);
+            }else if (effi<=Alarm_Range2){
+                Actual.setBackgroundResource(R.color.color_item_red);
+            }else if  (effi>Alarm_Range2 && effi<=Alarm_Range1){
+                Actual.setBackgroundResource(R.color.color_item_yellow);
+            }else {
+                Actual.setBackgroundResource(R.color.color_item_green);
+            }
         }
     }
 }

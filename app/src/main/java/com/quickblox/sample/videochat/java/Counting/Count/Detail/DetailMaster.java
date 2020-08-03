@@ -1,15 +1,17 @@
 package com.quickblox.sample.videochat.java.Counting.Count.Detail;
 
 public class DetailMaster {
-    String id, work_time,start_time,actual_qty,defect_qty,target_qty;
+    String id, work_time,start_time,actual_qty,defect_qty,target_qty,Alarm_Range1,Alarm_Range2;
 
-    public DetailMaster(String id, String work_time, String start_time, String actual_qty, String defect_qty,String target_qty) {
+    public DetailMaster(String id, String work_time, String start_time, String actual_qty, String defect_qty,String target_qty, String Alarm_Range1,String Alarm_Range2) {
         this.id = id;
         this.work_time = work_time;
         this.start_time = start_time;
         this.actual_qty = actual_qty;
         this.defect_qty = defect_qty;
         this.target_qty = target_qty;
+        this.Alarm_Range1 = Alarm_Range1;
+        this.Alarm_Range2 = Alarm_Range2;
     }
 
     public String getTarget_qty() {
@@ -58,5 +60,21 @@ public class DetailMaster {
 
     public void setDefect_qty(String defect_qty) {
         this.defect_qty = defect_qty;
+    }
+
+    public String getAlarm_Range1() {
+        return Alarm_Range1;
+    }
+
+    public void setAlarm_Range1(String alarm_Range1) {
+        Alarm_Range1 = alarm_Range1;
+    }
+
+    public String getAlarm_Range2() {
+        return Alarm_Range2;
+    }
+
+    public void setAlarm_Range2(String alarm_Range2) {
+        Alarm_Range2 = alarm_Range2;
     }
 }
