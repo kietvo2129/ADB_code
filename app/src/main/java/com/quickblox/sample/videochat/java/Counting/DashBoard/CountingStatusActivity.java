@@ -152,7 +152,7 @@ public class CountingStatusActivity extends AppCompatActivity {
                 tvDefective.setText(jsonObject.getString("total_def_qty_today").replace("null","0"));
 
                 double effi = Double.parseDouble(jsonObject.getString("efficiency").replace("null","0"));
-                tvEfficiency.setText(String.format("%.2f",effi) +"%");
+                tvEfficiency.setText(String.format("%.0f",effi) +"%");
 
             } catch (JSONException e) {
                 e.printStackTrace();

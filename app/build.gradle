@@ -58,7 +58,7 @@ android {
         release {
             signingConfig signingConfigs.debug
 
-    }
+        }
     }
 
 
@@ -91,7 +91,7 @@ dependencies {
     implementation project(':pedrovlc')
 
     //chart
-   // implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    // implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 
 //load image

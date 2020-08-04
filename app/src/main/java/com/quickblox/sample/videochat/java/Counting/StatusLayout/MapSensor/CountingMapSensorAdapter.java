@@ -88,7 +88,7 @@ public class CountingMapSensorAdapter extends RecyclerView.Adapter<CountingMapSe
             DefectiveQty.setText(sensorMapMaster.defect_qty);
             ActualQty.setText(sensorMapMaster.actual_qty);
             double effi = Double.parseDouble(sensorMapMaster.getActual_qty())*100/Double.parseDouble(sensorMapMaster.getTarget_qty());
-            Efficiency.setText(String.format("%.2f",effi));
+            Efficiency.setText(String.format("%.0f",effi));
 
             double Alarm_Range2=0,Alarm_Range1=0;
             Alarm_Range1 = Double.parseDouble(sensorMapMaster.Alarm_Range1);

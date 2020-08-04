@@ -73,7 +73,6 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
 
     SearchView searchView;
     private String oftion = "Code";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +80,6 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
         mRecyclerView = findViewById(R.id.recyclerView);
         progressBar = findViewById(R.id.Spinkit);
         setTitle("Issues List");
-
         progressBar.setVisibility(View.VISIBLE);
         Circle circle = new Circle();
         progressBar.setIndeterminateDrawable(circle);
@@ -150,7 +148,7 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
         Log.d("readhistory", Url + "Monitor/GetIssuesHistory");
     }
 
-    private class readissues extends AsyncTask<String, Void, String> {
+    private class readissues extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... strings) {
             return com.quickblox.sample.videochat.java.Url.NoiDung_Tu_URL(strings[0]);
@@ -209,8 +207,6 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
                     sts_send = objectRow.getString("sts_send").replace("[", "").replace("]", "").replace("\"", "");
                     id = objectRow.getString("id");
                     img_issue = objectRow.getString("img_issue").replace("null", "");
-                    ;
-
 
                     issuesMaterArrayList.add(new IssuesMater(ss_no, ss_nm, current_temp, current_press, current_pow, current_humi,
                             temp_issue, humi_issue, press_issue, pow_issue, time_update,

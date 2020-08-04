@@ -1,7 +1,9 @@
 package com.quickblox.sample.videochat.java.CCTV.CCTVList;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
@@ -25,17 +27,16 @@ import java.util.Arrays;
 public class CCTVActivity extends AppCompatActivity implements VlcListener, View.OnClickListener {
 
   private VlcVideoLibrary vlcVideoLibrary;
-
-
+  private ProgressDialog dialog;
   private String[] options = new String[]{":fullscreen"};
-
+  SurfaceView surfaceView;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setContentView(R.layout.activity_cctv);
     setTitle("CCTV");
-    SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+    surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
     ImageView icback = findViewById(R.id.icback);
     icback.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -43,6 +44,11 @@ public class CCTVActivity extends AppCompatActivity implements VlcListener, View
         finish();
       }
     });
+    dialog = new ProgressDialog(this);
+
+    dialog.setMessage("Loading...");
+    dialog.setCancelable(false);
+    dialog.show();
 
     vlcVideoLibrary = new VlcVideoLibrary(this, this, surfaceView);
     vlcVideoLibrary.setOptions(Arrays.asList(options));
@@ -59,6 +65,7 @@ public class CCTVActivity extends AppCompatActivity implements VlcListener, View
         }else if(nm_camera.equals("camera_03")){
           vlcVideoLibrary.play("rtsp://admin:sy0630hi@192.168.100.142");
         }else {
+          dialog.dismiss();
           AlerError.Baoloi("Unregistered camera", CCTVActivity.this);
         }
       }
@@ -71,6 +78,7 @@ public class CCTVActivity extends AppCompatActivity implements VlcListener, View
     Toast.makeText(this, "Playing", Toast.LENGTH_SHORT).show();
   }
 
+
   @Override
   public void onError() {
     Toast.makeText(this, "Error, make sure your endpoint is correct", Toast.LENGTH_SHORT).show();
@@ -79,7 +87,9 @@ public class CCTVActivity extends AppCompatActivity implements VlcListener, View
 
   @Override
   public void onBuffering(MediaPlayer.Event event) {
-
+    if (event.getBuffering()>50) {
+      dialog.dismiss();
+    }
   }
 
   @Override

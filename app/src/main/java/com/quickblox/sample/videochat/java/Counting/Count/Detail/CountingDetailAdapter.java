@@ -78,7 +78,7 @@ public class CountingDetailAdapter extends RecyclerView.Adapter<CountingDetailAd
             ActualHour.setText(note.getActual_qty());
             DefectiveHour.setText(note.getDefect_qty());
             double effi = Double.parseDouble(note.getActual_qty())*100/Double.parseDouble(note.getTarget_qty());
-            EfficiencyHour.setText(String.format("%.2f",effi) +"%");
+            EfficiencyHour.setText(String.format("%.0f",effi) +"%");
 
             double Alarm_Range2=0,Alarm_Range1=0;
             Alarm_Range1 = Double.parseDouble(note.Alarm_Range1);

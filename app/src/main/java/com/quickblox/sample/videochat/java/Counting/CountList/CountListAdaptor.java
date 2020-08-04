@@ -105,7 +105,7 @@ public class CountListAdaptor extends RecyclerView.Adapter<CountListAdaptor.Coun
             double min = Double.parseDouble(countListItem.getAlrm_2());
             double max = Double.parseDouble(countListItem.getAlrm_1());
 
-            tv_val_e.setText(String.format("%.2f",val) +"%");
+            tv_val_e.setText(String.format("%.0f",val) +"%");
 
             if (val == 0)
             {
