@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.quickblox.sample.videochat.java.Counting.Count.Detail.CountingDetailActivity;
 import com.quickblox.sample.videochat.java.R;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CountingMapSensorAdapter extends RecyclerView.Adapter<CountingMapSensorAdapter.DataHolder> {
@@ -84,9 +85,10 @@ public class CountingMapSensorAdapter extends RecyclerView.Adapter<CountingMapSe
         public void setdata(CountingMapSensorMaster sensorMapMaster){
             LineID.setText(sensorMapMaster.line_no);
             LineName.setText(sensorMapMaster.line_nm);
-            TargetQty.setText(sensorMapMaster.target_qty);
-            DefectiveQty.setText(sensorMapMaster.defect_qty);
-            ActualQty.setText(sensorMapMaster.actual_qty);
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+            TargetQty.setText(formatter.format(Integer.parseInt(sensorMapMaster.target_qty)));
+            DefectiveQty.setText(formatter.format(Integer.parseInt(sensorMapMaster.defect_qty)));
+            ActualQty.setText(formatter.format(Integer.parseInt(sensorMapMaster.actual_qty)));
             double effi = Double.parseDouble(sensorMapMaster.getActual_qty())*100/Double.parseDouble(sensorMapMaster.getTarget_qty());
             Efficiency.setText(String.format("%.0f",effi));
 

@@ -18,6 +18,7 @@ import com.quickblox.sample.videochat.java.Counting.Count.Detail.CountingDetailA
 import com.quickblox.sample.videochat.java.R;
 import com.quickblox.sample.videochat.java.fragment.Homeinfosensor.IssuesToday;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class DashboardCountingAdapter extends RecyclerView.Adapter<DashboardCountingAdapter.NoteVH> {
@@ -97,10 +98,12 @@ public class DashboardCountingAdapter extends RecyclerView.Adapter<DashboardCoun
         public void bindData(DashboardCountingMaster note) {
             LineID.setText(note.getLine_no());
             LineName.setText(note.line_nm);
-            Target.setText(note.target_qty);
-            TargetHour.setText(note.qty_per_hour);
-            Actual.setText(note.current_act_qty);
-            Defective.setText(note.current_def_qty);
+
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+            Target.setText(formatter.format(Integer.parseInt(note.target_qty)));
+            TargetHour.setText(formatter.format(Integer.parseInt(note.qty_per_hour)));
+            Actual.setText(formatter.format(Integer.parseInt(note.current_act_qty)));
+            Defective.setText(formatter.format(Integer.parseInt(note.current_def_qty)));
 
 
             double effi = Double.parseDouble(note.current_act_qty)*100/Double.parseDouble(note.target_qty);

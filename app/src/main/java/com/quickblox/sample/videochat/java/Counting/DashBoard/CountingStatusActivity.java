@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,6 @@ public class CountingStatusActivity extends AppCompatActivity {
 
         readDatabox();
         readLineinfor();
-
     }
     private void readLineinfor() {
         new Lineinfor().execute(Url + "Counting/GetCountingListToday");
@@ -148,8 +148,10 @@ public class CountingStatusActivity extends AppCompatActivity {
                     return;
                 }
                 JSONObject jsonObject= jsonArray.getJSONObject(0);
-                tvtotal.setText(jsonObject.getString("total_act_qty_today").replace("null","0"));
-                tvDefective.setText(jsonObject.getString("total_def_qty_today").replace("null","0"));
+                DecimalFormat formatter = new DecimalFormat("#,###,###");
+
+                tvtotal.setText(formatter.format(Integer.parseInt(jsonObject.getString("total_act_qty_today").replace("null","0"))));
+                tvDefective.setText(formatter.format(Integer.parseInt(jsonObject.getString("total_def_qty_today").replace("null","0"))));
 
                 double effi = Double.parseDouble(jsonObject.getString("efficiency").replace("null","0"));
                 tvEfficiency.setText(String.format("%.0f",effi) +"%");

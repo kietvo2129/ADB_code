@@ -42,6 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class CountActivity extends AppCompatActivity {
 
     ArrayList<LineMaster> lineMaster;
     ArrayList<DataAllCountingMaster> dataAllCountingMasters;
-
+    DecimalFormat formatter = new DecimalFormat("#,###,###");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -332,30 +333,32 @@ public class CountActivity extends AppCompatActivity {
     }
 
     private void showChangeID() {
-        ArrayList<String> listItems = new ArrayList<>();
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(CountActivity.this, android.R.layout.select_dialog_singlechoice);
         for (int i = 0; i < lineMaster.size(); i++) {
-            listItems.add(lineMaster.get(i).getLine_no() + "/" + lineMaster.get(i).getLine_nm());
+            arrayAdapter.add(lineMaster.get(i).getLine_no() + "/" + lineMaster.get(i).getLine_nm());
         }
-        //final String[] listItems = {"Line 1 - line san xuat","Line 2 - line cat","Line 3 - line hap"};
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(CountActivity.this);
-        mbuilder.setTitle("Choose line");
-
-        mbuilder.setSingleChoiceItems(listItems.toArray(new String[listItems.size()]), -1, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(CountActivity.this);
+        builderSingle.setTitle("Select One Line:");
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int i) {
-                tv_id.setInAnimation(CountActivity.this, animH[0]);
-                tv_id.setOutAnimation(CountActivity.this, animH[1]);
-                tv_id.setText(listItems.get(i).toString());
-                id_line = lineMaster.get(i).getId();
-                loadDataAll(i);
-
-
+            public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
 
-        AlertDialog mdialog = mbuilder.create();
-        mdialog.show();
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                tv_id.setInAnimation(CountActivity.this, animH[0]);
+                tv_id.setOutAnimation(CountActivity.this, animH[1]);
+                tv_id.setText(arrayAdapter.getItem(i).toString());
+                id_line = lineMaster.get(i).getId();
+                loadDataAll(i);
+                dialog.dismiss();
+            }
+        });
+        builderSingle.show();
     }
 
     private void loadDataAll(int pos) {
@@ -409,7 +412,7 @@ public class CountActivity extends AppCompatActivity {
         numActual = Integer.parseInt(dataAllCountingMasters.get(0).getActual_qty());
         numDefective = Integer.parseInt(dataAllCountingMasters.get(0).getDefect_qty());
         tvlocation.setText(dataAllCountingMasters.get(0).getBuilding_nm() + " - " + dataAllCountingMasters.get(0).getFloor_nm());
-        tv_taget.setText(dataAllCountingMasters.get(0).getTarget_qty());
+        tv_taget.setText(formatter.format(Integer.parseInt(dataAllCountingMasters.get(0).getTarget_qty())));
         String time = dataAllCountingMasters.get(0).getStart_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getStart_time().substring(2, 4)
                 + " ~ " + dataAllCountingMasters.get(0).getEnd_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getEnd_time().substring(2, 4);
         tv_time.setText(time);
@@ -428,11 +431,11 @@ public class CountActivity extends AppCompatActivity {
         TextView tv_title = viewInflated.findViewById(R.id.tv_title);
         if (key.equals("Actual")) {
             int tong = numActual;
-            String title = key + " new= " + numActual + " + " + "0" + " = " + tong;
+            String title = key + " new = " + formatter.format(numActual) + " + " + "0" + " = " + formatter.format(tong);
             tv_title.setText(title);
         } else if (key.equals("Defective")) {
             int tong = numDefective;
-            String title = key + " new= " + numDefective + " + " + "0" + " = " + tong;
+            String title = key + " new = " + formatter.format(numDefective) + " + " + "0" + " = " + formatter.format(tong);
             tv_title.setText(title);
         }
 
@@ -455,11 +458,11 @@ public class CountActivity extends AppCompatActivity {
                 int tong = 0;
                 if (key.equals("Actual")) {
                     tong = numActual + numinput2;
-                    String title = key + " new= " + numActual + " + " + numinput2 + " = " + tong;
+                    String title = key + " new = " + formatter.format(numActual) + " + " + formatter.format(numinput2) + " = " + formatter.format(tong);
                     tv_title.setText(title);
                 } else if (key.equals("Defective")) {
                     tong = numDefective + numinput2;
-                    String title = key + " new= " + numDefective + " + " + numinput2 + " = " + tong;
+                    String title = key + " new = " + formatter.format(numDefective) + " + " + formatter.format(numinput2) + " = " + formatter.format(tong);
                     tv_title.setText(title);
                 }
 
@@ -505,11 +508,11 @@ public class CountActivity extends AppCompatActivity {
         if (vitri_bam.equals("AP") || vitri_bam.equals("DP") || vitri_bam.equals("APL") || vitri_bam.equals("DPL")) {
             tv.setInAnimation(CountActivity.this, animV[0]);
             tv.setOutAnimation(CountActivity.this, animV[1]);
-            tv.setText(value);
+            tv.setText(formatter.format(Integer.parseInt(value)));
         } else {
             tv.setInAnimation(CountActivity.this, animreV[0]);
             tv.setOutAnimation(CountActivity.this, animreV[1]);
-            tv.setText(value);
+            tv.setText(formatter.format(Integer.parseInt(value)));
         }
 
     }

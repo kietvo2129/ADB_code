@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.quickblox.sample.videochat.java.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,10 +96,12 @@ public class CountListAdaptor extends RecyclerView.Adapter<CountListAdaptor.Coun
         public void bindData(CountListItem countListItem) {
             tv_log.setText(countListItem.getLineId()+"/"+countListItem.getLineName());
             //tv_val_e.setText(countListItem.getEfficiency() +"%");
-            tv_val_a.setText(countListItem.getActual());
-            tv_val_d.setText(countListItem.getDefective());
-            tv_val_target.setText(countListItem.getTarget());
-            tv_val_targethour.setText(countListItem.getTargetHour());
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+
+            tv_val_a.setText(formatter.format(Integer.parseInt(countListItem.getActual())));
+            tv_val_d.setText(formatter.format(Integer.parseInt(countListItem.getDefective())));
+            tv_val_target.setText(formatter.format(Integer.parseInt(countListItem.getTarget())));
+            tv_val_targethour.setText(formatter.format(Integer.parseInt(countListItem.getTargetHour())));
 
 
             double val = Double.parseDouble(countListItem.getEfficiency());

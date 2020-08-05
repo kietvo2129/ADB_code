@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.quickblox.sample.videochat.java.R;
 import com.quickblox.sample.videochat.java.fragment.Homeinfosensor.IssuesToday;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -74,9 +75,13 @@ public class CountingDetailAdapter extends RecyclerView.Adapter<CountingDetailAd
 
         public void bindData(DetailMaster note) {
             UpdateTime.setText(note.getStart_time().substring(0,2)+":"+note.getStart_time().substring(2,4));
-            TargetHour.setText(note.getTarget_qty());
-            ActualHour.setText(note.getActual_qty());
-            DefectiveHour.setText(note.getDefect_qty());
+
+
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+
+            TargetHour.setText(formatter.format(Integer.parseInt(note.getTarget_qty())));
+            ActualHour.setText(formatter.format(Integer.parseInt(note.getActual_qty())));
+            DefectiveHour.setText(formatter.format(Integer.parseInt(note.getDefect_qty())));
             double effi = Double.parseDouble(note.getActual_qty())*100/Double.parseDouble(note.getTarget_qty());
             EfficiencyHour.setText(String.format("%.0f",effi) +"%");
 
