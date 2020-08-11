@@ -31,11 +31,12 @@ import java.util.List;
 
 public class AlarmDashboardActivity extends AppCompatActivity {
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
-    TextView tvtotal, tvdoor, tvmotion, tvsmoke;
+    TextView tvtotal, tvdoor, tvmotion, tvsmoke,tvRFID;
     List<AlarmDashboardMaster> alarmDashboardMasterList;
     List<String> Listdata_door = new ArrayList<String>();
     List<String> Listdata_Motion = new ArrayList<String>();
     List<String> Listdata_Smoke = new ArrayList<String>();
+    List<String> Listdata_RFID = new ArrayList<String>();
     List<String> listTime = new ArrayList<String>();
     LineChart mlinechart;
     private RecyclerView mRecyclerView;
@@ -44,7 +45,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Dash Board Alarm");
+        setTitle("Dash Board Security");
         setContentView(R.layout.activity_alarm_dashboard);
         tvtotal = findViewById(R.id.tvtotal);
         tvdoor = findViewById(R.id.tvdoor);
@@ -52,6 +53,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         tvsmoke = findViewById(R.id.tvsmoke);
         mlinechart = findViewById(R.id.linechart);
         mRecyclerView = findViewById(R.id.home_sensor_info);
+        tvRFID = findViewById(R.id.tvRFID);
         readDatabox();
         readdataChart();
         readSensorinfor();
@@ -119,6 +121,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         Listdata_Motion = new ArrayList<String>();
         Listdata_Smoke = new ArrayList<String>();
         listTime = new ArrayList<String>();
+        Listdata_RFID = new ArrayList<String>();
         new readchart().execute(Url + "MotionAlarm/chart_data?sts=tieng_cuoi");
         Log.d("readchart", Url + "MotionAlarm/chart_data?sts=tieng_cuoi");
     }
@@ -139,7 +142,10 @@ public class AlarmDashboardActivity extends AppCompatActivity {
                     AlerError.Baoloi("No data!", AlarmDashboardActivity.this);
                     return;
                 }
-                JSONObject data_door = jsonObject.getJSONArray("data_door").getJSONObject(0);
+
+                JSONArray jsonArray = jsonObject.getJSONArray("kq");
+                JSONObject data_door = jsonArray.getJSONObject(0);
+               // JSONObject data_door = jsonObject.getJSONArray("data_door").getJSONObject(0);
                 Listdata_door.add(data_door.getString("th1"));
                 Listdata_door.add(data_door.getString("th2"));
                 Listdata_door.add(data_door.getString("th3"));
@@ -147,7 +153,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
                 Listdata_door.add(data_door.getString("th5"));
                 Listdata_door.add(data_door.getString("th6"));
                 Listdata_door.add(data_door.getString("th7"));
-                JSONObject data_Motion = jsonObject.getJSONArray("data_Motion").getJSONObject(0);
+                JSONObject data_Motion = jsonArray.getJSONObject(1);//jsonObject.getJSONArray("data_Motion").getJSONObject(0);
                 Listdata_Motion.add(data_Motion.getString("th1"));
                 Listdata_Motion.add(data_Motion.getString("th2"));
                 Listdata_Motion.add(data_Motion.getString("th3"));
@@ -155,7 +161,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
                 Listdata_Motion.add(data_Motion.getString("th5"));
                 Listdata_Motion.add(data_Motion.getString("th6"));
                 Listdata_Motion.add(data_Motion.getString("th7"));
-                JSONObject data_Smoke = jsonObject.getJSONArray("data_Smoke").getJSONObject(0);
+                JSONObject data_Smoke = jsonArray.getJSONObject(2);//jsonObject.getJSONArray("data_Smoke").getJSONObject(0);
                 Listdata_Smoke.add(data_Smoke.getString("th1"));
                 Listdata_Smoke.add(data_Smoke.getString("th2"));
                 Listdata_Smoke.add(data_Smoke.getString("th3"));
@@ -163,6 +169,17 @@ public class AlarmDashboardActivity extends AppCompatActivity {
                 Listdata_Smoke.add(data_Smoke.getString("th5"));
                 Listdata_Smoke.add(data_Smoke.getString("th6"));
                 Listdata_Smoke.add(data_Smoke.getString("th7"));
+                JSONObject data_RFID = jsonArray.getJSONObject(3);//jsonObject.getJSONArray("data_Smoke").getJSONObject(0);
+                Listdata_RFID.add(data_RFID.getString("th1"));
+                Listdata_RFID.add(data_RFID.getString("th2"));
+                Listdata_RFID.add(data_RFID.getString("th3"));
+                Listdata_RFID.add(data_RFID.getString("th4"));
+                Listdata_RFID.add(data_RFID.getString("th5"));
+                Listdata_RFID.add(data_RFID.getString("th6"));
+                Listdata_RFID.add(data_RFID.getString("th7"));
+
+
+
                 JSONArray array = jsonObject.getJSONArray("array");
                 for (int i = 0; i < array.length(); i++) {
                     listTime.add(array.getString(i));
@@ -182,21 +199,26 @@ public class AlarmDashboardActivity extends AppCompatActivity {
         LineDataSet lineDataSet2 = new LineDataSet(dataDoor(), "Door");
         LineDataSet lineDataSet1 = new LineDataSet(dataMotion(), "Motion");
         LineDataSet lineDataSet3 = new LineDataSet(dataSmoke(), "Smoke");
+        LineDataSet lineDataSet4 = new LineDataSet(dataRFID(), "RFID");
         ArrayList<LineDataSet> dataSets = new ArrayList<>();
 //        XAxis xAxis = mlinechart.getXAxis();
 //        xAxis.setValueFormatter(new MyAxisValue());
         lineDataSet2.setColor(Color.parseColor("#28A745"));
         lineDataSet1.setColor(Color.parseColor("#3E95CD"));
         lineDataSet3.setColor(Color.parseColor("#BEA6FF"));
+        lineDataSet4.setColor(Color.parseColor("#FFC0CB"));
         lineDataSet2.setCircleColorHole(Color.parseColor("#28A745"));
         lineDataSet1.setCircleColorHole(Color.parseColor("#3E95CD"));
         lineDataSet3.setCircleColorHole(Color.parseColor("#BEA6FF"));
+        lineDataSet4.setCircleColorHole(Color.parseColor("#FFC0CB"));
         lineDataSet2.setCircleColor(Color.parseColor("#28A745"));
         lineDataSet1.setCircleColor(Color.parseColor("#3E95CD"));
         lineDataSet3.setCircleColor(Color.parseColor("#BEA6FF"));
+        lineDataSet4.setCircleColor(Color.parseColor("#FFC0CB"));
         dataSets.add(lineDataSet2);
         dataSets.add(lineDataSet1);
         dataSets.add(lineDataSet3);
+        dataSets.add(lineDataSet4);
         mlinechart.setDescription("");
         LineData data = new LineData(listTime,dataSets);
         mlinechart.setData(data);
@@ -235,6 +257,17 @@ public class AlarmDashboardActivity extends AppCompatActivity {
 
         for (int i = 0; i < Listdata_Smoke.size(); i++) {
             int value = Integer.parseInt(Listdata_Smoke.get(i));
+            datavalue.add(new Entry(value, i));
+        }
+
+        return datavalue;
+    }
+    private ArrayList<Entry> dataRFID() {
+
+        ArrayList<Entry> datavalue = new ArrayList<Entry>();
+
+        for (int i = 0; i < Listdata_RFID.size(); i++) {
+            int value = Integer.parseInt(Listdata_RFID.get(i));
             datavalue.add(new Entry(value, i));
         }
 
@@ -294,6 +327,7 @@ public class AlarmDashboardActivity extends AppCompatActivity {
                 tvdoor.setText(jsonObject.getString("door_today"));
                 tvmotion.setText(jsonObject.getString("Motion_today"));
                 tvsmoke.setText(jsonObject.getString("Smoke_today"));
+                tvRFID.setText(jsonObject.getString("RFID_today"));
 
             } catch (JSONException e) {
                 e.printStackTrace();

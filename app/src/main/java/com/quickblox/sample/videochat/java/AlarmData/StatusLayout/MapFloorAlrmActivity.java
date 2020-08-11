@@ -36,7 +36,7 @@ public class MapFloorAlrmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_floor);
-        setTitle("Map Alarm Floor");
+        setTitle("Map Security Floor");
         TextView building_name = findViewById(R.id.building_name);
         TextView city_code = findViewById(R.id.city_code);
         building_name.setText(MapBuildAlarmActivity.building_name);

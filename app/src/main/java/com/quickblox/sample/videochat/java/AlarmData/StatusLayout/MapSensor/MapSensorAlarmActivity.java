@@ -60,7 +60,7 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_mapsensor);
-        setTitle("Sensor Alarm");
+        setTitle("Sensor Security");
         rl = (RelativeLayout) findViewById(R.id.rl);
         imageView = findViewById(R.id.imageview);
         location = findViewById(R.id.location);
@@ -169,8 +169,8 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
                     ssid = objectRow.getString("ssid").replace("null", "");
                     ss_no = objectRow.getString("ss_no").replace("null", "");
                     ss_nm = objectRow.getString("ss_nm").replace("null", "");
-                    top_position = objectRow.getString("top_position").replace("null", "");
-                    left_posistion = objectRow.getString("left_posistion").replace("null", "");
+                    top_position = objectRow.getString("top_position").replace("null", "0");
+                    left_posistion = objectRow.getString("left_posistion").replace("null", "0");
                     type = objectRow.getString("type").replace("null", "");
 
                     mapMaterArrayList.add(new MapMater(ssid, ss_no, ss_nm, top_position, left_posistion,type));

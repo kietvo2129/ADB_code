@@ -7,6 +7,8 @@ import androidx.cardview.widget.CardView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -65,6 +68,9 @@ public class CountActivity extends AppCompatActivity {
     ArrayList<DataAllCountingMaster> dataAllCountingMasters;
     DecimalFormat formatter = new DecimalFormat("#,###,###");
 
+    ProgressBar VerticalProgressBar;
+    int intValue = 90;
+    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +88,10 @@ public class CountActivity extends AppCompatActivity {
         tvlocation = findViewById(R.id.tvlocation);
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
+
+        VerticalProgressBar = (ProgressBar)findViewById(R.id.progressBar1);
+
+
 
         cv_infor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,6 +429,14 @@ public class CountActivity extends AppCompatActivity {
 
         setAnimation(tv_actual, numActual + "");
         setAnimation(tv_defective, numDefective + "");
+
+        setSeekbar(numActual);
+    }
+
+    private void setSeekbar(int numActual) {
+        intValue = numActual*100/Integer.parseInt(dataAllCountingMasters.get(0).getTarget_qty());
+        VerticalProgressBar.getProgressDrawable().setColorFilter(Color.CYAN, PorterDuff.Mode.SRC_IN);
+        VerticalProgressBar.setProgress(intValue);
     }
 
 
@@ -509,10 +527,12 @@ public class CountActivity extends AppCompatActivity {
             tv.setInAnimation(CountActivity.this, animV[0]);
             tv.setOutAnimation(CountActivity.this, animV[1]);
             tv.setText(formatter.format(Integer.parseInt(value)));
+            setSeekbar(numActual);
         } else {
             tv.setInAnimation(CountActivity.this, animreV[0]);
             tv.setOutAnimation(CountActivity.this, animreV[1]);
             tv.setText(formatter.format(Integer.parseInt(value)));
+            setSeekbar(numActual);
         }
 
     }

@@ -11,19 +11,19 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_digital"
-            android:title="Digital Data" />
+            android:title="Sensing" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_arlrm"
-            android:title="Alarm Data" />
-        <item
-            android:id="@+id/nav_cctv"
-            android:icon="@drawable/ic_cctv"
-            android:title="CCTV" />
+            android:title="Security" />
         <item
             android:id="@+id/nav_counting"
             android:icon="@drawable/ic_count"
             android:title="Counting" />
+        <item
+            android:id="@+id/nav_cctv"
+            android:icon="@drawable/ic_cctv"
+            android:title="CCTV" />
 
         <item
             android:id="@+id/nav_logout"

@@ -36,7 +36,7 @@ public class MapBuildAlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_build);
         recyclerView = findViewById(R.id.recyc);
-        setTitle("Map Alarm Building");
+        setTitle("Map Security Building");
 
         new readMapbuild().execute(Url + "Monitor/get_info_sensor");
         Log.d("readMapbuild", Url + "Monitor/get_info_sensor");

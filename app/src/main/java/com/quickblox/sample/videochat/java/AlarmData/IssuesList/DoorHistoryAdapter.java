@@ -59,7 +59,7 @@ public class DoorHistoryAdapter extends RecyclerView.Adapter<DoorHistoryAdapter.
 
     class NoteVH extends RecyclerView.ViewHolder {
 
-        TextView location,idsensor,nmsensor,time;
+        TextView location,idsensor,nmsensor,time,tvRFID;
         ImageView image;
 
         public NoteVH(View itemView, final OnItemClickListener listener) {
@@ -70,6 +70,7 @@ public class DoorHistoryAdapter extends RecyclerView.Adapter<DoorHistoryAdapter.
             nmsensor = itemView.findViewById(R.id.nmsensor);
             time = itemView.findViewById(R.id.time);
             image = itemView.findViewById(R.id.image);
+            tvRFID= itemView.findViewById(R.id.tvRFID);
 
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,6 +89,7 @@ public class DoorHistoryAdapter extends RecyclerView.Adapter<DoorHistoryAdapter.
             idsensor.setText(note.getSs_no());
             nmsensor.setText(note.getSs_nm());
             time.setText(note.getTime());
+            tvRFID.setText(note.getRfKey());
             location.setText(note.getBuilding_code()+ " - " + note.getFloor_code());
             Glide.with(itemView.getContext())
                     .load(Url + "Images/MQTT/"+ note.getImg())

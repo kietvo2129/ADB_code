@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.ybq.android.spinkit.style.Circle;
@@ -124,7 +125,7 @@ public class AlarmIssuesList extends AppCompatActivity implements View.OnTouchLi
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             doorHistoryMasters = new ArrayList<>();
-            String id, ss_no, ss_nm, Time, building_code, floor_code, img;
+            String id, ss_no, ss_nm, Time, building_code, floor_code, img,RfKey;
 
             try {
                 JSONObject jsonObjectA = new JSONObject(s);
@@ -141,12 +142,13 @@ public class AlarmIssuesList extends AppCompatActivity implements View.OnTouchLi
                     id = objectRow.getString("id").replace("null", "");
                     ss_no = objectRow.getString("ss_no").replace("null", "");
                     ss_nm = objectRow.getString("ss_nm").replace("null", "");
+                    RfKey =  objectRow.getString("RfKey").replace("null", "");
 
                     Time = objectRow.getString("Time").replace("null", "");
                     building_code = objectRow.getString("building_code").replace("null", "");
                     floor_code = objectRow.getString("floor_code").replace("null", "");
                     img = objectRow.getString("img").replace("null", "");
-                    doorHistoryMasters.add(new DoorHistoryMaster(id, ss_no, ss_nm, Time, building_code, floor_code, img));
+                    doorHistoryMasters.add(new DoorHistoryMaster(id, ss_no, ss_nm, Time, building_code, floor_code, img,RfKey));
                     //mHomeListnew = mHomeList;
 
                 }

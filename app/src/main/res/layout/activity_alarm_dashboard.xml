@@ -99,38 +99,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:background="#28A745">
-
-
-
-
-                <TextView
-                    android:id="@+id/tvdoor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvdoor"
-                    android:layout_marginVertical="8dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="Door Alarm"
-                    android:textColor="#fff" />
-
-
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -147,7 +115,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="2">
+                <RelativeLayout
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="#28A745">
+                    <TextView
+                        android:id="@+id/tvdoor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvdoor"
+                        android:layout_marginVertical="8dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="Door Alarm"
+                        android:textColor="#fff" />
+
+
+                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -178,6 +173,23 @@
 
 
                 </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hh5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hh2"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <RelativeLayout
 
@@ -210,6 +222,36 @@
 
 
                 </RelativeLayout>
+                <RelativeLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="#FFC0CB">
+
+
+                    <TextView
+                        android:id="@+id/tvRFID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvRFID"
+                        android:layout_marginVertical="8dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="RFID Alarm"
+                        android:textColor="#fff" />
+
+
+                </RelativeLayout>
 
             </LinearLayout>
         </LinearLayout>
@@ -217,7 +259,7 @@
             android:id="@+id/linechart"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_below="@+id/hh2"
+            android:layout_below="@+id/hh5"
             android:layout_marginVertical="8dp" />
         <TextView
             android:id="@+id/xx"

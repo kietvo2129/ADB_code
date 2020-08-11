@@ -1,9 +1,9 @@
 package com.quickblox.sample.videochat.java.AlarmData.IssuesList;
 
 public class DoorHistoryMaster {
-    String id,ss_no,ss_nm,Time,building_code,floor_code,img;
+    String id,ss_no,ss_nm,Time,building_code,floor_code,img,RfKey;
 
-    public DoorHistoryMaster(String id, String ss_no, String ss_nm, String time, String building_code, String floor_code, String img) {
+    public DoorHistoryMaster(String id, String ss_no, String ss_nm, String time, String building_code, String floor_code, String img, String RfKey) {
         this.id = id;
         this.ss_no = ss_no;
         this.ss_nm = ss_nm;
@@ -11,6 +11,15 @@ public class DoorHistoryMaster {
         this.building_code = building_code;
         this.floor_code = floor_code;
         this.img = img;
+        this.RfKey = RfKey;
+    }
+
+    public String getRfKey() {
+        return RfKey;
+    }
+
+    public void setRfKey(String rfKey) {
+        RfKey = rfKey;
     }
 
     public String getId() {

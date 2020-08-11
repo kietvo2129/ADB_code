@@ -16,13 +16,13 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.quickblox.sample.videochat.java.fragment.DigitalFragment"
-        android:label="Digital Data"
+        android:label="Sensing Data"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.quickblox.sample.videochat.java.fragment.AlarmFragment"
-        android:label="Alarm Data"
+        android:label="Security Data"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
