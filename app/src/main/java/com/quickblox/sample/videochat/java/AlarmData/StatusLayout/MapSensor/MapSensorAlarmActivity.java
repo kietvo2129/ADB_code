@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.pedro.vlc.VlcVideoLibrary;
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapBuildAlarmActivity;
 import com.quickblox.sample.videochat.java.AlarmData.StatusLayout.MapFloorAlrmActivity;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
@@ -50,7 +49,7 @@ public class MapSensorAlarmActivity extends AppCompatActivity{
     RecyclerView home_sensor_info;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private VlcVideoLibrary vlcVideoLibrary;
+
 
     private String[] options = new String[]{":fullscreen"};
     private String nmCCTV="";

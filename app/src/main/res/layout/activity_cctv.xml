@@ -41,13 +41,10 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <SurfaceView
-        android:id="@+id/surfaceView"
+    <WebView
+        android:layout_below="@+id/H1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/H1" />
-
-
+        android:id="@+id/webview"/>
 
 </RelativeLayout>

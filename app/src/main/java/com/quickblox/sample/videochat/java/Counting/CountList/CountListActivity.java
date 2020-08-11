@@ -30,7 +30,6 @@ import com.quickblox.sample.videochat.java.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.videolan.libvlc.MediaPlayer;
 
 import java.util.ArrayList;
 

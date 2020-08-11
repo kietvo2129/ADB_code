@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.pedro.vlc.VlcVideoLibrary;
+
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.CCTV.CCTVList.CCTVActivity;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.Mapsensor.MapInfoSensor;
@@ -41,7 +41,6 @@ public class IssuesToday extends AppCompatActivity{
     int pos = HomesensorinforAdapter.row_index;
     TextView id,name,location,updatetime,warning,action,issuesclose,temp,hum,pow,press,control,status,picture;
     String Url = com.quickblox.sample.videochat.java.Url.webUrl;
-    private VlcVideoLibrary vlcVideoLibrary;
     ImageView imaAction;
     private String[] options = new String[]{":fullscreen"};
     ArrayList<MapMater> mapMaterArrayList;

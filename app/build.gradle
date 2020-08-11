@@ -87,8 +87,8 @@ dependencies {
 
     //animation loading
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-    //Vlc CCTV
-    implementation project(':pedrovlc')
+//    //Vlc CCTV
+//    implementation project(':pedrovlc')
 
     //chart
     // implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'

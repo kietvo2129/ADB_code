@@ -27,6 +27,7 @@ public class AlarmFragment extends Fragment {
         issuesreport = root.findViewById(R.id.issuesreport);
         issueslist = root.findViewById(R.id.issueslist);
 
+
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

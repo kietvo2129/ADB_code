@@ -23,7 +23,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import com.pedro.vlc.VlcVideoLibrary;
 import com.quickblox.sample.videochat.java.AlerError.AlerError;
 import com.quickblox.sample.videochat.java.CCTV.CCTVList.CCTVActivity;
 import com.quickblox.sample.videochat.java.DigitalData.StatusLayout.MapBuild.MapBuildActivity;
@@ -56,7 +55,7 @@ public class MapActivity extends AppCompatActivity{
     int bientam = -1;
     RecyclerView home_sensor_info;
     private String nmCCTV="";
-    private VlcVideoLibrary vlcVideoLibrary;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
