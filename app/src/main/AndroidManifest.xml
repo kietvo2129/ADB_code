@@ -18,7 +18,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name=".App"
+        android:name="com.autonsi.databoard.App"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -27,115 +27,115 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
         <activity
-            android:name=".Counting.StatusLayout.CountingMapBuildActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.Counting.StatusLayout.CountingMapBuildActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counting.Count.Detail.CountingDetailActivity"
+            android:name="com.autonsi.databoard.Counting.Count.Detail.CountingDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar" />
         <activity
-            android:name=".Counting.StatusLayout.CountingMapFloorActivity"
-            android:parentActivityName=".Counting.StatusLayout.CountingMapBuildActivity"
+            android:name="com.autonsi.databoard.Counting.StatusLayout.CountingMapFloorActivity"
+            android:parentActivityName="com.autonsi.databoard.Counting.StatusLayout.CountingMapBuildActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counting.Count.CountActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.Counting.Count.CountActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counting.StatusLayout.MapSensor.CountingMapSensorActivity"
-            android:parentActivityName=".Counting.StatusLayout.CountingMapFloorActivity"
+            android:name="com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorActivity"
+            android:parentActivityName="com.autonsi.databoard.Counting.StatusLayout.CountingMapFloorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counting.DashBoard.CountingStatusActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.Counting.DashBoard.CountingStatusActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counting.CountList.CountListActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.Counting.CountList.CountListActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AlarmData.Dashboard.AlarmDashboardActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.AlarmData.Dashboard.AlarmDashboardActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AlarmData.StatusLayout.MapSensor.MapSensorAlarmActivity"
-            android:parentActivityName=".AlarmData.StatusLayout.MapFloorAlrmActivity"
+            android:name="com.autonsi.databoard.AlarmData.StatusLayout.MapSensor.MapSensorAlarmActivity"
+            android:parentActivityName="com.autonsi.databoard.AlarmData.StatusLayout.MapFloorAlrmActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AlarmData.StatusLayout.MapFloorAlrmActivity"
-            android:parentActivityName=".AlarmData.StatusLayout.MapBuildAlarmActivity"
+            android:name="com.autonsi.databoard.AlarmData.StatusLayout.MapFloorAlrmActivity"
+            android:parentActivityName="com.autonsi.databoard.AlarmData.StatusLayout.MapBuildAlarmActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AlarmData.StatusLayout.MapBuildAlarmActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.AlarmData.StatusLayout.MapBuildAlarmActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DigitalData.IssuesReport.IssuesReportActivity"
+            android:name="com.autonsi.databoard.DigitalData.IssuesReport.IssuesReportActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".fragment.Homeinfosensor.IssuesToday"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.fragment.Homeinfosensor.IssuesToday"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AlarmData.IssuesList.AlarmIssuesList"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.AlarmData.IssuesList.AlarmIssuesList"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".CCTV.CCTVList.CCTVListActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.CCTV.CCTVList.CCTVListActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".CCTV.CCTVLayout.CCTVBuildActivity"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.CCTV.CCTVLayout.CCTVBuildActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CCTV.CCTVLayout.CCTVSensorActivity"
-            android:parentActivityName=".CCTV.CCTVLayout.CCTVFloorActivity"
+            android:name="com.autonsi.databoard.CCTV.CCTVLayout.CCTVSensorActivity"
+            android:parentActivityName="com.autonsi.databoard.CCTV.CCTVLayout.CCTVFloorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CCTV.CCTVLayout.CCTVFloorActivity"
-            android:parentActivityName=".CCTV.CCTVLayout.CCTVBuildActivity"
+            android:name="com.autonsi.databoard.CCTV.CCTVLayout.CCTVFloorActivity"
+            android:parentActivityName="com.autonsi.databoard.CCTV.CCTVLayout.CCTVBuildActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CCTV.CCTVList.CCTVActivity"
+            android:name="com.autonsi.databoard.CCTV.CCTVList.CCTVActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar" />
         <activity
-            android:name=".DigitalData.StatusLayout.MapFloor.MapFloorActivity"
-            android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity"
+            android:name="com.autonsi.databoard.DigitalData.StatusLayout.MapFloor.MapFloorActivity"
+            android:parentActivityName="com.autonsi.databoard.DigitalData.StatusLayout.MapFloor.MapFloorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DigitalData.StatusLayout.MapBuild.MapBuildActivity"
+            android:name="com.autonsi.databoard.DigitalData.StatusLayout.MapBuild.MapBuildActivity"
             android:launchMode="singleTop"
-            android:parentActivityName=".ActivitiesLogin.MainActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DigitalData.IssuesList.IssuesActivity"
+            android:name="com.autonsi.databoard.DigitalData.IssuesList.IssuesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".DigitalData.SensorList.SensorCheckActivity"
+            android:name="com.autonsi.databoard.DigitalData.SensorList.SensorCheckActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".DigitalData.StatusLayout.Mapsensor.MapActivity"
-            android:parentActivityName=".DigitalData.StatusLayout.MapFloor.MapFloorActivity"
+            android:name="com.autonsi.databoard.DigitalData.StatusLayout.Mapsensor.MapActivity"
+            android:parentActivityName="com.autonsi.databoard.DigitalData.StatusLayout.MapFloor.MapFloorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivitiesLogin.MainActivity"
+            android:name="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ActivitiesLogin.SplashActivity"
+            android:name="com.autonsi.databoard.ActivitiesLogin.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -144,13 +144,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivitiesLogin.LoginActivity"
+            android:name="com.autonsi.databoard.ActivitiesLogin.LoginActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemee.NoActionBar" />
 
         <service
-            android:name=".NotificationService"
+            android:name="com.autonsi.databoard.NotificationService"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="app.tutorialspoint.com.notifyme.NotificationService" />

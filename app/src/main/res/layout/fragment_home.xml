@@ -1,317 +1,326 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.autonsi.databoard.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">
-
+    android:layout_height="fill_parent">
     <RelativeLayout
-        android:id="@+id/scrollView"
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/h1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="#7F7F7F">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_caution" />
-
-                    <TextView
-                        android:id="@+id/tvisu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
-
-                        android:textColor="#fff"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvisu"
-                        android:layout_marginVertical="8dp"
-                        android:paddingHorizontal="8dp"
-                        android:text="Total Issues"
-                        android:textColor="#fff" />
-
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_below="@+id/h1"
-            android:id="@+id/hhh1"
-            android:layout_width="match_parent"
-            android:layout_marginHorizontal="8dp"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:background="#F50505">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-
-                    android:src="@drawable/ic_temxam" />
-
-                <TextView
-                    android:id="@+id/tvtemp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvtemp"
-                    android:layout_marginVertical="8dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="Temperature Issues"
-                    android:textColor="#fff" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:background="#28A745">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-
-                    android:src="@drawable/ic_pressxam" />
-
-                <TextView
-                    android:id="@+id/tvpress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="#fff"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvpress"
-                    android:layout_marginVertical="8dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="Pressure Issues"
-                    android:textColor="#fff" />
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/hh2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hhh1"
-            android:layout_marginHorizontal="8dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="#3E95CD">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_humxam" />
-
-                    <TextView
-                        android:id="@+id/tvhumi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="#fff"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvhumi"
-                        android:layout_marginVertical="8dp"
-                        android:paddingHorizontal="8dp"
-                        android:text="Humidity Issues"
-                        android:textColor="#fff" />
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="#BEA6FF">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_powxam" />
-
-                    <TextView
-                        android:id="@+id/tvPower"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
-
-                        android:textColor="#fff"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvPower"
-                        android:layout_marginVertical="8dp"
-                        android:paddingHorizontal="8dp"
-                        android:text="Power Issues"
-                        android:textColor="#fff" />
-
-
-                </RelativeLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:visibility="gone"
-            android:id="@+id/linechart"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_below="@+id/hh2"
-            android:layout_marginVertical="8dp" />
-        <TextView
-            android:id="@+id/xx"
-            android:layout_marginLeft="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Issues List Today"
-            android:layout_below="@+id/linechart"
-            android:layout_marginTop="8dp"/>
-
         <RelativeLayout
-            android:layout_below="@+id/xx"
-            android:layout_marginTop="8dp"
-            android:id="@+id/hh3"
-
-            android:layout_marginHorizontal="8dp"
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
-                android:id="@+id/e1"
+                android:id="@+id/h1"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="4"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:paddingHorizontal="4dp"
-                    android:background="@drawable/backgr_title"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Sensor ID"/>
-                <TextView
-                    android:paddingHorizontal="4dp"
-                    android:background="@drawable/backgr_title"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Sensor Name"/>
-                <TextView
-                    android:paddingHorizontal="4dp"
-                    android:background="@drawable/backgr_title"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Location"/>
-                <TextView
-                    android:paddingHorizontal="4dp"
-                    android:background="@drawable/backgr_title"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Update Time"/>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="#7F7F7F">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_caution" />
+
+                        <TextView
+                            android:id="@+id/tvisu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+
+                            android:textColor="#fff"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvisu"
+                            android:layout_marginVertical="8dp"
+                            android:paddingHorizontal="8dp"
+                            android:text="Total Issues"
+                            android:textColor="#fff" />
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_sensor_info"
-                android:layout_below="@+id/e1"
+            <LinearLayout
+                android:id="@+id/hhh1"
                 android:layout_width="match_parent"
-                tools:listitem="@layout/item_homesensorinfor"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/h1"
+                android:layout_marginHorizontal="8dp">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="#F50505">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+
+                        android:src="@drawable/ic_temxam" />
+
+                    <TextView
+                        android:id="@+id/tvtemp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvtemp"
+                        android:layout_marginVertical="8dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="Temperature Issues"
+                        android:textColor="#fff" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="#28A745">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+
+                        android:src="@drawable/ic_pressxam" />
+
+                    <TextView
+                        android:id="@+id/tvpress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#fff"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvpress"
+                        android:layout_marginVertical="8dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="Pressure Issues"
+                        android:textColor="#fff" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hh2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hhh1"
+                android:layout_marginHorizontal="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="#3E95CD">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_humxam" />
+
+                        <TextView
+                            android:id="@+id/tvhumi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#fff"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvhumi"
+                            android:layout_marginVertical="8dp"
+                            android:paddingHorizontal="8dp"
+                            android:text="Humidity Issues"
+                            android:textColor="#fff" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="#BEA6FF">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_powxam" />
+
+                        <TextView
+                            android:id="@+id/tvPower"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+
+                            android:textColor="#fff"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvPower"
+                            android:layout_marginVertical="8dp"
+                            android:paddingHorizontal="8dp"
+                            android:text="Power Issues"
+                            android:textColor="#fff" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/linechart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/hh2"
+                android:layout_marginVertical="8dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/xx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linechart"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Issues List Today" />
+
+            <RelativeLayout
+                android:id="@+id/hh3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_below="@+id/xx"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:id="@+id/e1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/backgr_title"
+                        android:gravity="center"
+                        android:paddingHorizontal="4dp"
+                        android:text="Sensor ID" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/backgr_title"
+                        android:gravity="center"
+                        android:paddingHorizontal="4dp"
+                        android:text="Sensor Name" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/backgr_title"
+                        android:gravity="center"
+                        android:paddingHorizontal="4dp"
+                        android:text="Location" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/backgr_title"
+                        android:gravity="center"
+                        android:paddingHorizontal="4dp"
+                        android:text="Update Time" />
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_sensor_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e1"
+                    tools:listitem="@layout/item_homesensorinfor">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
-
     </RelativeLayout>
-
-</RelativeLayout>
+</com.autonsi.databoard.ZoomLayout>

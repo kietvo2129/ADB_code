@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:transitionName="imageTransition"
-    tools:context=".DigitalData.StatusLayout.Mapsensor.MapActivity">
-
+    tools:context="com.autonsi.databoard.DigitalData.StatusLayout.Mapsensor.MapActivity">
+    <com.autonsi.databoard.ZoomLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -137,5 +139,6 @@
         </RelativeLayout>
 
     </RelativeLayout>
+    </com.autonsi.databoard.ZoomLayout>
 
 </RelativeLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CCTV.CCTVList.CCTVActivity">
+    tools:context="com.autonsi.databoard.CCTV.CCTVList.CCTVActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/H1"

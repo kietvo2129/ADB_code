@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.quickblox.sample.videochat.java.Counting.CountList.CountListActivity">
+    tools:context="com.autonsi.databoard.Counting.CountList.CountListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCL"

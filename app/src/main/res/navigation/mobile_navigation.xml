@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment"
+        android:name="com.autonsi.databoard.fragment.Homeinfosensor.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -15,25 +15,25 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.quickblox.sample.videochat.java.fragment.DigitalFragment"
+        android:name="com.autonsi.databoard.fragment.DigitalFragment"
         android:label="Sensing Data"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.quickblox.sample.videochat.java.fragment.AlarmFragment"
+        android:name="com.autonsi.databoard.fragment.AlarmFragment"
         android:label="Security Data"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_counting"
-        android:name="com.quickblox.sample.videochat.java.fragment.CountingFragment"
+        android:name="com.autonsi.databoard.fragment.CountingFragment"
         android:label="Counting"
         tools:layout="@layout/fragment_counting" />
 
     <fragment
         android:id="@+id/nav_cctv"
-        android:name="com.quickblox.sample.videochat.java.fragment.CCTVFragment"
+        android:name="com.autonsi.databoard.fragment.CCTVFragment"
         android:label="CCTV"
         tools:layout="@layout/fragment_cctv" />
 

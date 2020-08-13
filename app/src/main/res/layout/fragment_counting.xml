@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/activity_vertical_margin"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.quickblox.sample.videochat.java.fragment.Homeinfosensor.HomeFragment">
+    tools:context="com.autonsi.databoard.fragment.Homeinfosensor.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
