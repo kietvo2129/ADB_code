@@ -141,8 +141,8 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
     }
 
     private void loaddata() {
-        new readissues().execute(Url + "Monitor/GetIssuesHistory");
-        Log.d("readhistory", Url + "Monitor/GetIssuesHistory");
+        new readissues().execute(Url + "Monitor/GetIssuesHisApp");
+        Log.d("readhistory", Url + "Monitor/GetIssuesHisApp");
     }
 
     private class readissues extends AsyncTask<String, Integer, String> {

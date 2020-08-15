@@ -84,7 +84,7 @@ public class IssuesReportActivity extends AppCompatActivity implements Toolbar.O
         //issualReport = new ArrayList<>();
         //setupRecyclerView();
 
-        String url = Url + "Monitor/GetIssuesHistory";
+        String url = Url + "Monitor/GetIssuesHisApp";
         Log.d("GetReport", url);
         new getIssuesReport().execute(url);
     }
