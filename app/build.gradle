@@ -103,6 +103,8 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     //barcode
     implementation 'com.google.zxing:core:3.2.1'
+    // printer
+    implementation files('libs/BixolonLabelPrinterLibraryV124.jar')
 }
 
 apply from: "../artifacts.gradle"

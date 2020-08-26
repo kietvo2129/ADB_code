@@ -9,10 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbInterface;
+import android.hardware.usb.UsbManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +43,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.autonsi.databoard.AlerError.AlerError;
@@ -46,6 +56,7 @@ import com.autonsi.databoard.Counting.CountList.CountListAdaptor;
 import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorActivity;
 import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorAdapter;
 import com.autonsi.databoard.DigitalData.IssuesList.IssuesActivity;
+import com.bixolon.labelprinter.BixolonLabelPrinter;
 import com.bumptech.glide.Glide;
 import com.quickblox.sample.videochat.java.R;
 
@@ -55,6 +66,8 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class CountActivity extends AppCompatActivity {
     String Url = com.autonsi.databoard.Url.webUrl;
@@ -83,6 +96,14 @@ public class CountActivity extends AppCompatActivity {
     BarcodeAdapter barcodeAdapter;
     ArrayList<BarcodeMaster> barcodeMasterArrayList;
 
+
+    private UsbDevice device;
+    private boolean tryedAutoConnect = false;
+    private UsbManager usbManager;
+    static BixolonLabelPrinter mBixolonLabelPrinter;
+    private PendingIntent mPermissionIntent;
+    private final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +121,7 @@ public class CountActivity extends AppCompatActivity {
         tvlocation = findViewById(R.id.tvlocation);
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
+
 
 
 
@@ -657,4 +679,74 @@ public class CountActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!tryedAutoConnect) {
+            isConnectedPrinter();
+        }
+    }
+    private void isConnectedPrinter() {
+        try {
+            usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
+            HashMap<String, UsbDevice> deviceList = usbManager.getDeviceList();
+            Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+            mPermissionIntent = PendingIntent.getBroadcast(this, 0,
+                    new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_UPDATE_CURRENT);
+            while (deviceIterator.hasNext()) {
+                UsbDevice d = deviceIterator.next();
+                if (d != null) {
+                    for (int i = 0; i < d.getInterfaceCount(); i++) {
+                        UsbInterface usbInterface = d.getInterface(i);
+                        if (usbInterface.getInterfaceClass() == 7 && usbInterface.getInterfaceSubclass() == 1 && usbInterface.getInterfaceProtocol() == 2) {
+                            device = d;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            IntentFilter filter = new IntentFilter(
+                    ACTION_USB_PERMISSION);
+            filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+            filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+            filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+            filter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+            registerReceiver(mUsbReceiver, filter);
+            if (device != null) {
+                usbManager.requestPermission(device, mPermissionIntent);
+                tryedAutoConnect = true;
+                Log.e("Exception", "Printer connected");
+            } else {
+                Log.e("Exception", "Printer not found");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
+                mBixolonLabelPrinter.connect();
+                Toast.makeText(getApplicationContext(), "Found USB device", Toast.LENGTH_SHORT).show();
+            } else if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
+                mBixolonLabelPrinter.disconnect();
+                Toast.makeText(getApplicationContext(), "USB device removed", Toast.LENGTH_SHORT).show();
+            } else if (ACTION_USB_PERMISSION.equals(action)) {
+                mBixolonLabelPrinter.connect(device);
+                device = null;
+            }
+
+        }
+    };
+
 }
