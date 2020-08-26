@@ -45,9 +45,6 @@ public class CountingDetailAdapter extends RecyclerView.Adapter<CountingDetailAd
     @Override
     public void onBindViewHolder(@NonNull CountingDetailAdapter.NoteVH holder, int position) {
         holder.bindData(mNoteList.get(position));
-
-
-
     }
 
 

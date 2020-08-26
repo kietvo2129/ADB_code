@@ -3,8 +3,12 @@ package com.autonsi.databoard.Counting.Count;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,9 +22,14 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
@@ -28,9 +37,16 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.autonsi.databoard.AlerError.AlerError;
+import com.autonsi.databoard.Barcode.BarcodeAdapter;
+import com.autonsi.databoard.Barcode.BarcodeMaster;
 import com.autonsi.databoard.Counting.Count.Detail.CountingDetailActivity;
 import com.autonsi.databoard.Counting.Count.Line.DataAllCountingMaster;
 import com.autonsi.databoard.Counting.Count.Line.LineMaster;
+import com.autonsi.databoard.Counting.CountList.CountListAdaptor;
+import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorActivity;
+import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorAdapter;
+import com.autonsi.databoard.DigitalData.IssuesList.IssuesActivity;
+import com.bumptech.glide.Glide;
 import com.quickblox.sample.videochat.java.R;
 
 import org.json.JSONArray;
@@ -54,6 +70,7 @@ public class CountActivity extends AppCompatActivity {
     String vitri_bam = "";
 
     String id_line = "";
+    int posss = -1;
 
     ArrayList<LineMaster> lineMaster;
     ArrayList<DataAllCountingMaster> dataAllCountingMasters;
@@ -62,6 +79,10 @@ public class CountActivity extends AppCompatActivity {
     ProgressBar VerticalProgressBar;
     int intValue = 90;
     Handler handler = new Handler();
+
+    BarcodeAdapter barcodeAdapter;
+    ArrayList<BarcodeMaster> barcodeMasterArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +101,6 @@ public class CountActivity extends AppCompatActivity {
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
 
-        VerticalProgressBar = (ProgressBar)findViewById(R.id.progressBar1);
 
 
 
@@ -285,6 +305,7 @@ public class CountActivity extends AppCompatActivity {
                 tv_id.setText(lineMaster.get(0).getLine_no() + "/" + lineMaster.get(0).getLine_nm());
                 id_line = lineMaster.get(0).getId();
                 loadDataAll(0);
+                posss = 0;
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", CountActivity.this);
@@ -356,6 +377,7 @@ public class CountActivity extends AppCompatActivity {
                 tv_id.setText(arrayAdapter.getItem(i).toString());
                 id_line = lineMaster.get(i).getId();
                 loadDataAll(i);
+                posss = i;
                 dialog.dismiss();
             }
         });
@@ -379,7 +401,7 @@ public class CountActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             dataAllCountingMasters = new ArrayList<>();
-            String building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time;
+            String building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no;
             try {
 
                 JSONObject jsonObject = new JSONObject(s);
@@ -397,7 +419,8 @@ public class CountActivity extends AppCompatActivity {
                 defect_qty = jsonObject1.getString("defect_qty").replace("null", "");
                 start_time = jsonObject1.getString("start_time").replace("null", "");
                 end_time = jsonObject1.getString("end_time").replace("null", "");
-                dataAllCountingMasters.add(new DataAllCountingMaster(building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time));
+                prd_no = jsonObject1.getString("prd_no").replace("null", "");
+                dataAllCountingMasters.add(new DataAllCountingMaster(building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no));
                 setDataAll();
 
             } catch (JSONException e) {
@@ -526,5 +549,112 @@ public class CountActivity extends AppCompatActivity {
             setSeekbar(numActual);
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_print) {
+            openPrint();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void openPrint() {
+       new creat_Barcode_print().execute(Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
+               "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no() + "&actual_qty=" + numActual);
+       Log.d("creat_Barcode_print",Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
+               "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no() + "&actual_qty=" + numActual);
+    }
+
+
+
+    private class creat_Barcode_print extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            new print_barcode().execute(Url+"Plan/QRbarcodeCouting?id=" + lineMaster.get(posss).getId() +
+                    "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no());
+            Log.d("print_barcode",Url+"Plan/QRbarcodeCouting?id" + lineMaster.get(posss).getId() +
+                    "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no());
+
+        }
+
+    }
+    private class print_barcode extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            barcodeMasterArrayList =new ArrayList<>();
+            String id,barcode;
+            try {
+                JSONArray jsonArray = new JSONArray(s);
+                if (jsonArray.length() == 0){
+                    return;
+                }
+                for (int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    id = jsonObject.getString("id").replace("null","");
+                    barcode = jsonObject.getString("prd_lot").replace("null","");
+                    barcodeMasterArrayList.add(new BarcodeMaster(id,barcode,i + 1 + "",true));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            call_Popup_barcode();
+
+        }
+
+    }
+
+    private void call_Popup_barcode() {
+        Dialog dialog = new Dialog(CountActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        View dialogView = LayoutInflater.from(CountActivity.this).inflate(R.layout.popup_barcode, null);
+        dialog.setCancelable(false);
+        dialog.setContentView(dialogView);
+        dialog.findViewById(R.id.btclose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+        RecyclerView recyclerViewCL;
+        recyclerViewCL = dialogView.findViewById(R.id.recyclerViewCL);
+
+        recyclerViewCL.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager;
+
+        mLayoutManager = new LinearLayoutManager(CountActivity.this);
+        barcodeAdapter = new BarcodeAdapter(barcodeMasterArrayList);
+        recyclerViewCL.setLayoutManager(mLayoutManager);
+        recyclerViewCL.setAdapter(barcodeAdapter);
+
+
+
+        dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        VerticalProgressBar = (ProgressBar)findViewById(R.id.progressBar1);
+        String namedevice = android.os.Build.MODEL;
+        if (namedevice.equals("D1s")) {
+            getMenuInflater().inflate(R.menu.menu_print, menu);
+        }
+        return true;
     }
 }
