@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="sender_id"></string>
 
@@ -310,4 +310,9 @@
     <string name="Smoke_tab_text_1">Smoke Dashboard</string>
     <string name="Smoke_tab_text_2">Smoke Layout</string>
     <string name="Smoke_tab_text_3">Smoke Alert History</string>
+    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_connecting">connecting&#8230;</string>
+    <string name="title_not_connected">not connected</string>
+    <string name="set_printing_type">Set printing type</string>
+
 </resources>

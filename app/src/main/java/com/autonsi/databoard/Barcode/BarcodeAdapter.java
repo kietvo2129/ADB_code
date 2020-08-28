@@ -59,13 +59,6 @@ public class BarcodeAdapter extends RecyclerView.Adapter<BarcodeAdapter.NoteVH> 
     @Override
     public void onBindViewHolder(@NonNull BarcodeAdapter.NoteVH holder, int position) {
         holder.bindData(mNoteList.get(position));
-        holder.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.e("checkkk", holder.checkbox.isChecked()+"");
-                mNoteList.get(position).setCheckbox(holder.checkbox.isChecked());
-            }
-        });
     }
 
 
@@ -85,14 +78,21 @@ public class BarcodeAdapter extends RecyclerView.Adapter<BarcodeAdapter.NoteVH> 
             img_barcode = itemView.findViewById(R.id.img_barcode);
             no =  itemView.findViewById(R.id.no);
             checkbox=  itemView.findViewById(R.id.checkbox);
+
         }
 
         public void bindData(BarcodeMaster note) {
             tv_barcode.setText(note.getBarcode());
             no.setText(note.getNo());
             img_barcode.setImageBitmap(ima_barcode(note.getBarcode()));
-            checkbox.setChecked(note.checkbox);
-
+            checkbox.setChecked(note.checked);
+            checkbox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    boolean newState = !note.isChecked();
+                    note.checked = newState;
+                }
+            });
         }
     }
 

@@ -2,21 +2,17 @@ package com.autonsi.databoard.Barcode;
 
 public class BarcodeMaster {
     String id,barcode,no;
-    boolean checkbox;
+    boolean checked;
 
     public BarcodeMaster(String id, String barcode, String no,Boolean checkbox) {
         this.id = id;
         this.barcode = barcode;
         this.no = no;
-        this.checkbox = checkbox;
+        checked = checkbox;
     }
 
-    public boolean isCheckbox() {
-        return checkbox;
-    }
-
-    public void setCheckbox(boolean checkbox) {
-        this.checkbox = checkbox;
+    public boolean isChecked(){
+        return checked;
     }
 
     public String getId() {

@@ -114,6 +114,29 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/im4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_prct" />
+
+                <TextSwitcher
+                    android:id="@+id/tv_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/im4"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/slide_out_left"  />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
                     android:id="@+id/im3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

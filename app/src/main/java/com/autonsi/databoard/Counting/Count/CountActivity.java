@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -26,6 +28,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -39,6 +44,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
@@ -68,11 +74,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 public class CountActivity extends AppCompatActivity {
     String Url = com.autonsi.databoard.Url.webUrl;
     CardView cv_id, cv_infor;
-    TextSwitcher tv_taget, tv_time;
+    TextSwitcher tv_taget, tv_time,tv_product;
     TextSwitcher tv_id, tv_actual, tv_defective,tvlocation;
     RelativeLayout rl_actual_plus, rl_actual_sub, rl_defective_sub, rl_defective_plus;
     int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
@@ -103,6 +110,12 @@ public class CountActivity extends AppCompatActivity {
     static BixolonLabelPrinter mBixolonLabelPrinter;
     private PendingIntent mPermissionIntent;
     private final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+    private String mConnectedDeviceName = null;
+    private boolean mIsConnected;
+    public ArrayList<BluetoothDevice> m_LeDevices;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +134,8 @@ public class CountActivity extends AppCompatActivity {
         tvlocation = findViewById(R.id.tvlocation);
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
+        tv_product = findViewById(R.id.tv_product);
+
 
 
 
@@ -218,8 +233,18 @@ public class CountActivity extends AppCompatActivity {
         tv_defective.setFactory(new TextViewFactory(R.style.NumActualTextView, true));
         tvlocation.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         tv_time.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
+        tv_product.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         tv_taget.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         getDataline();
+
+        mBixolonLabelPrinter = new BixolonLabelPrinter(this, mHandler, Looper.getMainLooper());
+
+        final int ANDROID_NOUGAT = 24;
+        if (Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
     }
 
 
@@ -462,6 +487,7 @@ public class CountActivity extends AppCompatActivity {
         String time = dataAllCountingMasters.get(0).getStart_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getStart_time().substring(2, 4)
                 + " ~ " + dataAllCountingMasters.get(0).getEnd_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getEnd_time().substring(2, 4);
         tv_time.setText(time);
+        tv_product.setText(dataAllCountingMasters.get(0).getPrd_no());
 
         setAnimation(tv_actual, numActual + "");
         setAnimation(tv_defective, numDefective + "");
@@ -584,10 +610,12 @@ public class CountActivity extends AppCompatActivity {
     }
 
     private void openPrint() {
+
+
        new creat_Barcode_print().execute(Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
-               "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no() + "&actual_qty=" + numActual);
+               "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
        Log.d("creat_Barcode_print",Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
-               "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no() + "&actual_qty=" + numActual);
+               "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
     }
 
 
@@ -602,9 +630,9 @@ public class CountActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             new print_barcode().execute(Url+"Plan/QRbarcodeCouting?id=" + lineMaster.get(posss).getId() +
-                    "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no());
+                    "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no());
             Log.d("print_barcode",Url+"Plan/QRbarcodeCouting?id" + lineMaster.get(posss).getId() +
-                    "&prd_no=" + dataAllCountingMasters.get(posss).getPrd_no());
+                    "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no());
 
         }
 
@@ -663,9 +691,43 @@ public class CountActivity extends AppCompatActivity {
         recyclerViewCL.setLayoutManager(mLayoutManager);
         recyclerViewCL.setAdapter(barcodeAdapter);
 
+        dialog.findViewById(R.id.xacnhanin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                in_tem();
+            }
+        });
+
 
 
         dialog.show();
+    }
+
+    private void in_tem() {
+        final boolean hasResponse = false;
+        final int responseLength = 0;
+
+        for (int i =0;i<barcodeMasterArrayList.size();i++){
+
+            if (barcodeMasterArrayList.get(i).isChecked()) {
+                String command =
+                        "CB\n" +
+                                "SS3\n" +    // Set Speed to 5 ips
+                                "SD15\n" +    // Set Density level to 20
+                                "SW320\n" +    // Set Label Width 320//800
+                                //"SOT\n" +    // Set Printing Orientation from Top to Bottom
+                                //"BD0,0,320,232,B,3\n" +   //Box thikness 5
+                                //"T50,20,4,1,1,0,0,N,N,'" + "tieu de" + "'\n" +    //text 1. (4)Font - 15 pt
+                                "B2110,30,Q,3,M,4,0,'" + barcodeMasterArrayList.get(i).getBarcode() + "'\n" +        //Qr .
+                                "T20,150,1,1,1,0,0,N,N,'" + barcodeMasterArrayList.get(i).getBarcode() + "'\n" +        //text 3 (2)Font - 10 pt
+                                "P1";
+                if (command.length() > 0) {
+                    CountActivity.mBixolonLabelPrinter.executeDirectIo(command, hasResponse, responseLength);
+                }
+            }
+
+        }
+
     }
 
     @Override
@@ -748,5 +810,87 @@ public class CountActivity extends AppCompatActivity {
 
         }
     };
+
+//    private final void setStatus(CharSequence subtitle) {
+//        final ActionBar actionBar = getActionBar();
+//        actionBar.setSubtitle(subtitle);
+//    }
+
+    @SuppressLint("HandlerLeak")
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case BixolonLabelPrinter.MESSAGE_STATE_CHANGE:
+                    switch (msg.arg1) {
+                        case BixolonLabelPrinter.STATE_CONNECTED:
+                            //setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
+                            //mListView.setEnabled(true);
+                            //mIsConnected = true;
+                            invalidateOptionsMenu();
+                            CountActivity.mBixolonLabelPrinter.setOrientation(BixolonLabelPrinter.ORIENTATION_TOP_TO_BOTTOM);
+                            break;
+
+                        case BixolonLabelPrinter.STATE_CONNECTING:
+                           // setStatus(getString(R.string.title_connecting));
+                            break;
+
+                        case BixolonLabelPrinter.STATE_NONE:
+                           // setStatus(getString(R.string.title_not_connected));
+                            //mListView.setEnabled(false);
+                            //mIsConnected = false;
+                            invalidateOptionsMenu();
+                            break;
+                    }
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_READ:
+                   // CountActivity.this.dispatchMessage(msg);
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_DEVICE_NAME:
+                    mConnectedDeviceName = msg.getData().getString(BixolonLabelPrinter.DEVICE_NAME);
+                    Toast.makeText(getApplicationContext(), mConnectedDeviceName, Toast.LENGTH_LONG).show();
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_TOAST:
+                    //mListView.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), msg.getData().getString(BixolonLabelPrinter.TOAST), Toast.LENGTH_SHORT).show();
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_LOG:
+                    Toast.makeText(getApplicationContext(), msg.getData().getString(BixolonLabelPrinter.LOG), Toast.LENGTH_SHORT).show();
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_BLUETOOTH_DEVICE_SET:
+                    if (msg.obj == null) {
+                        Toast.makeText(getApplicationContext(), "No paired device", Toast.LENGTH_SHORT).show();
+                    } else {
+                        DialogManager.showBluetoothDialog(CountActivity.this, (Set<BluetoothDevice>) msg.obj);
+                    }
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_USB_DEVICE_SET:
+                    if (msg.obj == null) {
+                        Toast.makeText(getApplicationContext(), "No connected device", Toast.LENGTH_SHORT).show();
+                    } else {
+                        DialogManager.showUsbDialog(CountActivity.this, (Set<UsbDevice>) msg.obj, mUsbReceiver);
+                    }
+                    break;
+
+                case BixolonLabelPrinter.MESSAGE_NETWORK_DEVICE_SET:
+                    if (msg.obj == null) {
+                        Toast.makeText(getApplicationContext(), "No connectable device", Toast.LENGTH_SHORT).show();
+                    }
+                    DialogManager.showNetworkDialog(CountActivity.this, (Set<String>) msg.obj);
+                    break;
+
+            }
+        }
+    };
+//    private final void setStatus(CharSequence subtitle) {
+//        final ActionBar actionBar = getActionBar();
+//        actionBar.setSubtitle(subtitle);
+//    }
 
 }
