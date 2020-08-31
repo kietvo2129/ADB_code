@@ -154,59 +154,59 @@
 
         </RelativeLayout>
     </LinearLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:weightSum="2"-->
-<!--        android:layout_height="wrap_content">-->
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
 
-<!--        <RelativeLayout-->
-<!--            style="@style/SelectableItemBackground"-->
-<!--            android:foreground="?android:attr/selectableItemBackground"-->
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
 
-<!--            android:id="@+id/rl_count"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/action_lick"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_marginRight="8dp"-->
-<!--            android:layout_height="120dp">-->
+            android:id="@+id/rl_scan"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:layout_height="120dp">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/eima2"-->
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:background="@drawable/ic_counting" />-->
+            <ImageView
+                android:id="@+id/eima22"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_scan" />
 
-<!--            <TextView-->
-<!--                android:textColor="#fff"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_below="@+id/eima2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Count"/>-->
-<!--        </RelativeLayout>-->
-<!--        <RelativeLayout-->
-<!--            style="@style/SelectableItemBackground"-->
-<!--            android:foreground="?android:attr/selectableItemBackground"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_height="120dp">-->
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/eima22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan QR Code"/>
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
 
-<!--            <ImageView-->
+            <ImageView
 
-<!--                android:layout_width="60dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_height="50dp" />-->
+                android:layout_width="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp" />
 
-<!--            <TextView-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content" />-->
-<!--        </RelativeLayout>-->
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
-<!--    </LinearLayout>-->
+    </LinearLayout>
 </LinearLayout>

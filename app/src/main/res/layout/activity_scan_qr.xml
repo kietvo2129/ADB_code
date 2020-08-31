@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009688"
+    tools:context="com.autonsi.databoard.Counting.Scan.ScanQRActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/H1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="4dp">
+
+            <ImageView
+                android:id="@+id/img_qrcode"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center|left"
+                android:background="#878588"
+                android:src="@drawable/ic_scanqr" />
+
+            <EditText
+                android:id="@+id/edt_qrcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:hint="Input QR Code"
+                android:paddingHorizontal="8dp"
+                android:inputType="text"
+                android:textColor="#1DD8D8"
+                android:textColorHint="@color/colorxam" />
+
+
+        </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_below="@+id/H1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imabarcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"/>
+        <TextView
+            android:id="@+id/tv_barcode"
+            android:layout_below="@+id/imabarcode"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:id="@+id/e1"
+            android:layout_below="@+id/tv_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="4dp"
+            android:background="#C8C4C8"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingLeft="8dp"
+                android:layout_width="0dp"
+                android:text="Title"
+                android:textStyle="bold"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:text="Content"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/e2"
+            android:layout_below="@+id/e1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="4dp"
+            android:background="#D8D7D8"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:text="Line Name"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:paddingLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_line_nm"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/e2"
+            android:id="@+id/e3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="4dp"
+            android:background="#D8D7D8"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:text="Product Name"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:paddingLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_prd_nm"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/e3"
+            android:id="@+id/e4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="4dp"
+            android:background="#D8D7D8"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:text="Line Name"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:paddingLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_lct_nm"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/e4"
+            android:id="@+id/e5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:padding="4dp"
+            android:background="#D8D7D8"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:text="Date Time"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:paddingLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <TextView
+                android:layout_width="0dp"
+                android:id="@+id/tv_datetime"
+                android:textColor="#321313"
+                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.autonsi.databoard.Counting.Count.CountActivity;
 import com.autonsi.databoard.Counting.CountList.CountListActivity;
 import com.autonsi.databoard.Counting.DashBoard.CountingStatusActivity;
+import com.autonsi.databoard.Counting.Scan.ScanQRActivity;
 import com.autonsi.databoard.Counting.StatusLayout.CountingMapBuildActivity;
 import com.quickblox.sample.videochat.java.R;
 
@@ -63,7 +64,7 @@ public class CountingFragment extends Fragment {
         }
     }
 
-    RelativeLayout rl_statuslayout,rl_countinglist,rl_report,rl_count,rl_Dashboard;
+    RelativeLayout rl_statuslayout,rl_countinglist,rl_report,rl_count,rl_Dashboard,rl_scan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +76,14 @@ public class CountingFragment extends Fragment {
         rl_report = view.findViewById(R.id.rl_report);
         rl_count = view.findViewById(R.id.rl_count);
         rl_Dashboard= view.findViewById(R.id.rl_Dashboard);
-
+        rl_scan= view.findViewById(R.id.rl_scan);
+        rl_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ScanQRActivity.class);
+                startActivity(intent);
+            }
+        });
         rl_Dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
