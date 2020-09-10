@@ -21,6 +21,7 @@
             app:cardCornerRadius="4dp">
 
             <ImageView
+                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/img_qrcode"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

@@ -406,7 +406,6 @@ public class CountActivity extends AppCompatActivity {
         for (int i = 0; i < lineMaster.size(); i++) {
             arrayAdapter.add(lineMaster.get(i).getLine_no() + "/" + lineMaster.get(i).getLine_nm());
         }
-        AlertDialog.Builder mbuilder = new AlertDialog.Builder(CountActivity.this);
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(CountActivity.this);
         builderSingle.setTitle("Select One Line:");
         builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {

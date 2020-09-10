@@ -16,9 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.autonsi.databoard.AlerError.AlerError;
+import com.quickblox.sample.videochat.java.BuildConfig;
 import com.quickblox.sample.videochat.java.R;
 
 
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnsignup;
     private SharedPreferences sharedPreferences;
     private ProgressDialog dialog;
+    TextView version;
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -58,12 +61,19 @@ public class LoginActivity extends AppCompatActivity {
         btnsignup = findViewById(R.id.btnsignup);
         userLoginEditText = findViewById(R.id.user_login);
         userFullNameEditText = findViewById(R.id.user_full_name);
+        version= findViewById(R.id.version);
         TextInputLayout h2;
         TextInputLayout h1;
         h1 = findViewById(R.id.H1);
         h2 = findViewById(R.id.H2);
         dialog = new ProgressDialog(this);
         sharedPreferences = getSharedPreferences("datalogin", MODE_PRIVATE);
+
+
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        version.setText("Version: " + versionName);
+
 
         userLoginEditText.addTextChangedListener(new TextWatcher() {
 
