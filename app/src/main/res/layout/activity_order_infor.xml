@@ -12,6 +12,6 @@
         android:layout_below="@+id/h1"
         android:layout_marginBottom="0dp"
         android:padding="8dp"
-        tools:listitem="@layout/item_receiving_list" />
+        tools:listitem="@layout/item_order_infor" />
 
 </RelativeLayout>

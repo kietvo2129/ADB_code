@@ -104,6 +104,7 @@ public class CountActivity extends AppCompatActivity {
     ArrayList<BarcodeMaster> barcodeMasterArrayList;
 
 
+
     private UsbDevice device;
     private boolean tryedAutoConnect = false;
     private UsbManager usbManager;
