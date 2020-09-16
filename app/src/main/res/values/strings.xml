@@ -8,6 +8,18 @@
     <string name="splash_app_title">Sample Video Chat Java</string>
     <string name="splash_create_session_error">Create session errors:</string>
 
+    <!--    <string name="title_connecting">connecting&#8230;</string>-->
+    <!--    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>-->
+    <!--    <string name="title_not_connected">not connected</string>-->
+
+    <string name="menu_settings">Settings</string>
+    <string name="menu_connect_usb">Connect (USB)</string>
+    <string name="menu_connect_wifi">Connect (Wi-Fi)</string>
+    <string name="menu_connect_wifi_direct">Connect (Wi-Fi Direct)</string>
+    <string name="menu_connect_bluetooth">Connect (Bluetooth)</string>
+    <string name="menu_connect_bluetoothLE">Connect (BluetoothLE)</string>
+    <string name="menu_disconnect">Disconnect</string>
+
     <!-- Dialogs strings -->
     <string name="dlg_signal_error">Disconnected… Please check your Internet connection!</string>
     <string name="dlg_relogin_wait">You are still connecting.. Please try once more</string>

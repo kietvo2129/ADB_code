@@ -1,15 +1,27 @@
 package com.autonsi.databoard.ActivitiesLogin;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.PendingIntent;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbInterface;
+import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.autonsi.databoard.AlerError.AlerError;
 import com.autonsi.databoard.Counting.Count.CountActivity;
 import com.autonsi.databoard.NotificationService;
+import com.bixolon.labelprinter.BixolonLabelPrinter;
 import com.quickblox.sample.videochat.java.BuildConfig;
 import com.quickblox.sample.videochat.java.R;
 
@@ -44,6 +57,7 @@ public class SplashActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         new read_infor_app().execute(Url+"APIProduct/GetApp_info");
+
     }
 
     private class read_infor_app extends AsyncTask<String, Void, String> {
@@ -117,5 +131,10 @@ public class SplashActivity extends AppCompatActivity {
         //checkversionapp();
         new read_infor_app().execute(Url+"APIProduct/GetApp_info");
         super.onResume();
+
+
     }
+
+
+
 }

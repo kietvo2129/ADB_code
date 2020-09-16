@@ -37,7 +37,7 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/checksensor"
+            android:id="@+id/rl_Shipping"
             android:layout_weight="1"
             android:background="@drawable/action_lick"
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                 android:layout_below="@+id/ima2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CCTV List"/>
+                android:text="Shipping"/>
         </RelativeLayout>
 
     </LinearLayout>

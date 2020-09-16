@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ship.PickingManualActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="4dp"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_a1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_sdno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="MR NO"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/edt_MRNO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginEnd="4dp"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="MR NO"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_a2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_a1">
+
+                <TextView
+                    android:id="@+id/label_qrcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="MT NO"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/edt_MTNO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="72dp"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="MT NO"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_a3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_a2">
+
+                <TextView
+                    android:id="@+id/label_qr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="LOT CODE"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/edt_LOTCODE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="72dp"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="LOT CODE"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_a4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_a3"
+                android:paddingBottom="2dp">
+
+                <TextView
+                    android:id="@+id/label_workdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Work Date"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/edt_startdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="72dp"
+                    android:layout_toRightOf="@+id/label_workdate"
+                    android:background="#aad"
+
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="yyyy-mm-dd"
+                    android:maxLines="1"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/label_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/edt_startdate"
+                    android:padding="4dp"
+                    android:text="~"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/edt_enddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/label_end"
+                    android:background="#aad"
+
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="yyyy-mm-dd"
+                    android:maxLines="1"
+                    android:paddingHorizontal="4dp"
+
+                    android:paddingVertical="8dp"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000" />
+
+                <Button
+                    android:id="@+id/btn_spick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="0dp"
+                    android:text="Search"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card1"
+        android:layout_marginHorizontal="8dp"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_a3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="8dp"
+                android:text=" * Select and press PICKING"
+                android:textColor="#aaa"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/btn_pickmanual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:text="Picking"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card2"
+        android:layout_margin="8dp"
+        android:padding="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/aaa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#dad"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000">
+
+                        <CheckBox
+                            android:id="@+id/check_all_picking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        
+                        android:gravity="center|left"
+                        android:text="No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="MR NO"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="ML No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="MT Name"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Type"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Req Qty"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Status"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Location"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Confirmer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="Work Date"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="MT No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="MRD No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="#000" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_pickmanual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aaa"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+        </HorizontalScrollView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    
+</RelativeLayout>

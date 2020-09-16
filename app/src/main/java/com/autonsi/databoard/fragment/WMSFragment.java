@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.autonsi.databoard.Receving.ReceivingActivity;
+import com.autonsi.databoard.Ship.ShipActivity;
 import com.quickblox.sample.videochat.java.R;
 
 /**
@@ -18,7 +19,7 @@ import com.quickblox.sample.videochat.java.R;
  * Use the {@link WMSFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WMSFragment extends Fragment {
+public class WMSFragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +31,7 @@ public class WMSFragment extends Fragment {
     private String mParam2;
 
     RelativeLayout rl_receiving;
-
+    private RelativeLayout rl_Shipping;
     public WMSFragment() {
         // Required empty public constructor
     }
@@ -77,7 +78,21 @@ public class WMSFragment extends Fragment {
             }
         });
 
+        rl_Shipping = view.findViewById(R.id.rl_Shipping);
+        rl_Shipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ShipActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }
+
+
+
+
 }
