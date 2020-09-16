@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="4dp"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        style="@style/SelectBackground"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/lnear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:weightSum="4">
+
+        <RelativeLayout
+            android:id="@+id/H1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvvid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_toEndOf="@+id/tvid"
+                android:text="sdasdadasd"
+                android:textColor="#282828"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tvname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvvid"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/tvvname"
+                android:text="sdasdadasd"
+                android:textColor="#282828"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="#282828"
+                android:text="Type1" />
+            <TextView
+                android:id="@+id/tvOrderBundle"
+                android:layout_below="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="#282828"
+                android:text="20000 Roll"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/aa1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Order Qty:"
+                android:textColor="#282828" />
+
+            <TextView
+                android:id="@+id/tvOrderQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/aa1"
+                android:text="10"
+                android:textColor="#282828" />
+            <TextView
+                android:layout_below="@+id/aa1"
+                android:id="@+id/aa2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Bundle Qty:"
+                android:textColor="#282828" />
+
+            <TextView
+                android:layout_below="@+id/aa1"
+                android:id="@+id/tvBundleQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/aa1"
+                android:text="10"
+                android:textColor="#282828" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/tvprice"
+                android:text="Unit price:"
+                android:textColor="#282828" />
+
+            <TextView
+                android:id="@+id/tvUnitPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="16dp"
+                android:text="360USD"
+                android:textColor="#282828" />
+
+            <TextView
+                android:layout_below="@+id/tvUnitPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/tvprice"
+                android:text="Bundle price:"
+                android:textColor="#282828" />
+
+            <TextView
+                android:layout_below="@+id/tvUnitPrice"
+                android:id="@+id/tvprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="16dp"
+                android:text="3650USD"
+                android:textColor="#282828" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvQC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="eirwqieqhwdashdgasjdgadhj 5%"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

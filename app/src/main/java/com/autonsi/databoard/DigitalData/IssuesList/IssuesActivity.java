@@ -155,7 +155,7 @@ public class IssuesActivity extends AppCompatActivity implements Toolbar.OnMenuI
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             issuesMaterArrayList = new ArrayList<>();
-            issuesMaterArrayList = new ArrayList<>();
+            issuesMaterArrayListnew = new ArrayList<>();
             String ss_no, ss_nm, current_temp, current_press, current_pow, current_humi,
                     temp_issue, humi_issue, press_issue, pow_issue, time_update,
                     temp_issue_nm, humi_issue_nm, press_issue_nm, pow_issue_nm,

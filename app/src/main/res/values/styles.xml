@@ -215,4 +215,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="MyAlertDialogTheme" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowFixedWidthMajor">50%</item>
+        <item name="windowFixedWidthMinor">60%</item>
+    </style>
+
 </resources>

@@ -33,9 +33,15 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name="com.autonsi.databoard.Counting.Scan.ScanQRActivity"
-            android:theme="@style/AppThemee.NoActionBar"
-            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"/>
+        <activity android:name="com.autonsi.databoard.Receving.OrderInforActivity"
+            android:parentActivityName="com.autonsi.databoard.Receving.ReceivingActivity" />
+        <activity
+            android:name="com.autonsi.databoard.Receving.ReceivingActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity" />
+        <activity
+            android:name="com.autonsi.databoard.Counting.Scan.ScanQRActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
         <activity
             android:name="com.autonsi.databoard.Counting.StatusLayout.CountingMapBuildActivity"
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
@@ -174,6 +180,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"

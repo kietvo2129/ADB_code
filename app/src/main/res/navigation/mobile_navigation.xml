@@ -36,6 +36,11 @@
         android:name="com.autonsi.databoard.fragment.CCTVFragment"
         android:label="CCTV"
         tools:layout="@layout/fragment_cctv" />
+    <fragment
+        android:id="@+id/nav_wms"
+        android:name="com.autonsi.databoard.fragment.WMSFragment"
+        android:label="WMS"
+        tools:layout="@layout/fragment_wms" />
 
 
 </navigation>
