@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class DialogManager {
 	
-	static void showBluetoothDialog(Context context, final Set<BluetoothDevice> pairedDevices) {
+	public static void showBluetoothDialog(Context context, final Set<BluetoothDevice> pairedDevices) {
 		final String[] items = new String[pairedDevices.size()];
 		int index = 0;
 		for (BluetoothDevice device : pairedDevices) {
@@ -55,7 +55,7 @@ public class DialogManager {
 				}).show();
 	}
 	
-	static void showUsbDialog(final Context context, final Set<UsbDevice> usbDevices, final BroadcastReceiver usbReceiver) {
+	public static void showUsbDialog(final Context context, final Set<UsbDevice> usbDevices, final BroadcastReceiver usbReceiver) {
 		final String[] items = new String[usbDevices.size()];
 		int index = 0;
 		for (UsbDevice device : usbDevices) {
@@ -77,7 +77,7 @@ public class DialogManager {
 				}).show();
 	}
 
-	static void showNetworkDialog(Context context, Set<String> ipAddressSet) {
+	public static void showNetworkDialog(Context context, Set<String> ipAddressSet) {
 		if (ipAddressSet != null) {
 			 final String[] items = ipAddressSet.toArray(new String[ipAddressSet.size()]);
 			

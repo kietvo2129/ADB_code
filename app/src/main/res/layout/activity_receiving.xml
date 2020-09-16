@@ -29,7 +29,7 @@
         android:layout_below="@+id/h1"
         android:layout_marginBottom="0dp"
         android:padding="8dp"
-        tools:listitem="@layout/item_order_infor" />
+        tools:listitem="@layout/item_receiving_list" />
 
     <TextView
         android:id="@+id/orderInfor"
