@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_margin="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -58,6 +59,62 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shipping"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+
+            android:id="@+id/rl_scan"
+            android:layout_weight="1"
+            android:background="@drawable/action_lick"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/eima22"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_scan" />
+
+            <TextView
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/eima22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Receiving Scan"/>
+        </RelativeLayout>
+        <RelativeLayout
+            style="@style/SelectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="120dp">
+
+            <ImageView
+
+                android:layout_width="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
 
     </LinearLayout>

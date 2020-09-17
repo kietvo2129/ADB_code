@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.autonsi.databoard.Receving.ReceivingActivity;
+import com.autonsi.databoard.Receving.ReceivingScanActivity;
 import com.autonsi.databoard.Ship.ShipActivity;
 import com.quickblox.sample.videochat.java.R;
 
@@ -30,7 +31,7 @@ public class WMSFragment extends Fragment  {
     private String mParam1;
     private String mParam2;
 
-    RelativeLayout rl_receiving;
+    RelativeLayout rl_receiving,rl_scan;
     private RelativeLayout rl_Shipping;
     public WMSFragment() {
         // Required empty public constructor
@@ -87,7 +88,15 @@ public class WMSFragment extends Fragment  {
                 startActivity(intent);
             }
         });
+        rl_scan  = view.findViewById(R.id.rl_scan);
+        rl_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ReceivingScanActivity.class);
 
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

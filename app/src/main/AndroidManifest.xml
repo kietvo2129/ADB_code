@@ -33,11 +33,17 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name="com.autonsi.databoard.Ship.ConfirmActivity"
-            android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" ></activity>
-        <activity android:name="com.autonsi.databoard.Ship.PickingScanActivity"
+        <activity android:name="com.autonsi.databoard.Receving.ReceivingScanActivity"
+            android:theme="@style/AppThemee.NoActionBar"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"/>
+        <activity
+            android:name="com.autonsi.databoard.Ship.ConfirmActivity"
             android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
-        <activity android:name="com.autonsi.databoard.Ship.PickingManualActivity"
+        <activity
+            android:name="com.autonsi.databoard.Ship.PickingScanActivity"
+            android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
+        <activity
+            android:name="com.autonsi.databoard.Ship.PickingManualActivity"
             android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
         <activity
             android:name="com.autonsi.databoard.Ship.ShipActivity"
