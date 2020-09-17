@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingOder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,35 +11,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autonsi.databoard.AlerError.AlerError;
-import com.autonsi.databoard.Counting.Count.CountActivity;
-import com.autonsi.databoard.DigitalData.IssuesList.IssuesAdapter;
-import com.autonsi.databoard.DigitalData.IssuesList.IssuesMater;
-import com.autonsi.databoard.DigitalData.IssuesReport.IssuesReport;
-import com.autonsi.databoard.DigitalData.IssuesReport.IssuesReportActivity;
+import com.autonsi.databoard.Receving.ReceivingOder.OderInformation.OrderInforActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputEditText;
 import com.quickblox.sample.videochat.java.R;
 
 import org.json.JSONArray;
@@ -90,7 +79,7 @@ public class ReceivingActivity extends AppCompatActivity {
         orderInfor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ReceivingActivity.this,OrderInforActivity.class);
+                Intent intent = new Intent(ReceivingActivity.this, OrderInforActivity.class);
                 startActivity(intent);
             }
         });
@@ -105,7 +94,9 @@ public class ReceivingActivity extends AppCompatActivity {
             }
         }
         receivingMasterArrayList = filteredList;
-        receivingAdapter.filterList(filteredList);
+        if (filteredList!=null) {
+            receivingAdapter.filterList(filteredList);
+        }
     }
 
     private void getMaterials() {

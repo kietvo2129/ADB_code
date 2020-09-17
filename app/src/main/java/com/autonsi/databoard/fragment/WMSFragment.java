@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.autonsi.databoard.Receving.ReceivingActivity;
-import com.autonsi.databoard.Receving.ReceivingScanActivity;
+import com.autonsi.databoard.Receving.FindQRCode.FindQRCodeActivity;
+import com.autonsi.databoard.Receving.ReceivingOder.ReceivingActivity;
+import com.autonsi.databoard.Receving.ReceivingScan.ReceivingScanActivity;
 import com.autonsi.databoard.Ship.ShipActivity;
 import com.quickblox.sample.videochat.java.R;
 
@@ -97,6 +98,16 @@ public class WMSFragment extends Fragment  {
                 startActivity(intent);
             }
         });
+
+        view.findViewById(R.id.find_mt_code).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FindQRCodeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         return view;
     }

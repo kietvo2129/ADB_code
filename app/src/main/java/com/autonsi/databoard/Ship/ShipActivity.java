@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.autonsi.databoard.Ship.ShippingScan.PickkingScanActivity;
 import com.quickblox.sample.videochat.java.R;
 
 public class ShipActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class ShipActivity extends AppCompatActivity {
         findViewById(R.id.rl_PickingS).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(ShipActivity.this, PickingScanActivity.class);
+                Intent intent =new Intent(ShipActivity.this, PickkingScanActivity.class);
                 startActivity(intent);
             }
         });

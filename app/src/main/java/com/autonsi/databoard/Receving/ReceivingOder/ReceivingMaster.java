@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingOder;
 
 public class ReceivingMaster {
     String mtid,mt_cd,mt_nm,mt_type,unit_cd,bundle_qty,sp_cd,qc_cd,qc_range,unit_price,bundle_unit_price

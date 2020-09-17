@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Ship.ShippingScan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,10 +8,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,19 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
-import com.autonsi.databoard.AlarmData.IssuesList.AlarmIssuesList;
-import com.autonsi.databoard.AlarmData.IssuesList.DoorHistoryAdapter;
 import com.autonsi.databoard.AlerError.AlerError;
-import com.autonsi.databoard.Counting.Scan.ScanQRActivity;
-import com.autonsi.databoard.DigitalData.IssuesList.IssuesActivity;
-import com.autonsi.databoard.VolleyMultipartRequest;
-import com.bumptech.glide.Glide;
+import com.autonsi.databoard.Receving.ReceivingScan.PutAwayScanAdapter;
+import com.autonsi.databoard.Receving.ReceivingScan.PutAwayScanMaster;
+import com.autonsi.databoard.Receving.ReceivingScan.ReceivingScanActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.quickblox.sample.videochat.java.R;
@@ -42,13 +31,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-public class ReceivingScanActivity extends AppCompatActivity {
+public class PickkingScanActivity extends AppCompatActivity {
     String Url = com.autonsi.databoard.Url.webUrl;
     TextView tvLocation;
     ArrayList<String> arrayLocationcd;
@@ -66,9 +51,9 @@ public class ReceivingScanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receiving_scan);
+        setContentView(R.layout.activity_pickking_scan);
         tvLocation = findViewById(R.id.tvLocation);
-        mRecyclerView= findViewById(R.id.recyclerview);
+        mRecyclerView = findViewById(R.id.recyclerview);
         getlocation();
 
         awayScanMasterArrayList = new ArrayList<>();
@@ -90,19 +75,20 @@ public class ReceivingScanActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 closeKeyboard();
-                if (edt_qrcode.getText().toString().length() != 0){
+                if (edt_qrcode.getText().toString().length() != 0) {
                     getDataQRcode(edt_qrcode.getText().toString().trim());
                 }
                 return false;
             }
         });
-
     }
+
+
     public void startQRScanner() {
         new IntentIntegrator(this).initiateScan();
     }
 
-    public void closeKeyboard(){
+    public void closeKeyboard() {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
@@ -113,7 +99,7 @@ public class ReceivingScanActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(ReceivingScanActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
+                Toast.makeText(PickkingScanActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 edt_qrcode.setText(result.getContents());
                 getDataQRcode(result.getContents());
@@ -121,65 +107,52 @@ public class ReceivingScanActivity extends AppCompatActivity {
         }
     }
 
-    private void getDataQRcode(String str) {
-        String UPLOAD_URL = Url + "WMSReceiving/PutAwayMaterialScan";
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, UPLOAD_URL,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        try {
+    private void getDataQRcode(String contents) {
 
+        new getDataQRcode().execute(Url + "WMSShipping/updatepicScan?userid=" + locationCd +
+                "&mt_barcode=" + contents);
 
-                            // Json như binh thuong
-                            JSONObject obj = new JSONObject(new String(response.data));
-
-                            if (obj.getBoolean("flag")){
-                                Toast.makeText(ReceivingScanActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                edt_qrcode.setText("");
-
-                                JSONArray jsonArray = obj.getJSONArray("data");
-                                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                String mt_lot_cd,mt_nm,bin_name;
-                                mt_lot_cd = jsonObject.getString("mt_lot_cd");
-                                mt_nm = jsonObject.getString("mt_nm");
-                                bin_name = jsonObject.getString("bin_name");
-                                awayScanMasterArrayList.add(0,new PutAwayScanMaster(mt_lot_cd,mt_nm,bin_name));
-
-                                buildRecyclerView();
-                            }else {
-                                AlerError.Baoloi(obj.getString("message"), ReceivingScanActivity.this);
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        AlerError.Baoloi("Could not connect to server", ReceivingScanActivity.this);
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("binCode", locationCd);
-                params.put("lotCode", str);
-                return params;
-            }
-        };
-
-        Volley.newRequestQueue(ReceivingScanActivity.this).add(volleyMultipartRequest);
     }
 
+    private class getDataQRcode extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject obj = new JSONObject(s);
+
+                if (obj.getBoolean("flag")) {
+                    Toast.makeText(PickkingScanActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                    edt_qrcode.setText("");
+                    JSONArray jsonArray = obj.getJSONArray("data");
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    String mt_lot_cd, mt_nm, bin_name;
+                    mt_lot_cd = jsonObject.getString("ml_no");
+                    mt_nm = jsonObject.getString("mt_nm");
+                    bin_name = jsonObject.getString("lct_cd");
+                    awayScanMasterArrayList.add(0, new PutAwayScanMaster(mt_lot_cd, mt_nm, bin_name));
+                    buildRecyclerView();
+                } else {
+                    AlerError.Baoloi(obj.getString("message"), PickkingScanActivity.this);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     private void buildRecyclerView() {
 
         RecyclerView.LayoutManager mLayoutManager;
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(ReceivingScanActivity.this);
+        mLayoutManager = new LinearLayoutManager(PickkingScanActivity.this);
         putAwayScanAdapter = new PutAwayScanAdapter(awayScanMasterArrayList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(putAwayScanAdapter);
@@ -194,10 +167,9 @@ public class ReceivingScanActivity extends AppCompatActivity {
     }
 
 
-
     private void showLocationName() {
 
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(ReceivingScanActivity.this);
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(PickkingScanActivity.this);
         builderSingle.setTitle("Select One Line:");
         builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -212,7 +184,7 @@ public class ReceivingScanActivity extends AppCompatActivity {
                 tvLocation.setText(arrayLocationnm.getItem(i));
                 locationCd = arrayLocationcd.get(i);
                 dialog.dismiss();
-                Toast.makeText(ReceivingScanActivity.this, ""+locationCd, Toast.LENGTH_SHORT).show();
+
             }
         });
         builderSingle.show();
@@ -220,9 +192,10 @@ public class ReceivingScanActivity extends AppCompatActivity {
 
     private void getlocation() {
 
-        new getlocation().execute(Url + "WMSConfiguration/GetWarehouseLocation?type=BIN");
+        new getlocation().execute(Url + "WMSShipping/getallusers");
 
     }
+
     private class getlocation extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -233,14 +206,14 @@ public class ReceivingScanActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             arrayLocationcd = new ArrayList<>();
-            arrayLocationnm = new ArrayAdapter<String>(ReceivingScanActivity.this, android.R.layout.select_dialog_singlechoice);
+            arrayLocationnm = new ArrayAdapter<String>(PickkingScanActivity.this, android.R.layout.select_dialog_singlechoice);
             try {
                 JSONArray jsonArray = new JSONArray(s);
-                if (jsonArray.length()!=0) {
+                if (jsonArray.length() != 0) {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String lct_cd = jsonObject.getString("lct_cd");
-                        String lct_nm = jsonObject.getString("lct_nm");
+                        String lct_cd = jsonObject.getString("userid");
+                        String lct_nm = jsonObject.getString("uname");
                         arrayLocationnm.add(lct_nm);
                         arrayLocationcd.add(lct_cd);
                     }
@@ -248,15 +221,15 @@ public class ReceivingScanActivity extends AppCompatActivity {
                     locationCd = arrayLocationcd.get(0);
 
                 } else {
-                    AlerError.Baoloi("Location code incorrect.", ReceivingScanActivity.this);
+                    AlerError.Baoloi("Location code incorrect.", PickkingScanActivity.this);
                     return;
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                AlerError.Baoloi("Could not connect to server", ReceivingScanActivity.this);
+                AlerError.Baoloi("Could not connect to server", PickkingScanActivity.this);
             }
         }
 
     }
-}
+    }

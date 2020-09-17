@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/H1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp">
+
+                <ImageView
+                    android:id="@+id/img_qrcode"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center|left"
+                    android:background="#878588"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_scanqr" />
+
+                <EditText
+                    android:id="@+id/edt_qrcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="Input QR Code"
+                    android:inputType="text"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="#1DD8D8"
+                    android:textColorHint="@color/colorxam" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/H1"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/im_picking" />
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/map">
+
+            <LinearLayout
+                android:id="@+id/e1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_barcode"
+                android:layout_marginHorizontal="16dp"
+                android:background="#C8C4C8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Title"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:text="Content"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e1"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="MT Code"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_mtcode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e2"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="MT Name"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_mt_nm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e3"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Lot Qty"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_lot_qty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e4"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Unit Price"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_unitprice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e5"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Lot Price"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_lotprice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e6"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Expiry Date"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_expdate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e7"
+                android:layout_marginHorizontal="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Work Date"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/WorkDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/e9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/e8"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#D8D7D8"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:paddingLeft="8dp"
+                    android:text="Location"
+                    android:textColor="#321313"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lct_nm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center|left"
+                    android:textColor="#321313" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

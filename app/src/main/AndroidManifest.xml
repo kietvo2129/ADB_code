@@ -33,14 +33,20 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name="com.autonsi.databoard.Receving.ReceivingScanActivity"
+        <activity android:name="com.autonsi.databoard.Ship.ShippingScan.PickkingScanActivity"
+            android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity"
             android:theme="@style/AppThemee.NoActionBar"
-            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"/>
+            />
+        <activity
+            android:name="com.autonsi.databoard.Receving.FindQRCode.FindQRCodeActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name="com.autonsi.databoard.Receving.ReceivingScan.ReceivingScanActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
         <activity
             android:name="com.autonsi.databoard.Ship.ConfirmActivity"
-            android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
-        <activity
-            android:name="com.autonsi.databoard.Ship.PickingScanActivity"
             android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
         <activity
             android:name="com.autonsi.databoard.Ship.PickingManualActivity"
@@ -49,10 +55,10 @@
             android:name="com.autonsi.databoard.Ship.ShipActivity"
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity" />
         <activity
-            android:name="com.autonsi.databoard.Receving.OrderInforActivity"
-            android:parentActivityName="com.autonsi.databoard.Receving.ReceivingActivity" />
+            android:name="com.autonsi.databoard.Receving.ReceivingOder.OderInformation.OrderInforActivity"
+            android:parentActivityName="com.autonsi.databoard.Receving.ReceivingOder.ReceivingActivity" />
         <activity
-            android:name="com.autonsi.databoard.Receving.ReceivingActivity"
+            android:name="com.autonsi.databoard.Receving.ReceivingOder.ReceivingActivity"
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity" />
         <activity
             android:name="com.autonsi.databoard.Counting.Scan.ScanQRActivity"

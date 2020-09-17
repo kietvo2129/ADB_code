@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingOder.OderInformation;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,10 +39,7 @@ import android.widget.Toast;
 import com.autonsi.databoard.AlerError.AlerError;
 import com.autonsi.databoard.Barcode.BarcodeAdapter;
 import com.autonsi.databoard.Barcode.BarcodeMaster;
-import com.autonsi.databoard.Counting.Count.CountActivity;
 import com.autonsi.databoard.Counting.Count.DialogManager;
-import com.autonsi.databoard.Counting.CountList.CountListActivity;
-import com.autonsi.databoard.Counting.CountList.CountListItem;
 import com.bixolon.labelprinter.BixolonLabelPrinter;
 import com.quickblox.sample.videochat.java.R;
 

@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingOder.OderInformation;
 
 public class OrderInformationMaster {
 

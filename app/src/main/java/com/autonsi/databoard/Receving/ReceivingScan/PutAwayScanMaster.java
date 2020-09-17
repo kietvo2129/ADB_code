@@ -1,4 +1,4 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingScan;
 
 public class PutAwayScanMaster {
     String mt_lot_cd,mt_nm,bin_name;

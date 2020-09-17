@@ -1,6 +1,5 @@
-package com.autonsi.databoard.Receving;
+package com.autonsi.databoard.Receving.ReceivingScan;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,11 @@ import com.quickblox.sample.videochat.java.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderInformationAdapter extends RecyclerView.Adapter<OrderInformationAdapter.NoteVH> {
+public class PutAwayScanAdapter extends RecyclerView.Adapter<PutAwayScanAdapter.NoteVH> {
     String Url = com.autonsi.databoard.Url.webUrl;
+    public static String idsend, ss_nmsend, temp_issue_nmsend;
 
-    private List<OrderInformationMaster> mNoteList;
+    private List<PutAwayScanMaster> mNoteList;
     private OnItemClickListener mListener;
     //private OnCheckedChangeListener mListener2;
 
@@ -32,13 +32,13 @@ public class OrderInformationAdapter extends RecyclerView.Adapter<OrderInformati
     }
 
 
-    public OrderInformationAdapter(List<OrderInformationMaster> noteList) {
+    public PutAwayScanAdapter(List<PutAwayScanMaster> noteList) {
         mNoteList = noteList;
     }
 
     @Override
     public NoteVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_infor,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_putaway_scan,
                 parent, false);
         NoteVH evh = new NoteVH(v, mListener);
         return evh;
@@ -57,24 +57,14 @@ public class OrderInformationAdapter extends RecyclerView.Adapter<OrderInformati
 
     class NoteVH extends RecyclerView.ViewHolder {
 
-        public TextView tvvid, tvname, tvType,tvOrderBundle,tvOrderQty,tvBundleQty,tvUnitPrice,tvprice,tvQC;
-
-        LinearLayout lnear;
+        public TextView tvvid, tvname, tvlocation;
+        public LinearLayout lnear;
         public NoteVH(View itemView, final OnItemClickListener listener) {
             super(itemView);
             //title = (TextView) itemView.findViewById(R.id.title);
             tvvid = itemView.findViewById(R.id.tvvid);
             tvname = itemView.findViewById(R.id.tvname);
-            tvprice = itemView.findViewById(R.id.tvprice);
-            tvType = itemView.findViewById(R.id.tvType);
-            tvOrderBundle = itemView.findViewById(R.id.tvOrderBundle);
-            tvOrderQty = itemView.findViewById(R.id.tvOrderQty);
-            tvBundleQty = itemView.findViewById(R.id.tvBundleQty);
-            tvUnitPrice = itemView.findViewById(R.id.tvUnitPrice);
-            tvQC = itemView.findViewById(R.id.tvQC);
-
-
-
+            tvlocation = itemView.findViewById(R.id.tvlocation);
             lnear= itemView.findViewById(R.id.lnear);
             lnear.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,26 +82,13 @@ public class OrderInformationAdapter extends RecyclerView.Adapter<OrderInformati
         }
 
 
-        public void bindData(OrderInformationMaster note) {
-            tvvid.setText(note.getMt_cd());
+        public void bindData(PutAwayScanMaster note) {
+            tvvid.setText(note.getMt_lot_cd());
             tvname.setText(note.getMt_nm());
-            tvType.setText(note.getType_name());
-            tvOrderBundle.setText(note.getQty_bundle()+" "+ note.getUnit_name());
-            tvOrderQty.setText(note.getStorage_qty());
-            tvBundleQty.setText(note.getQty_bundle());
-            tvUnitPrice.setText(note.getUnit_price()+ " " + note.getCurrency_name());
-            tvprice.setText(note.getBundle_price()+ " " + note.getCurrency_name());
-            tvQC.setText(note.getQc_name()+ " - " + note.getQc_range()+ "%");
-
-            if (!note.getStatus_name().equals("Order")){
-                lnear.setBackgroundColor(Color.parseColor("#E3D9BC"));
-            }else {
-                lnear.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            }
-
+            tvlocation.setText(note.getBin_name());
         }
     }
-    public void filterList(ArrayList<OrderInformationMaster> filteredList) {
+    public void filterList(ArrayList<PutAwayScanMaster> filteredList) {
         mNoteList = filteredList;
         notifyDataSetChanged();
     }
