@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,9 +25,9 @@ public class PickManualAdapter extends RecyclerView.Adapter<PickManualAdapter.Pi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemCheck(int position, boolean ischeck);
 
-        void onItemCheck(int position);
+        void onItemClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -36,8 +37,9 @@ public class PickManualAdapter extends RecyclerView.Adapter<PickManualAdapter.Pi
 
     public static class PickManualViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout layout_ship;
-        public TextView i_mrno, i_mlno, i_mtnm, i_type, i_qty, i_status,i_confirm, i_location, i_word, i_mtno ,i_mrdno;
-public CheckBox check;
+        public TextView i_mrno, i_mlno, i_mtnm, i_type, i_qty, i_status, i_confirm, i_location, i_word, i_mtno, i_mrdno;
+        public CheckBox check;
+
         public PickManualViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
 
@@ -56,13 +58,13 @@ public CheckBox check;
 
             check = itemView.findViewById(R.id.i_check);
             layout_ship = itemView.findViewById(R.id.layout_ship);
-            check.setOnClickListener(new View.OnClickListener() {
+            check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemCheck(position);
+                            listener.onItemCheck(position, isChecked);
                         }
                     }
                 }
@@ -93,13 +95,14 @@ public CheckBox check;
     public void onBindViewHolder(PickManualViewHolder holder, int position) {
         PickManualItem shippingManualItem = recManItems.get(position);
 
-        if (shippingManualItem.isPickstatus() ) { // pick
+        if (shippingManualItem.isPickstatus()) { // pick
             holder.layout_ship.setBackgroundColor(Color.parseColor("#00574B"));
         } else if (shippingManualItem.isCheck()) {
             holder.layout_ship.setBackgroundColor(Color.parseColor("#3177BC"));
         } else {
             holder.layout_ship.setBackgroundColor(Color.TRANSPARENT);
         }
+        holder.check.setChecked(shippingManualItem.isCheck());
 
         holder.i_mrno.setText(shippingManualItem.getMr_no());
         holder.i_mlno.setText(shippingManualItem.getMl_no());
