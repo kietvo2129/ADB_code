@@ -85,7 +85,7 @@ public class OrderInforActivity extends AppCompatActivity {
         http:
 //dba.autonsi.com/
 
-        new getOrderInfor().execute(Url + "WMSReceiving/GetOrderMaterials?_search=false&nd=1600235178274&rows=20&page=1&sidx=&sord=asc");
+        new getOrderInfor().execute(Url + "WMSReceiving/GetOrderMaterials?_search=false&nd=1600235178274&rows=50&page=1&sidx=&sord=asc");
     }
 
     private class getOrderInfor extends AsyncTask<String, Void, String> {
@@ -101,7 +101,8 @@ public class OrderInforActivity extends AppCompatActivity {
             orderInformationMasterArrayListnew = new ArrayList<>();
             try {
 
-                JSONArray jsonArray = new JSONArray(s);
+                JSONObject jsonObject1 = new JSONObject(s);
+                JSONArray jsonArray = jsonObject1.getJSONArray("rows");
 
                 String id, mt_cd, mt_cd_origin, mt_nm, mt_type, unit_cd, bundle_qty, sp_cd, qc_cd, qc_range, unit_price, bundle_unit_price, currency_code, image, re_mark, use_yn, reg_dt, expiry_days, sp_nm, sp_type, bundle_price, storage_qty, lct_cd, status, qty_bundle, qc_name, currency_name, type_name, unit_name, status_name;
 
