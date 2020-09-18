@@ -258,7 +258,7 @@ public class IssuesAdapter extends RecyclerView.Adapter<IssuesAdapter.NoteVH> {
 
             if (!note.getCurrent_pow().equals("")){
                 rlpow.setVisibility(View.VISIBLE);
-                tvpow.setText(note.getCurrent_pow() + "Pa");
+                tvpow.setText(note.getCurrent_pow() + "W");
                 if (note.getPow_issue().equals("012")) {
                     icon_pow.setBackgroundResource(R.drawable.ic_powgreen);
                 } else {

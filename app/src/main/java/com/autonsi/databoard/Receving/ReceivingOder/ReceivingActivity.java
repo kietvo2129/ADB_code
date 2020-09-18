@@ -94,9 +94,9 @@ public class ReceivingActivity extends AppCompatActivity {
             }
         }
         receivingMasterArrayList = filteredList;
-        if (filteredList!=null) {
+        //if (filteredList.size()!=0) {
             receivingAdapter.filterList(filteredList);
-        }
+       // }
     }
 
     private void getMaterials() {
@@ -153,7 +153,6 @@ public class ReceivingActivity extends AppCompatActivity {
                 String mtid, mt_cd, mt_nm, mt_type, unit_cd, bundle_qty, sp_cd, qc_cd, qc_range, unit_price, bundle_unit_price, currency_code, image, re_mark, use_yn, expiry_days, sp_nm, sp_type, bundle_price, name, currency_name, type_name, unit_name;
                 if (jsonArray.length() == 0) {
                     AlerError.Baoloi("not found data", ReceivingActivity.this);
-                    return;
                 } else {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -183,9 +182,9 @@ public class ReceivingActivity extends AppCompatActivity {
                         receivingMasterArrayList.add(new ReceivingMaster(mtid, mt_cd, mt_nm, mt_type, unit_cd, bundle_qty, sp_cd, qc_cd, qc_range, unit_price, bundle_unit_price
                                 , currency_code, image, re_mark, use_yn, expiry_days, sp_nm, sp_type, bundle_price, name, currency_name, type_name, unit_name));
                     }
-                    receivingMasterArrayListnew = receivingMasterArrayList;
-                    buildRecyclerView();
                 }
+                receivingMasterArrayListnew = receivingMasterArrayList;
+                buildRecyclerView();
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", ReceivingActivity.this);

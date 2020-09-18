@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.quickblox.sample.videochat.java">
-
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -46,7 +46,7 @@
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:theme="@style/AppThemee.NoActionBar" />
         <activity
-            android:name="com.autonsi.databoard.Ship.ConfirmActivity"
+            android:name="com.autonsi.databoard.Ship.Confirm.ConfirmActivity"
             android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity" />
         <activity
             android:name="com.autonsi.databoard.Ship.PickingManualActivity"

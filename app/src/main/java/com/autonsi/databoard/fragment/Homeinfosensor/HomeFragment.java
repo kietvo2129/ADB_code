@@ -2,6 +2,7 @@ package com.autonsi.databoard.fragment.Homeinfosensor;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -54,11 +55,14 @@ public class HomeFragment extends Fragment {
 
     LineChart mlinechart;
     ImageView image;
-
+    private String [] permissions = {"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.ACCESS_FINE_LOCATION", "android.permission.READ_PHONE_STATE", "android.permission.SYSTEM_ALERT_WINDOW","android.permission.CAMERA"};
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        int requestCode = 200;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, requestCode);
+        }
         tvisu = view.findViewById(R.id.tvisu);
         tvpress = view.findViewById(R.id.tvpress);
         tvtemp = view.findViewById(R.id.tvtemp);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.autonsi.databoard.Ship.Confirm.ConfirmActivity;
 import com.autonsi.databoard.Ship.ShippingScan.PickkingScanActivity;
 import com.quickblox.sample.videochat.java.R;
 
