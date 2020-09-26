@@ -148,6 +148,7 @@
 
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:background="#8C988C"
             android:layout_marginLeft="32dp"
             android:layout_below="@+id/rl"
@@ -157,5 +158,43 @@
             android:layout_marginBottom="0dp"
             android:padding="8dp"
             tools:listitem="@layout/item_confirm_child_detail_list" />
+        <RelativeLayout
+            android:id="@+id/backend"
+            android:layout_below="@+id/rycviewchild"
+            android:layout_marginLeft="32dp"
+            android:layout_width="match_parent"
+            android:background="#C5C2C2"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"
+                android:background="#A5A3A3"
+                android:text=" Back " />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/tvback" />
+            <TextView
+                android:id="@+id/tvnext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:background="#A5A3A3"
+                android:layout_toEndOf="@+id/textview"
+                android:text=" Next " />
+
+        </RelativeLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

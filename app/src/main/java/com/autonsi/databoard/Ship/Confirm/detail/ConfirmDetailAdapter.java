@@ -26,7 +26,7 @@ public class ConfirmDetailAdapter extends RecyclerView.Adapter<ConfirmDetailAdap
     //private OnCheckedChangeListener mListener2;
 
     public interface OnItemClickListener {
-        void onwarningClick(int position, RecyclerView recyclerView);
+        void onwarningClick(int position, RecyclerView recyclerView,TextView tvback,TextView textview,TextView tvnext);
     }
 
 
@@ -60,9 +60,9 @@ public class ConfirmDetailAdapter extends RecyclerView.Adapter<ConfirmDetailAdap
 
     class NoteVH extends RecyclerView.ViewHolder {
 
-        public TextView mrdno, mt_no, mt_nm, req_bundle_qty, req_qty, req_bundle_qty1, req_qty1;
+        public TextView mrdno, mt_no, mt_nm, req_bundle_qty, req_qty, req_bundle_qty1, req_qty1,tvback,textview, tvnext;
         ImageView image;
-        RelativeLayout rl;
+        RelativeLayout rl,backend;
         RecyclerView rycviewchild;
 
         public NoteVH(View itemView, final OnItemClickListener listener) {
@@ -77,6 +77,11 @@ public class ConfirmDetailAdapter extends RecyclerView.Adapter<ConfirmDetailAdap
             req_bundle_qty1 = itemView.findViewById(R.id.req_bundle_qty1);
             req_qty1 = itemView.findViewById(R.id.req_qty1);
             rycviewchild = itemView.findViewById(R.id.rycviewchild);
+            tvback = itemView.findViewById(R.id.tvback);
+            textview = itemView.findViewById(R.id.textview);
+            tvnext = itemView.findViewById(R.id.tvnext);
+            backend= itemView.findViewById(R.id.backend);
+
             rl = itemView.findViewById(R.id.rl);
             rl.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,12 +89,14 @@ public class ConfirmDetailAdapter extends RecyclerView.Adapter<ConfirmDetailAdap
                     if (listener != null) {
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
-                            listener.onwarningClick(position, rycviewchild);
+                            listener.onwarningClick(position, rycviewchild,tvback,textview, tvnext);
                             if (rycviewchild.getVisibility() == View.VISIBLE) {
                                 rycviewchild.setVisibility(View.GONE);
+                                backend.setVisibility(View.GONE);
                                 image.setBackgroundResource(R.drawable.ic_right);
                             } else {
                                 rycviewchild.setVisibility(View.VISIBLE);
+                                backend.setVisibility(View.VISIBLE);
                                 image.setBackgroundResource(R.drawable.ic_down);
                             }
                         }
@@ -101,6 +108,7 @@ public class ConfirmDetailAdapter extends RecyclerView.Adapter<ConfirmDetailAdap
 
         public void bindData(ConfirmdetailMaster note) {
             rycviewchild.setVisibility(View.GONE);
+            backend.setVisibility(View.GONE);
             image.setBackgroundResource(R.drawable.ic_right);
             mrdno.setText(note.getMrd_no());
             mt_no.setText(note.getMt_no());

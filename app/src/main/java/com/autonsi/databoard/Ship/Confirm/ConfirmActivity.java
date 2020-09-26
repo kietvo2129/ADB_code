@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -55,6 +57,9 @@ public class ConfirmActivity extends AppCompatActivity {
     ArrayList<ConfirmMaster> confirmMasterArrayList;
     ArrayList<ConfirmMaster> confirmMasterArrayListnew;
 
+    TextView tvback;
+    TextView textview;
+    TextView tvnext;
     ConfirmAdapter confirmAdapter;
     Dialog filterDialog;
 
@@ -63,7 +68,7 @@ public class ConfirmActivity extends AppCompatActivity {
 
     Bitmap fileHinh;
     String vitriConfirm = "";
-
+    int vitri = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -475,10 +480,14 @@ public class ConfirmActivity extends AppCompatActivity {
 
         confirmDetailAdapter.setOnItemClickListener(new ConfirmDetailAdapter.OnItemClickListener() {
             @Override
-            public void onwarningClick(int position, RecyclerView recyclerView) {
+            public void onwarningClick(int position, RecyclerView recyclerView, TextView a, TextView b, TextView c) {
 
+                tvback = a;
+                textview =b;
+                tvnext = c;
                 getDetailChild(position);
                 rycviewchilddetail = recyclerView;
+                vitri = position;
 
             }
         });
@@ -486,7 +495,7 @@ public class ConfirmActivity extends AppCompatActivity {
     }
 
     private void getDetailChild(int position) {
-        new getdatadetailChild().execute(Url + "WMSShipping/GetConFirmListLot?id=" + confirmdetailMasterArrayList.get(position).getMrdid());
+        new getdatadetailChild().execute(Url + "WMSShipping/GetConFirmListLot?lot_table_id=" + confirmdetailMasterArrayList.get(position).getMrdid()+"&page=1&rows=20&sidx=&sord=asc&_search=false");
     }
 
     private class getdatadetailChild extends AsyncTask<String, Void, String> {
@@ -499,9 +508,16 @@ public class ConfirmActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             confirmdetailChildArrayList = new ArrayList<>();
+            int total = 0,page= 0,records= 0;
             try {
 
-                JSONArray jsonArray = new JSONArray(s);
+                JSONObject jsonObjectmain = new JSONObject(s);
+
+                total = jsonObjectmain.getInt("total");
+                page = jsonObjectmain.getInt("page");
+                records = jsonObjectmain.getInt("records");
+
+                JSONArray jsonArray = jsonObjectmain.getJSONArray("rows");
                 String mt_lot_cd, lot_qty, expiry_date;
                 if (jsonArray.length() == 0) {
                     AlerError.Baoloi("not found data", ConfirmActivity.this);
@@ -514,7 +530,7 @@ public class ConfirmActivity extends AppCompatActivity {
                         expiry_date = jsonObject.getString("expiry_date").replace("null", "");
                         confirmdetailChildArrayList.add(new ConfirmdetailChildMaster(mt_lot_cd, lot_qty, expiry_date));
                     }
-                    buildRecyclerViewdetailChild();
+                    buildRecyclerViewdetailChild(total,page,records);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -523,7 +539,7 @@ public class ConfirmActivity extends AppCompatActivity {
         }
     }
 
-    private void buildRecyclerViewdetailChild() {
+    private void buildRecyclerViewdetailChild(int total,int page, int records) {
         RecyclerView.LayoutManager mLayoutManager;
         ConfirmDetailChildAdapter confirmDetailChildAdapter;
         rycviewchilddetail.setHasFixedSize(true);
@@ -532,7 +548,74 @@ public class ConfirmActivity extends AppCompatActivity {
         rycviewchilddetail.setLayoutManager(mLayoutManager);
         rycviewchilddetail.setAdapter(confirmDetailChildAdapter);
 
+//        tvback.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (page -1 <=0){
+//                    return;
+//                }else {
+//                  nextbage(page-1,vitri);
+//                }
+//            }
+//        });
+        tvnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (page + 1 > total){
+                    return;
+                }else {
+                    nextbage(page + 1,vitri);
+                }
+            }
+        });
+        textview.setText("Page: " + page + "/" + total + " \nView " + (20*page - 19) + " - "+ 20*page + " of "+ records);
     }
+
+    private void nextbage(int page,int position) {
+        new getdatadetailChildnextbage().execute(Url + "WMSShipping/GetConFirmListLot?lot_table_id=" + confirmdetailMasterArrayList.get(position).getMrdid()+"&page=" +
+                page + "&rows=20&sidx=&sord=asc&_search=false");
+    }
+
+    private class getdatadetailChildnextbage extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            int total = 0,page= 0,records= 0;
+            try {
+
+                JSONObject jsonObjectmain = new JSONObject(s);
+
+                total = jsonObjectmain.getInt("total");
+                page = jsonObjectmain.getInt("page");
+                records = jsonObjectmain.getInt("records");
+
+                JSONArray jsonArray = jsonObjectmain.getJSONArray("rows");
+                String mt_lot_cd, lot_qty, expiry_date;
+                if (jsonArray.length() == 0) {
+                    AlerError.Baoloi("not found data", ConfirmActivity.this);
+                    return;
+                } else {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        mt_lot_cd = jsonObject.getString("mt_lot_cd").replace("null", "");
+                        lot_qty = jsonObject.getString("lot_qty").replace("null", "");
+                        expiry_date = jsonObject.getString("expiry_date").replace("null", "");
+                        confirmdetailChildArrayList.add(new ConfirmdetailChildMaster(mt_lot_cd, lot_qty, expiry_date));
+                    }
+                    buildRecyclerViewdetailChild(total,page,records);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                AlerError.Baoloi("Could not connect to server", ConfirmActivity.this);
+            }
+        }
+    }
+
 
     public static int getWidth(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
