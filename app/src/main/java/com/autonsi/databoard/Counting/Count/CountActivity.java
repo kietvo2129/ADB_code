@@ -3,12 +3,10 @@ package com.autonsi.databoard.Counting.Count;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -37,14 +35,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextSwitcher;
@@ -58,12 +52,8 @@ import com.autonsi.databoard.Barcode.BarcodeMaster;
 import com.autonsi.databoard.Counting.Count.Detail.CountingDetailActivity;
 import com.autonsi.databoard.Counting.Count.Line.DataAllCountingMaster;
 import com.autonsi.databoard.Counting.Count.Line.LineMaster;
-import com.autonsi.databoard.Counting.CountList.CountListAdaptor;
-import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorActivity;
-import com.autonsi.databoard.Counting.StatusLayout.MapSensor.CountingMapSensorAdapter;
-import com.autonsi.databoard.DigitalData.IssuesList.IssuesActivity;
+import com.autonsi.databoard.Counting.Count.QCCheck.QCCheckActivity;
 import com.bixolon.labelprinter.BixolonLabelPrinter;
-import com.bumptech.glide.Glide;
 import com.quickblox.sample.videochat.java.R;
 
 import org.json.JSONArray;
@@ -79,8 +69,8 @@ import java.util.Set;
 public class CountActivity extends AppCompatActivity {
     String Url = com.autonsi.databoard.Url.webUrl;
     CardView cv_id, cv_infor;
-    TextSwitcher tv_taget, tv_time,tv_product;
-    TextSwitcher tv_id, tv_actual, tv_defective,tvlocation;
+    TextSwitcher tv_taget, tv_time, tv_product, tv_qc;
+    TextSwitcher tv_id, tv_actual, tv_defective, tvlocation;
     RelativeLayout rl_actual_plus, rl_actual_sub, rl_defective_sub, rl_defective_plus;
     int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
     int animV[] = new int[]{R.anim.slide_in_top, R.anim.slide_out_bottom};
@@ -104,7 +94,6 @@ public class CountActivity extends AppCompatActivity {
     ArrayList<BarcodeMaster> barcodeMasterArrayList;
 
 
-
     private UsbDevice device;
     private boolean tryedAutoConnect = false;
     private UsbManager usbManager;
@@ -115,7 +104,8 @@ public class CountActivity extends AppCompatActivity {
     private boolean mIsConnected;
     public ArrayList<BluetoothDevice> m_LeDevices;
 
-
+    public static String line_no_d = "", line_noend = "";
+    private int vitriluulai = -1;
 
 
     @Override
@@ -136,10 +126,31 @@ public class CountActivity extends AppCompatActivity {
         tv_taget = findViewById(R.id.tv_taget);
         tv_time = findViewById(R.id.tv_time);
         tv_product = findViewById(R.id.tv_product);
+        tv_qc = findViewById(R.id.tv_qc);
 
 
-
-
+//        findViewById(R.id.QCcheck).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                TextView tv = (TextView) tv_id.getCurrentView();
+//                TextView tv1 = (TextView) tv_product.getCurrentView();
+//                TextView tv2 = (TextView) tv_actual.getCurrentView();
+//                TextView tv3 = (TextView) tv_qc.getCurrentView();
+//                if (tv3.getText().toString().length()==0){
+//                    AlerError.Baoloi("Please insert QC code.",CountActivity.this);
+//                }else if (numActual!=0) {
+//                    Intent intent = new Intent(CountActivity.this, QCCheckActivity.class);
+//                    intent.putExtra("line",tv.getText().toString());
+//                    intent.putExtra("product_nm", tv1.getText().toString());
+//                    intent.putExtra("tv_Actual", tv2.getText().toString());
+//                    intent.putExtra("tv_qc", tv3.getText().toString());
+//                    startActivity(intent);
+//                }else {
+//                    AlerError.Baoloi("Actual = 0",CountActivity.this);
+//                }
+//            }
+//        });
 
 
         cv_infor.setOnClickListener(new View.OnClickListener() {
@@ -170,14 +181,14 @@ public class CountActivity extends AppCompatActivity {
                 return true;
             }
         });
-        rl_defective_plus.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                inputnum("Defective");
-                vitri_bam = "DPL";
-                return true;
-            }
-        });
+//        rl_defective_plus.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                inputnum("Defective");
+//                vitri_bam = "DPL";
+//                return true;
+//            }
+//        });
 
         rl_actual_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,27 +218,46 @@ public class CountActivity extends AppCompatActivity {
         rl_defective_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rl_defective_plus.setEnabled(false);
-                vitri_bam = "DP";
-                sendDataCounting(1);
-                DelayClick(rl_defective_plus);
+//                rl_defective_plus.setEnabled(false);
+//                vitri_bam = "DP";
+//                sendDataCounting(1);
+//                DelayClick(rl_defective_plus);
+
+                TextView tv = (TextView) tv_id.getCurrentView();
+                TextView tv1 = (TextView) tv_product.getCurrentView();
+                TextView tv2 = (TextView) tv_actual.getCurrentView();
+                TextView tv3 = (TextView) tv_qc.getCurrentView();
+                TextView tv4 = (TextView) tv_defective.getCurrentView();
+                if (tv3.getText().toString().length() == 0) {
+                    AlerError.Baoloi("Please insert QC code.", CountActivity.this);
+                } else if (numActual != 0) {
+                    Intent intent = new Intent(CountActivity.this, QCCheckActivity.class);
+                    intent.putExtra("line", tv.getText().toString());
+                    intent.putExtra("product_nm", tv1.getText().toString());
+                    intent.putExtra("tv_Actual", tv2.getText().toString());
+                    intent.putExtra("tv_defective", tv4.getText().toString());
+                    intent.putExtra("tv_qc", tv3.getText().toString());
+                    startActivity(intent);
+                } else {
+                    AlerError.Baoloi("Actual = 0", CountActivity.this);
+                }
 
             }
         });
-        rl_defective_sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rl_defective_sub.setEnabled(false);
-                if (numDefective <= 0) {
-                    numDefective = 0;
-                    DelayClick(rl_defective_sub);
-                } else {
-                    vitri_bam = "DS";
-                    sendDataCounting(-1);
-                    DelayClick(rl_defective_sub);
-                }
-            }
-        });
+//        rl_defective_sub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                rl_defective_sub.setEnabled(false);
+//                if (numDefective <= 0) {
+//                    numDefective = 0;
+//                    DelayClick(rl_defective_sub);
+//                } else {
+//                    vitri_bam = "DS";
+//                    sendDataCounting(-1);
+//                    DelayClick(rl_defective_sub);
+//                }
+//            }
+//        });
         tv_id = (TextSwitcher) findViewById(R.id.ts_temperature);
         tv_id.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
         tv_actual.setFactory(new TextViewFactory(R.style.NumActualTextView, true));
@@ -236,6 +266,7 @@ public class CountActivity extends AppCompatActivity {
         tv_time.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         tv_product.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         tv_taget.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
+        tv_qc.setFactory(new TextViewFactory(R.style.TemperatureTextView2, false));
         getDataline();
 
         mBixolonLabelPrinter = new BixolonLabelPrinter(this, mHandler, Looper.getMainLooper());
@@ -351,6 +382,7 @@ public class CountActivity extends AppCompatActivity {
                     lineMaster.add(new LineMaster(id, line_no, line_nm));
                 }
                 tv_id.setText(lineMaster.get(0).getLine_no() + "/" + lineMaster.get(0).getLine_nm());
+                line_noend = lineMaster.get(0).getLine_no();
                 id_line = lineMaster.get(0).getId();
                 loadDataAll(0);
                 posss = 0;
@@ -422,6 +454,7 @@ public class CountActivity extends AppCompatActivity {
                 tv_id.setInAnimation(CountActivity.this, animH[0]);
                 tv_id.setOutAnimation(CountActivity.this, animH[1]);
                 tv_id.setText(arrayAdapter.getItem(i).toString());
+                line_noend = lineMaster.get(i).getLine_no();
                 id_line = lineMaster.get(i).getId();
                 loadDataAll(i);
                 posss = i;
@@ -432,10 +465,9 @@ public class CountActivity extends AppCompatActivity {
     }
 
     private void loadDataAll(int pos) {
-
+        vitriluulai = pos;
         new loadDataAll().execute(Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
         Log.d("loadDataAll", Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(pos).getId());
-
     }
 
     private class loadDataAll extends AsyncTask<String, Void, String> {
@@ -448,7 +480,7 @@ public class CountActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             dataAllCountingMasters = new ArrayList<>();
-            String building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no;
+            String building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no, qc_cd, line_no_d;
             try {
 
                 JSONObject jsonObject = new JSONObject(s);
@@ -467,7 +499,10 @@ public class CountActivity extends AppCompatActivity {
                 start_time = jsonObject1.getString("start_time").replace("null", "");
                 end_time = jsonObject1.getString("end_time").replace("null", "");
                 prd_no = jsonObject1.getString("prd_no").replace("null", "");
-                dataAllCountingMasters.add(new DataAllCountingMaster(building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no));
+                qc_cd = jsonObject1.getString("qc_cd").replace("null", "");
+                line_no_d = jsonObject1.getString("line_no_d").replace("null", "");
+
+                dataAllCountingMasters.add(new DataAllCountingMaster(building_nm, floor_nm, target_qty, actual_qty, defect_qty, start_time, end_time, prd_no, qc_cd, line_no_d));
                 setDataAll();
 
             } catch (JSONException e) {
@@ -484,6 +519,8 @@ public class CountActivity extends AppCompatActivity {
         numDefective = Integer.parseInt(dataAllCountingMasters.get(0).getDefect_qty());
         tvlocation.setText(dataAllCountingMasters.get(0).getBuilding_nm() + " - " + dataAllCountingMasters.get(0).getFloor_nm());
         tv_taget.setText(formatter.format(Integer.parseInt(dataAllCountingMasters.get(0).getTarget_qty())));
+        tv_qc.setText(dataAllCountingMasters.get(0).getQc_cd());
+        line_no_d = dataAllCountingMasters.get(0).getLine_no_d();
         String time = dataAllCountingMasters.get(0).getStart_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getStart_time().substring(2, 4)
                 + " ~ " + dataAllCountingMasters.get(0).getEnd_time().substring(0, 2) + ":" + dataAllCountingMasters.get(0).getEnd_time().substring(2, 4);
         tv_time.setText(time);
@@ -496,7 +533,7 @@ public class CountActivity extends AppCompatActivity {
     }
 
     private void setSeekbar(int numActual) {
-        intValue = numActual*100/Integer.parseInt(dataAllCountingMasters.get(0).getTarget_qty());
+        intValue = numActual * 100 / Integer.parseInt(dataAllCountingMasters.get(0).getTarget_qty());
         VerticalProgressBar.getProgressDrawable().setColorFilter(Color.CYAN, PorterDuff.Mode.SRC_IN);
         VerticalProgressBar.setProgress(intValue);
     }
@@ -612,12 +649,11 @@ public class CountActivity extends AppCompatActivity {
     private void openPrint() {
 
 
-       new creat_Barcode_print().execute(Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
-               "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
-       Log.d("creat_Barcode_print",Url+"Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
-               "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
+        new creat_Barcode_print().execute(Url + "Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
+                "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
+        Log.d("creat_Barcode_print", Url + "Plan/PlanCrQrLot?id=" + lineMaster.get(posss).getId() +
+                "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no() + "&actual_qty=" + numActual);
     }
-
 
 
     private class creat_Barcode_print extends AsyncTask<String, Void, String> {
@@ -629,34 +665,36 @@ public class CountActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            new print_barcode().execute(Url+"Plan/QRbarcodeCouting?id=" + lineMaster.get(posss).getId() +
+            new print_barcode().execute(Url + "Plan/QRbarcodeCouting?id=" + lineMaster.get(posss).getId() +
                     "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no());
-            Log.d("print_barcode",Url+"Plan/QRbarcodeCouting?id" + lineMaster.get(posss).getId() +
+            Log.d("print_barcode", Url + "Plan/QRbarcodeCouting?id" + lineMaster.get(posss).getId() +
                     "&prd_no=" + dataAllCountingMasters.get(0).getPrd_no());
 
         }
 
     }
+
     private class print_barcode extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strings) {
             return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
         }
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            barcodeMasterArrayList =new ArrayList<>();
-            String id,barcode;
+            barcodeMasterArrayList = new ArrayList<>();
+            String id, barcode;
             try {
                 JSONArray jsonArray = new JSONArray(s);
-                if (jsonArray.length() == 0){
+                if (jsonArray.length() == 0) {
                     return;
                 }
-                for (int i=0;i<jsonArray.length();i++){
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    id = jsonObject.getString("id").replace("null","");
-                    barcode = jsonObject.getString("prd_lot").replace("null","");
-                    barcodeMasterArrayList.add(new BarcodeMaster(id,barcode,i + 1 + "",true));
+                    id = jsonObject.getString("id").replace("null", "");
+                    barcode = jsonObject.getString("prd_lot").replace("null", "");
+                    barcodeMasterArrayList.add(new BarcodeMaster(id, barcode, i + 1 + "", true));
                 }
 
             } catch (JSONException e) {
@@ -699,7 +737,6 @@ public class CountActivity extends AppCompatActivity {
         });
 
 
-
         dialog.show();
     }
 
@@ -707,7 +744,7 @@ public class CountActivity extends AppCompatActivity {
         final boolean hasResponse = false;
         final int responseLength = 0;
 
-        for (int i =0;i<barcodeMasterArrayList.size();i++){
+        for (int i = 0; i < barcodeMasterArrayList.size(); i++) {
 
             if (barcodeMasterArrayList.get(i).isChecked()) {
                 String command =
@@ -734,7 +771,7 @@ public class CountActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        VerticalProgressBar = (ProgressBar)findViewById(R.id.progressBar1);
+        VerticalProgressBar = (ProgressBar) findViewById(R.id.progressBar1);
         String namedevice = android.os.Build.MODEL;
         if (namedevice.equals("D1s")) {
             getMenuInflater().inflate(R.menu.menu_print, menu);
@@ -750,6 +787,7 @@ public class CountActivity extends AppCompatActivity {
             isConnectedPrinter();
         }
     }
+
     private void isConnectedPrinter() {
         try {
             usbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
@@ -832,11 +870,11 @@ public class CountActivity extends AppCompatActivity {
                             break;
 
                         case BixolonLabelPrinter.STATE_CONNECTING:
-                           // setStatus(getString(R.string.title_connecting));
+                            // setStatus(getString(R.string.title_connecting));
                             break;
 
                         case BixolonLabelPrinter.STATE_NONE:
-                           // setStatus(getString(R.string.title_not_connected));
+                            // setStatus(getString(R.string.title_not_connected));
                             //mListView.setEnabled(false);
                             //mIsConnected = false;
                             invalidateOptionsMenu();
@@ -845,7 +883,7 @@ public class CountActivity extends AppCompatActivity {
                     break;
 
                 case BixolonLabelPrinter.MESSAGE_READ:
-                   // CountActivity.this.dispatchMessage(msg);
+                    // CountActivity.this.dispatchMessage(msg);
                     break;
 
                 case BixolonLabelPrinter.MESSAGE_DEVICE_NAME:
@@ -893,4 +931,13 @@ public class CountActivity extends AppCompatActivity {
 //        actionBar.setSubtitle(subtitle);
 //    }
 
+
+    @Override
+    protected void onPostResume() {
+        if (vitriluulai!=-1) {
+            new loadDataAll().execute(Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(vitriluulai).getId());
+            Log.d("loadDataAll", Url + "plan/getDataLineInfoTodayDetail?id=" + lineMaster.get(vitriluulai).getId());
+        }
+        super.onPostResume();
+    }
 }

@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.quickblox.sample.videochat.java">
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -33,10 +34,13 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name="com.autonsi.databoard.Ship.ShippingScan.PickkingScanActivity"
+        <activity android:name="com.autonsi.databoard.Counting.Count.QCCheck.QCCheckActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName="com.autonsi.databoard.Counting.Count.CountActivity" />
+        <activity
+            android:name="com.autonsi.databoard.Ship.ShippingScan.PickkingScanActivity"
             android:parentActivityName="com.autonsi.databoard.Ship.ShipActivity"
-            android:theme="@style/AppThemee.NoActionBar"
-            />
+            android:theme="@style/AppThemee.NoActionBar" />
         <activity
             android:name="com.autonsi.databoard.Receving.FindQRCode.FindQRCodeActivity"
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
@@ -78,6 +82,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.autonsi.databoard.Counting.Count.CountActivity"
+            android:launchMode="singleTop"
             android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
             android:screenOrientation="portrait">
             <meta-data

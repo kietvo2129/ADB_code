@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/h1"
         style="@style/SelecItemBackground"
@@ -77,6 +78,7 @@
                     android:id="@+id/tvlocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/im1"
@@ -100,6 +102,7 @@
                     android:id="@+id/tv_taget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/im2"
@@ -123,14 +126,15 @@
                     android:id="@+id/tv_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/im4"
                     android:inAnimation="@anim/slide_in_left"
-                    android:outAnimation="@anim/slide_out_left"  />
+                    android:outAnimation="@anim/slide_out_left" />
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -146,15 +150,38 @@
                     android:id="@+id/tv_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"
                     android:layout_toEndOf="@+id/im3"
                     android:inAnimation="@anim/slide_in_left"
-                    android:outAnimation="@anim/slide_out_left"  />
+                    android:outAnimation="@anim/slide_out_left" />
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/im5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_qccheck" />
+
+                <TextSwitcher
+                    android:id="@+id/tv_qc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/im5"
+                    android:inAnimation="@anim/slide_in_left"
+                    android:outAnimation="@anim/slide_out_left" />
+
+            </RelativeLayout>
 
             <!--            <TextView-->
             <!--                android:layout_marginLeft="8dp"-->
@@ -181,17 +208,44 @@
             <!--                android:gravity="center_vertical"-->
             <!--                android:textColor="#fff" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_time"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:drawableLeft="@drawable/ic_clock"-->
-<!--                android:drawablePadding="8dp"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:textColor="#fff" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_time"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:drawableLeft="@drawable/ic_clock"-->
+            <!--                android:drawablePadding="8dp"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:textColor="#fff" />-->
 
 
         </LinearLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/QCcheck"
+                style="@style/SelecItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                app:cardBackgroundColor="#BAEFEF"
+                app:cardCornerRadius="8dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/qccheck" />
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -260,7 +314,6 @@
             </RelativeLayout>
 
 
-
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
@@ -293,13 +346,13 @@
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="8dp"
-            android:layout_height="4dp" />
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="2dp"-->
-<!--            android:layout_marginHorizontal="8dp"-->
-<!--            android:background="#FFF" />-->
+            android:layout_height="4dp"
+            android:layout_marginHorizontal="8dp" />
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="2dp"-->
+        <!--            android:layout_marginHorizontal="8dp"-->
+        <!--            android:background="#FFF" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

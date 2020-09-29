@@ -1,9 +1,9 @@
 package com.autonsi.databoard.Counting.Count.Line;
 
 public class DataAllCountingMaster {
-    String building_nm,floor_nm,target_qty,actual_qty,defect_qty,start_time,end_time,prd_no;
+    String building_nm,floor_nm,target_qty,actual_qty,defect_qty,start_time,end_time,prd_no,qc_cd,line_no_d;
 
-    public DataAllCountingMaster(String building_nm, String floor_nm, String target_qty, String actual_qty, String defect_qty, String start_time, String end_time,String prd_no) {
+    public DataAllCountingMaster(String building_nm, String floor_nm, String target_qty, String actual_qty, String defect_qty, String start_time, String end_time,String prd_no,String qc_cd,String line_no_d) {
         this.building_nm = building_nm;
         this.floor_nm = floor_nm;
         this.target_qty = target_qty;
@@ -12,6 +12,25 @@ public class DataAllCountingMaster {
         this.start_time = start_time;
         this.end_time = end_time;
         this.prd_no = prd_no;
+        this.qc_cd = qc_cd;
+        this.line_no_d = line_no_d;
+
+    }
+
+    public String getLine_no_d() {
+        return line_no_d;
+    }
+
+    public void setLine_no_d(String line_no_d) {
+        this.line_no_d = line_no_d;
+    }
+
+    public String getQc_cd() {
+        return qc_cd;
+    }
+
+    public void setQc_cd(String qc_cd) {
+        this.qc_cd = qc_cd;
     }
 
     public String getPrd_no() {
