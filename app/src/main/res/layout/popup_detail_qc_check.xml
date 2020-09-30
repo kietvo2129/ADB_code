@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="8dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/h1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#92D050">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="QC check detail"
+            android:textColor="#fff"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            app:cardBackgroundColor="#7A7A79"
+            app:cardCornerRadius="4dp">
+
+            <ImageView
+                style="@style/SelectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/btclose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_close" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/h1"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>

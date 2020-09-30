@@ -45,8 +45,7 @@ public class SplashActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     int versionCode = BuildConfig.VERSION_CODE;
     String versionName = BuildConfig.VERSION_NAME;
-    String latestVersion="",latestVersionCode="",url="",releaseNotes="";
-
+    String latestVersion = "", latestVersionCode = "", url = "", releaseNotes = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        new read_infor_app().execute(Url+"APIProduct/GetApp_info");
+        new read_infor_app().execute(Url + "APIProduct/GetApp_info");
 
     }
 
@@ -71,11 +70,16 @@ public class SplashActivity extends AppCompatActivity {
             super.onPostExecute(s);
             try {
                 JSONArray jsonArray = new JSONArray(s);
-                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                latestVersion = jsonObject.getString("latestVersion").replace("null","");
-                latestVersionCode = jsonObject.getString("latestVersionCode").replace("null","");
-                url = jsonObject.getString("url").replace("null","");
-                releaseNotes = jsonObject.getString("releaseNotes").replace("null","");
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                    if (jsonObject2.getInt("id") == 1) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        latestVersion = jsonObject.getString("latestVersion").replace("null", "");
+                        latestVersionCode = jsonObject.getString("latestVersionCode").replace("null", "");
+                        url = jsonObject.getString("url").replace("null", "");
+                        releaseNotes = jsonObject.getString("releaseNotes").replace("null", "");
+                    }
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
                 AlerError.Baoloi("Could not connect to server", SplashActivity.this);
@@ -85,14 +89,14 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-    private void checkversionapp(){
+    private void checkversionapp() {
         //Toast.makeText(this, latestVersionCode+"    "+latestVersion, Toast.LENGTH_SHORT).show();
-        if (latestVersionCode.equals(versionCode+"")&&latestVersion.equals(versionName)){
+        if (latestVersionCode.equals(versionCode + "") && latestVersion.equals(versionName)) {
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (sharedPreferences.getBoolean("TK",false)) {
+                    if (sharedPreferences.getBoolean("TK", false)) {
                         //  LoginService.start(SplashActivity.this, sharedPrefsHelper.getQbUser());
                         // OpponentsActivity.start(SplashActivity.this);
 
@@ -105,7 +109,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }, SPLASH_DELAY);
 
-        }else {
+        } else {
             Baoloi("Please, update new version app.");
         }
     }
@@ -114,11 +118,11 @@ public class SplashActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(SplashActivity.this);
         alertDialog.setCancelable(false);
         alertDialog.setTitle("Warning!!!");
-        alertDialog.setMessage(text + "\n"+ releaseNotes);
+        alertDialog.setMessage(text + "\n" + releaseNotes);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent=new Intent(Intent.ACTION_VIEW);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
             }
@@ -129,12 +133,11 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         //checkversionapp();
-        new read_infor_app().execute(Url+"APIProduct/GetApp_info");
+        new read_infor_app().execute(Url + "APIProduct/GetApp_info");
         super.onResume();
 
 
     }
-
 
 
 }

@@ -6,18 +6,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +41,16 @@ import com.android.volley.toolbox.Volley;
 import com.autonsi.databoard.ActivitiesLogin.SplashActivity;
 import com.autonsi.databoard.AlerError.AlerError;
 import com.autonsi.databoard.Counting.Count.CountActivity;
+import com.autonsi.databoard.Receving.ReceivingOder.ReceivingActivity;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.quickblox.sample.videochat.java.R;
 
 import org.json.JSONArray;
@@ -45,6 +65,7 @@ public class QCCheckActivity extends AppCompatActivity {
     TextView tv_line,tv_Actual,tv_product_nm;
     String qc_code="";
 
+    PieChart pieChart;
     ArrayList<QCcheckMaster> qCcheckMasterArrayList;
     QCcheckAdapter qCcheckAdapter;
 
@@ -53,6 +74,10 @@ public class QCCheckActivity extends AppCompatActivity {
 
     String line_no_d ="",line_no="";
     private int sumTongAll = 0;
+    RelativeLayout rl;
+    ArrayList<QCCheckDetailChartMaster>qcCheckDetailChartMasterArrayList;
+    ArrayList<Entry> biegroupdef_qty;
+    ArrayList<String> labelscheck_value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +96,105 @@ public class QCCheckActivity extends AppCompatActivity {
         qc_code = intent.getStringExtra("tv_qc");
         line_no_d = CountActivity.line_no_d;
         line_no= CountActivity.line_noend;
+        rl = findViewById(R.id.rl);
+
+        rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                popupAction();
+
+            }
+        });
+
+
         loadpageQccheck();
+    }
+
+    private void popupAction() {
+        Dialog filterDialog;
+        filterDialog = new Dialog(QCCheckActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+        filterDialog.setContentView(R.layout.popup_detail_qc_check);
+        filterDialog.setCancelable(false);
+        filterDialog.getWindow().setLayout(getWidth(QCCheckActivity.this), ((getHight(QCCheckActivity.this) / 100) * 80));
+        filterDialog.getWindow().setGravity(Gravity.BOTTOM);
+        filterDialog.findViewById(R.id.btclose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterDialog.cancel();
+            }
+        });
+        pieChart = filterDialog.findViewById(R.id.piechart);
+
+        getDataQCcheckDetail();
+
+
+        filterDialog.show();
+    }
+
+    private void getDataQCcheckDetail() {
+        new getDataQCcheckDetail().execute(Url+"plan/GetChartPQC?line_no_d="+line_no_d);
+        Log.e("getDataQCcheckDetail",Url+"plan/GetChartPQC?line_no_d="+line_no_d);
+    }
+
+    private class getDataQCcheckDetail extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return com.autonsi.databoard.Url.NoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            qcCheckDetailChartMasterArrayList = new ArrayList<>();
+            biegroupdef_qty = new ArrayList<>();
+            labelscheck_value = new ArrayList<>();
+
+            try{
+                JSONObject jsonObject = new JSONObject(s);
+                if (!jsonObject.getBoolean("result")){
+                    return;
+                }
+                JSONArray data = jsonObject.getJSONArray("data");
+                if (data.length()==0){
+                    return;
+                }
+                JSONObject jsonObject1 = data.getJSONObject(0);
+                JSONArray Detail = jsonObject1.getJSONArray("Detail");
+                if (Detail.length()==0){
+                    return;
+                }
+                for (int i=0;i<Detail.length();i++){
+
+                    JSONObject jsonObject2 = Detail.getJSONObject(i);
+                    String check_value = jsonObject2.getString("check_value");
+                    String def_qty = jsonObject2.getString("def_qty");
+                    int numdef_qty = Integer.parseInt(def_qty);
+                    qcCheckDetailChartMasterArrayList.add(new QCCheckDetailChartMaster(check_value,numdef_qty));
+                    biegroupdef_qty.add(new Entry(numdef_qty,i));
+                    labelscheck_value.add(check_value);
+                }
+                setChartQCdetail();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                AlerError.Baoloi("Could not connect to server", QCCheckActivity.this);
+            }
+
+        }
+
+    }
+
+
+    private void setChartQCdetail() {
+        PieDataSet pieDataSet = new PieDataSet(biegroupdef_qty,"");
+        PieData data = new PieData(labelscheck_value,pieDataSet);
+        pieDataSet.setValueTextColor(Color.BLUE);
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieChart.setData(data);
+        pieChart.setDescription("");
+        pieChart.invalidate();
+
     }
 
     private void loadpageQccheck() {
@@ -331,6 +454,17 @@ public class QCCheckActivity extends AppCompatActivity {
         }
 
     }
-
+    public static int getWidth(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+    public static int getHight(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowmanager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowmanager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
 
 }

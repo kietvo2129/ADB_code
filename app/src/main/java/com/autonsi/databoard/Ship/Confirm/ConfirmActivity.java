@@ -213,7 +213,7 @@ public class ConfirmActivity extends AppCompatActivity {
     private void popupAction(int position) {
         filterDialog = new Dialog(ConfirmActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         filterDialog.setContentView(R.layout.popup_confirm_detail);
-        filterDialog.setCancelable(true);
+        filterDialog.setCancelable(false);
         filterDialog.getWindow().setLayout(getWidth(ConfirmActivity.this), ((getHight(ConfirmActivity.this) / 100) * 90));
         filterDialog.getWindow().setGravity(Gravity.BOTTOM);
 

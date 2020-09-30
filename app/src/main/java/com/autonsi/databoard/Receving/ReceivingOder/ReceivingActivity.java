@@ -212,7 +212,7 @@ public class ReceivingActivity extends AppCompatActivity {
     private void popupAction(int position) {
         filterDialog = new Dialog(ReceivingActivity.this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
         filterDialog.setContentView(R.layout.popup_add_materials);
-        filterDialog.setCancelable(true);
+        filterDialog.setCancelable(false);
         filterDialog.getWindow().setLayout(getWidth(ReceivingActivity.this), ((getHight(ReceivingActivity.this) / 100) * 80));
         filterDialog.getWindow().setGravity(Gravity.BOTTOM);
         filterDialog.findViewById(R.id.btclose).setOnClickListener(new View.OnClickListener() {
