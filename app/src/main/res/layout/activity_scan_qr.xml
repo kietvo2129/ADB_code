@@ -168,7 +168,7 @@
             <TextView
                 android:textStyle="bold"
                 android:layout_width="0dp"
-                android:text="Line Name"
+                android:text="Location Name"
                 android:textColor="#321313"
                 android:gravity="center|left"
                 android:paddingLeft="8dp"
