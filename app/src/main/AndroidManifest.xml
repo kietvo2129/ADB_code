@@ -34,7 +34,15 @@
         android:theme="@style/AppThemee"
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name="com.autonsi.databoard.Counting.Count.QCCheck.QCCheckActivity"
+        <activity android:name="com.autonsi.databoard.AMS.ChangeMcLocationActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name="com.autonsi.databoard.AMS.McDetailActivity"
+            android:parentActivityName="com.autonsi.databoard.ActivitiesLogin.MainActivity"
+            android:theme="@style/AppThemee.NoActionBar" />
+        <activity
+            android:name="com.autonsi.databoard.Counting.Count.QCCheck.QCCheckActivity"
             android:launchMode="singleTop"
             android:parentActivityName="com.autonsi.databoard.Counting.Count.CountActivity" />
         <activity

@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:hint="Input QR Code"
-                android:paddingHorizontal="8dp"
                 android:inputType="text"
+                android:paddingHorizontal="8dp"
                 android:textColor="#1DD8D8"
                 android:textColorHint="@color/colorxam" />
 

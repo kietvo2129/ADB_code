@@ -326,5 +326,14 @@
     <string name="title_connecting">connecting&#8230;</string>
     <string name="title_not_connected">not connected</string>
     <string name="set_printing_type">Set printing type</string>
+    <string name="text_ham_button_text_normal">Ham Button Text(Normal)</string>
+    <string name="text_ham_button_text_highlighted">Ham Button Text(Highlighted)</string>
+    <string name="text_ham_button_text_unable">Ham Button Text(Unable)</string>
+    <string name="text_ham_button_sub_text_normal">Ham Button Sub Text(Normal)</string>
+    <string name="MachineDetails">Machine Details</string>
+    <string name="CheckInformationMachine">Check Information Machine</string>
+    <string name="ChangeLocation">Change Location</string>
+    <string name="movingpositionofmachinery">Moving position of machine</string>
+    <string name="ConfirmMoving">ConfirmMoving</string>
 
 </resources>

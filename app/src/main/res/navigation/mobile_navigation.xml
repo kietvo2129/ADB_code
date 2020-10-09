@@ -41,6 +41,10 @@
         android:name="com.autonsi.databoard.fragment.WMSFragment"
         android:label="WMS"
         tools:layout="@layout/fragment_wms" />
-
+    <fragment
+        android:id="@+id/nav_ams"
+        android:name="com.autonsi.databoard.fragment.AMSFragment"
+        android:label="AMS"
+        tools:layout="@layout/fragment_ams" />
 
 </navigation>

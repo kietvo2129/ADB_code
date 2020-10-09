@@ -40,12 +40,13 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/piechart"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_below="@+id/h1"
         android:layout_marginVertical="8dp"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
 
 </RelativeLayout>

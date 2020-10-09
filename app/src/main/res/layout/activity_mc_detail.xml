@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/H1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="4dp">
+
+                <ImageView
+                    android:id="@+id/img_qrcode"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center|left"
+                    android:background="#878588"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_scanqr" />
+
+                <EditText
+                    android:id="@+id/edt_qrcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:hint="Input QR Code"
+                    android:inputType="text"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="#1DD8D8"
+                    android:textColorHint="@color/colorxam" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/contain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/H1">
+
+            <ImageView
+                android:id="@+id/map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/tva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/map"
+                android:layout_marginLeft="8dp"
+                android:text="Machine Details"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tva">
+
+                <LinearLayout
+                    android:id="@+id/e1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barcode"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#C8C4C8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Title"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:text="Content"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e1"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="MC Code"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_code"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e2"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="MC Name"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e3"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="MC Type"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/MCType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e4"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Description"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e5"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Serial"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Serial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e6"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Purchase Date"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Purchasedate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e7"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Valid Date"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/ValidDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e8"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Status"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="View Infomation Reference"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tvb">
+
+                <LinearLayout
+                    android:id="@+id/e12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_barcode"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#C8C4C8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Title"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:text="Content"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e12"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Url"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvurl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#00BCD4"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/e11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e10"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#D8D7D8"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:weightSum="5">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center|left"
+                        android:paddingLeft="8dp"
+                        android:text="Document"
+                        android:textColor="#321313"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Document"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center|left"
+                        android:textColor="#321313" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
