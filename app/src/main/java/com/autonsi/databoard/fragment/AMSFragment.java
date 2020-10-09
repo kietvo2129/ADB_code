@@ -167,7 +167,7 @@ public class AMSFragment extends Fragment {
 
     private void getData() {
         new getbieChart().execute(Url+"AMSMonitoring/CountingMachineTypesCurrentDate");
-        new getbarChart().execute(Url+"AMSMonitoring/CountingMachineStatusCurrentDate");
+        new getbarChart().execute(Url+"AMSMonitoring/ShowingPieChart");
 
     }
     private class getbieChart extends AsyncTask<String, Void, String> {
@@ -232,18 +232,22 @@ public class AMSFragment extends Fragment {
 
             try{
                 JSONObject jsonObject = new JSONObject(s);
-                if (!jsonObject.getBoolean("flag")){
-                    AlerError.Baoloi(jsonObject.getString("message"), getContext());
-                    return;
-                }
-                JSONArray jsonArray =jsonObject.getJSONArray("data");
-                color_bar_list = new int[jsonArray.length()];
-                for (int i=0;i<jsonArray.length();i++){
-                    JSONObject object = jsonArray.getJSONObject(i);
-                    bar_qty.add(new BarEntry(object.getInt("Quantity"),i));
-                    labels_bar_value.add(object.getString("MachineStatusName"));
-                    color_bar_list[i] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-                }
+//                if (!jsonObject.getBoolean("flag")){
+//                    AlerError.Baoloi(jsonObject.getString("message"), getContext());
+//                    return;
+//                }
+               // JSONArray jsonArray =jsonObject.getJSONArray("data");
+               // color_bar_list = new int[5];//jsonArray.length()];
+               // for (int i=0;i<jsonArray.length();i++){
+                    //JSONObject object = jsonArray.getJSONObject(i);
+                  //  bar_qty.add(new BarEntry(object.getInt("Quantity"),i));
+                bar_qty.add(new BarEntry(jsonObject.getInt("available"),0));
+                bar_qty.add(new BarEntry(jsonObject.getInt("moving"),1));
+                bar_qty.add(new BarEntry(jsonObject.getInt("used"),2));
+                bar_qty.add(new BarEntry(jsonObject.getInt("broken"),3));
+                bar_qty.add(new BarEntry(jsonObject.getInt("mainternance"),4));
+                //    color_bar_list[i] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+               // }
 
                 paint_bar_chart();
 
@@ -257,6 +261,20 @@ public class AMSFragment extends Fragment {
     }
 
     private void paint_bar_chart() {
+
+        color_bar_list = new int[5];
+        color_bar_list[0] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        color_bar_list[1] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        color_bar_list[2] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        color_bar_list[3] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        color_bar_list[4] = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+        labels_bar_value.add("available");
+        labels_bar_value.add("moving");
+        labels_bar_value.add("used");
+        labels_bar_value.add("broken");
+        labels_bar_value.add("mainternance");
+
         BarDataSet barDataSet = new BarDataSet(bar_qty,"");
         BarData data = new BarData(labels_bar_value,barDataSet);
         barDataSet.setValueTextColor(Color.DKGRAY);
