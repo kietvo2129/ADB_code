@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -166,6 +167,8 @@ public class McDetailActivity extends AppCompatActivity {
         Status.setText(mcDetailMasterArrayList.get(0).MachineStatusName);
         tvurl.setText(mcDetailMasterArrayList.get(0).ReferenceLink);
         Document.setText(mcDetailMasterArrayList.get(0).Document);
+
+        Log.e("logImage",Url + "Images/Machine/" + mcDetailMasterArrayList.get(0).getImage());
         Glide.with(McDetailActivity.this)
                 .load(Url + "Images/Machine/" + mcDetailMasterArrayList.get(0).getImage())
                 .error(R.drawable.errorimage)

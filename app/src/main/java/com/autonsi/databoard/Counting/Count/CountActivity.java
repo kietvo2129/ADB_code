@@ -234,8 +234,8 @@ public class CountActivity extends AppCompatActivity {
                     Intent intent = new Intent(CountActivity.this, QCCheckActivity.class);
                     intent.putExtra("line", tv.getText().toString());
                     intent.putExtra("product_nm", tv1.getText().toString());
-                    intent.putExtra("tv_Actual", tv2.getText().toString());
-                    intent.putExtra("tv_defective", tv4.getText().toString());
+                    intent.putExtra("tv_Actual", tv2.getText().toString().replace(".","").replace(",",""));
+                    intent.putExtra("tv_defective", tv4.getText().toString().replace(".","").replace(",",""));
                     intent.putExtra("tv_qc", tv3.getText().toString());
                     startActivity(intent);
                 } else {

@@ -58,6 +58,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class QCCheckActivity extends AppCompatActivity {
@@ -78,7 +79,7 @@ public class QCCheckActivity extends AppCompatActivity {
     ArrayList<QCCheckDetailChartMaster>qcCheckDetailChartMasterArrayList;
     ArrayList<Entry> biegroupdef_qty;
     ArrayList<String> labelscheck_value;
-
+    DecimalFormat formatter = new DecimalFormat("#,###,###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +92,7 @@ public class QCCheckActivity extends AppCompatActivity {
         Intent intent = getIntent();
         tv_line.setText(intent.getStringExtra("line"));
         numActual = Integer.parseInt(intent.getStringExtra("tv_Actual")) - Integer.parseInt(intent.getStringExtra("tv_defective"));
-        tv_Actual.setText(numActual+"");
+        tv_Actual.setText(formatter.format(numActual));
         tv_product_nm.setText(intent.getStringExtra("product_nm"));
         qc_code = intent.getStringExtra("tv_qc");
         line_no_d = CountActivity.line_no_d;
@@ -439,7 +440,7 @@ public class QCCheckActivity extends AppCompatActivity {
                     Toast.makeText(QCCheckActivity.this, "Done", Toast.LENGTH_SHORT).show();
                     loadpageQccheck();
                     numActual = numActual-sumTongAll;
-                    tv_Actual.setText(numActual+"");
+                    tv_Actual.setText(formatter.format(numActual));
                     sumTongAll = 0;
 
                 }else {
