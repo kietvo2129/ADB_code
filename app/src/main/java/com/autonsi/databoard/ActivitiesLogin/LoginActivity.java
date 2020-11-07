@@ -200,7 +200,6 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-
     private String docNoiDung_Tu_URL(String theUrl){
         StringBuilder content = new StringBuilder();
         try    {

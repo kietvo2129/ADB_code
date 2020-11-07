@@ -111,6 +111,9 @@ dependencies {
     implementation 'com.nightonke:boommenu:2.1.1'
     // select swipe
     implementation 'com.roughike:swipe-selector:1.0.6'
+    //Toast custom
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
+    //        FancyToast.makeText(this,"Hello World !",FancyToast.LENGTH_LONG,FancyToast.INFO,true).show();
 }
 
 apply from: "../artifacts.gradle"
